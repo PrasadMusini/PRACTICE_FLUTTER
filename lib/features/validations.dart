@@ -27,17 +27,22 @@ class _ValidationsState extends State<Validations> {
 //MARK: Focus Nodes
   FocusNode userNameFocusNode = FocusNode();
   FocusNode dobFocusNode = FocusNode();
+  FocusNode emailFocusNode = FocusNode();
+  FocusNode passwordFocusNode = FocusNode();
+  FocusNode confirmPasswordFocusNode = FocusNode();
 
 //MARK: Variables
   String? invalidCredentials;
   bool isGenderSelected = false;
   bool isPasswordValidate = false;
-  final String _passwordStrengthMessage = '';
-  final Color _passwordStrengthColor = Colors.transparent;
+  String _passwordStrengthMessage = '';
+  Color _passwordStrengthColor = Colors.transparent;
 
-  final bool _passwordError = false;
+  bool showConfirmPassword = true;
+  bool showPassword = true;
+  bool _passwordError = false;
   String? _passwordErrorMsg;
-  final bool _confirmPasswordError = false;
+  bool _confirmPasswordError = false;
   String? _confirmPasswordErrorMsg;
 
   bool _fullNameError = false;
@@ -47,7 +52,7 @@ class _ValidationsState extends State<Validations> {
   bool _userNameError = false;
   bool _dobError = false;
   String? _dobErrorMsg;
-  final bool _emailError = false;
+  bool _emailError = false;
   String? _emailErrorMsg;
   bool _mobileNumberError = false;
   String? _mobileNumberErrorMsg;
@@ -78,7 +83,7 @@ class _ValidationsState extends State<Validations> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+    DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
       firstDate: DateTime(1999, 8, 10),
@@ -97,28 +102,45 @@ class _ValidationsState extends State<Validations> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            fullName(),
-            const SizedBox(
-              height: 10,
-            ),
-            userName(),
-            const SizedBox(
-              height: 10,
-            ),
-            mobileNumber(),
-            const SizedBox(
-              height: 10,
-            ),
-            dob(),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomButton(
-                buttonText: 'buttonText', color: Colors.grey, onPressed: () {})
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              fullName(),
+              const SizedBox(
+                height: 10,
+              ),
+              userName(),
+              const SizedBox(
+                height: 10,
+              ),
+              mobileNumber(),
+              const SizedBox(
+                height: 10,
+              ),
+              dob(),
+              const SizedBox(
+                height: 10,
+              ),
+              email(),
+              const SizedBox(
+                height: 10,
+              ),
+              password(),
+              const SizedBox(
+                height: 10,
+              ),
+              confirmPassword(),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomButton(
+                  buttonText: 'buttonText',
+                  color: Colors.grey,
+                  onPressed: () {})
+            ],
+          ),
         ),
       ),
     );
@@ -299,6 +321,242 @@ class _ValidationsState extends State<Validations> {
     );
   }
 
+  Widget email() {
+    return TextFormField(
+      controller: emailController,
+      maxLength: 60,
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+      keyboardType: TextInputType.emailAddress,
+      onTap: () {
+        setState(() {
+          emailFocusNode.addListener(() {
+            if (emailFocusNode.hasFocus) {
+              Future.delayed(const Duration(milliseconds: 300), () {
+                Scrollable.ensureVisible(
+                  emailFocusNode.context!,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              });
+            }
+          });
+        });
+      },
+      focusNode: emailFocusNode,
+      decoration: InputDecoration(
+        errorText: _emailError ? _emailErrorMsg : null,
+        contentPadding:
+            const EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey.shade900,
+          ),
+          borderRadius: BorderRadius.circular(6.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(6.0),
+        ),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        hintText: 'Email',
+        counterText: "",
+        hintStyle:
+            const TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
+      ),
+      validator: validateEmail,
+      onChanged: (value) {
+        setState(() {
+          _emailError = false;
+        });
+      },
+    );
+  }
+
+  Widget password() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: passwordController,
+          keyboardType: TextInputType.visiblePassword,
+          obscureText: showPassword,
+          maxLength: 25,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          onTap: () {
+            setState(() {
+              passwordFocusNode.addListener(() {
+                if (passwordFocusNode.hasFocus) {
+                  Future.delayed(const Duration(milliseconds: 300), () {
+                    Scrollable.ensureVisible(
+                      passwordFocusNode.context!,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  });
+                }
+              });
+            });
+          },
+          focusNode: passwordFocusNode,
+          decoration: InputDecoration(
+            errorText: _passwordError ? _passwordErrorMsg : null,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  showPassword = !showPassword;
+                });
+              },
+              child:
+                  Icon(showPassword ? Icons.visibility : Icons.visibility_off),
+            ),
+            contentPadding:
+                const EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey.shade900,
+              ),
+              borderRadius: BorderRadius.circular(6.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: Colors.grey,
+              ),
+              borderRadius: BorderRadius.circular(6.0),
+            ),
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            hintText: 'Password',
+            counterText: "",
+            hintStyle: const TextStyle(
+                color: Colors.grey, fontWeight: FontWeight.w400),
+          ),
+          validator: validatePassword,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(
+                RegExp(r'[a-zA-Z0-9!@#$%^&*(),.?":{}|<>_-]')),
+          ],
+          onChanged: (value) {
+            setState(() {
+              if (value.startsWith(' ')) {
+                passwordController.value = TextEditingValue(
+                  text: value.trimLeft(),
+                  selection:
+                      TextSelection.collapsed(offset: value.trimLeft().length),
+                );
+                return;
+              }
+              _passwordError = false;
+              isPasswordValidate = true;
+              if (isPasswordValidate) {
+                _updatePasswordStrengthMessage(value);
+              }
+            });
+          },
+        ),
+        if (isPasswordValidate)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 5, left: 12),
+                child: Text(
+                  _passwordStrengthMessage,
+                  style: TextStyle(color: _passwordStrengthColor, fontSize: 12),
+                ),
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+
+  Widget confirmPassword() {
+    return TextFormField(
+      controller: confirmPasswordController,
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: showConfirmPassword,
+      maxLength: 25,
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+      onTap: () {
+        setState(() {
+          confirmPasswordFocusNode.addListener(() {
+            if (confirmPasswordFocusNode.hasFocus) {
+              Future.delayed(const Duration(milliseconds: 300), () {
+                Scrollable.ensureVisible(
+                  confirmPasswordFocusNode.context!,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              });
+            }
+          });
+        });
+      },
+      focusNode: confirmPasswordFocusNode,
+      decoration: InputDecoration(
+        errorText: _confirmPasswordError ? _confirmPasswordErrorMsg : null,
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              showConfirmPassword = !showConfirmPassword;
+            });
+          },
+          child: Icon(
+              showConfirmPassword ? Icons.visibility : Icons.visibility_off),
+        ),
+        contentPadding:
+            const EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey.shade900,
+          ),
+          borderRadius: BorderRadius.circular(6.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(6.0),
+        ),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        hintText: 'Confirm Password',
+        counterText: "",
+        hintStyle:
+            const TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
+      ),
+      validator: validateConfirmPassword,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(
+            RegExp(r'[a-zA-Z0-9!@#$%^&*(),.?":{}|<>_-]')),
+      ],
+      onChanged: (value) {
+        setState(() {
+          if (value.startsWith(' ')) {
+            confirmPasswordController.value = TextEditingValue(
+              text: value.trimLeft(),
+              selection:
+                  TextSelection.collapsed(offset: value.trimLeft().length),
+            );
+            return;
+          }
+          _confirmPasswordError = false;
+        });
+      },
+    );
+  }
+
 //MARK: Validations
   String? validateFullName(String? value) {
     if (value!.isEmpty) {
@@ -408,6 +666,135 @@ class _ValidationsState extends State<Validations> {
       return null;
     }
     isDobValidate = true;
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value!.isEmpty) {
+      setState(() {
+        _emailError = true;
+        _emailErrorMsg = 'Please Enter Email';
+      });
+      isEmailValidate = false;
+      return null;
+    } else if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(value)) {
+      setState(() {
+        _emailError = true;
+        _emailErrorMsg = 'Please Enter a Valid Email Address';
+      });
+      isEmailValidate = false;
+      return null;
+    }
+    isEmailValidate = true;
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value!.isEmpty) {
+      setState(() {
+        isPasswordValidate = false;
+        _passwordError = true;
+        _passwordErrorMsg = 'Please Enter Password';
+      });
+      isPswdValidate = false;
+      return null;
+    } else if (value.length < 8) {
+      setState(() {
+        isPasswordValidate = false;
+        _passwordError = true;
+        _passwordErrorMsg = 'Password must be 8 characters or above';
+      });
+      isPswdValidate = false;
+      return null;
+    } else if (value.length > 30) {
+      setState(() {
+        isPasswordValidate = false;
+        _passwordError = true;
+        _passwordErrorMsg = 'Password must be below 30 characters';
+      });
+      isPswdValidate = false;
+      return null;
+    }
+
+    final hasAlphabets = RegExp(r'[a-zA-Z]').hasMatch(value);
+    final hasNumbers = RegExp(r'\d').hasMatch(value);
+    final hasSpecialCharacters =
+        RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value);
+    final hasCapitalLetter = RegExp(r'[A-Z]').hasMatch(value);
+
+    if (!hasAlphabets ||
+        !hasNumbers ||
+        !hasSpecialCharacters ||
+        !hasCapitalLetter) {
+      setState(() {
+        isPasswordValidate = false;
+        _passwordError = true;
+        _passwordErrorMsg =
+            'Password must contain at least one alphabets, numbers, special characters, and capital letter';
+      });
+      isPswdValidate = false;
+      return null;
+    }
+    setState(() {
+      isPasswordValidate = true;
+      isPswdValidate = true;
+    });
+    return null;
+  }
+
+  void _updatePasswordStrengthMessage(String password) {
+    setState(() {
+      if (password.isEmpty || password.length < 8) {
+        isPasswordValidate = false;
+      } else {
+        if (_containsSpecialCharacters(password) &&
+            _containsCharacters(password) &&
+            _containsNumbers(password)) {
+          _passwordStrengthMessage = 'Strong password';
+          _passwordStrengthColor = const Color.fromARGB(255, 2, 131, 68);
+        } else if (_containsNumbers(password) &&
+            _containsCharacters(password)) {
+          _passwordStrengthMessage = 'Good password';
+          _passwordStrengthColor = const Color.fromARGB(255, 161, 97, 0);
+        } else {
+          _passwordStrengthMessage = 'Weak password';
+          _passwordStrengthColor = const Color.fromARGB(255, 181, 211, 15);
+        }
+      }
+    });
+  }
+
+  bool _containsNumbers(String value) {
+    return RegExp(r'\d').hasMatch(value);
+  }
+
+  bool _containsCharacters(String value) {
+    return RegExp(r'[a-zA-Z]').hasMatch(value);
+  }
+
+  bool _containsSpecialCharacters(String value) {
+    return RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value);
+  }
+
+  String? validateConfirmPassword(String? value) {
+    if (value!.isEmpty) {
+      setState(() {
+        _confirmPasswordError = true;
+        _confirmPasswordErrorMsg = 'Please Enter Confirm Password';
+      });
+      isConfirmPswdValidate = false;
+      return null;
+    } else if (passwordController.text != confirmPasswordController.text) {
+      setState(() {
+        _confirmPasswordError = true;
+        _confirmPasswordErrorMsg = 'Confirm Password Must be Same as Password';
+      });
+      isConfirmPswdValidate = false;
+      return null;
+    }
+    isConfirmPswdValidate = true;
     return null;
   }
 }
