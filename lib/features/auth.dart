@@ -26,8 +26,8 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 
   void toggleForm() {
