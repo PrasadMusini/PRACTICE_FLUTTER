@@ -82,6 +82,7 @@ flutter:
     - assets/hfz_logo.svg
     - assets/hair_fixing_logo-removebg-preview.png
     - assets/check.svg
+    - assets/dragon.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -56,8 +56,8 @@ class _ValidationsState extends State<Validations> {
   String? _emailErrorMsg;
   bool _mobileNumberError = false;
   String? _mobileNumberErrorMsg;
-  final bool _altNumberError = false;
-  String? _altNumberErrorMsg;
+  // final bool _altNumberError = false;
+  // String? _altNumberErrorMsg;
 
   bool isFullNameValidate = false;
   bool isDobValidate = false;
@@ -100,46 +100,48 @@ class _ValidationsState extends State<Validations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              fullName(),
-              const SizedBox(
-                height: 10,
-              ),
-              userName(),
-              const SizedBox(
-                height: 10,
-              ),
-              mobileNumber(),
-              const SizedBox(
-                height: 10,
-              ),
-              dob(),
-              const SizedBox(
-                height: 10,
-              ),
-              email(),
-              const SizedBox(
-                height: 10,
-              ),
-              password(),
-              const SizedBox(
-                height: 10,
-              ),
-              confirmPassword(),
-              const SizedBox(
-                height: 10,
-              ),
-              CustomButton(
-                  buttonText: 'buttonText',
-                  color: Colors.grey,
-                  onPressed: () {})
-            ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                fullName(),
+                const SizedBox(
+                  height: 10,
+                ),
+                userName(),
+                const SizedBox(
+                  height: 10,
+                ),
+                mobileNumber(),
+                const SizedBox(
+                  height: 10,
+                ),
+                dob(),
+                const SizedBox(
+                  height: 10,
+                ),
+                email(),
+                const SizedBox(
+                  height: 10,
+                ),
+                password(),
+                const SizedBox(
+                  height: 10,
+                ),
+                confirmPassword(),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomButton(
+                    buttonText: 'buttonText',
+                    color: Colors.grey,
+                    onPressed: signIn)
+              ],
+            ),
           ),
         ),
       ),
@@ -796,5 +798,11 @@ class _ValidationsState extends State<Validations> {
     }
     isConfirmPswdValidate = true;
     return null;
+  }
+
+  void signIn() {
+    if (_formKey.currentState!.validate()) {
+      print('Login Succuss');
+    }
   }
 }
