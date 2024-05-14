@@ -18,7 +18,7 @@ class _BottomNavState extends State<BottomNav> {
     const Page1(),
     const Page2(),
     const Page3(),
-    const Page4(),
+    Page4(),
   ];
   @override
   Widget build(BuildContext context) {

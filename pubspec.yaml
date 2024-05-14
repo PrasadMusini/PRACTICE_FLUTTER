@@ -53,6 +53,12 @@ dependencies:
   game: ^0.0.5
   flame: ^1.17.0
   google_nav_bar: ^5.0.6
+  flutter_local_notifications: ^17.1.2
+  timezone: ^0.9.3
+  flutter_datetime_picker: ^1.5.1
+  flutter_datetime_picker_plus: ^2.2.0
+  intl: ^0.19.0
+  flutter_carousel_widget: ^2.2.0
 
 dev_dependencies:
   flutter_test:

@@ -45,21 +45,25 @@ class MyCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Aug'),
-                  Text(
-                    '10',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text('1999'),
-                ],
-              ),
+            const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Aug'),
+                Text(
+                  '10',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text('1999'),
+              ],
             ),
-            const VerticalDivider(),
+            Container(
+              width: 1,
+              height: 120,
+              color: Colors.red,
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+            ),
+            // const VerticalDivider(),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,24 +83,23 @@ class MyCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Container(
-                            child: const Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text('status'),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Icon(
-                                      Icons.star_border_outlined,
-                                      size: 13,
-                                    ),
-                                    Text('4.5'),
-                                  ],
-                                ),
-                              ],
-                            ),
+                        Container(
+                          color: Colors.red,
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text('status'),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.star_border_outlined,
+                                    size: 13,
+                                  ),
+                                  Text('4.5'),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],
