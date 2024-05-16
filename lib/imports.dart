@@ -17,7 +17,6 @@ export 'package:practice_flutter/temp/page1.dart';
 export 'package:practice_flutter/temp/page2.dart';
 export 'package:practice_flutter/packages/date_time_picker_pack.dart';
 export 'package:practice_flutter/practice/custom_carousel.dart';
-export 'package:practice_flutter/temp/page5.dart';
 export 'package:practice_flutter/theme/theme.dart';
 export 'package:practice_flutter/theme/theme_change.dart';
 export 'package:practice_flutter/theme/theme_provider.dart';
