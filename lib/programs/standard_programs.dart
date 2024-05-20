@@ -23,6 +23,10 @@ class _StandedProgramsState extends State<StandedPrograms> {
     super.initState();
 
     removeDuplicatesUsingloop();
+    fibonacci();
+    findMostRepeatedValue();
+    removeDuplicatesUsingSetDataStructure();
+    removeDuplicates(nums);
   }
 
   @override
@@ -42,13 +46,13 @@ class _StandedProgramsState extends State<StandedPrograms> {
       b = c;
       c = a + b;
     }
-    print(result);
+    print('fibonacci: $result');
   }
 
   void removeDuplicatesUsingSetDataStructure() {
     Set<int> removeDuplicates = nums.toSet();
     List result = removeDuplicates.toList();
-    print(result);
+    print('Remove duplicates using set: $result');
   }
 
   void removeDuplicatesUsingloop() {
@@ -93,7 +97,26 @@ class _StandedProgramsState extends State<StandedPrograms> {
         result.add(list[i]);
       }
     }
-
+    print('Remove Duplicates: $result');
     return result;
+  }
+
+  void findMostRepeatedValue() {
+    List<int> nums = [1, 2, 3, 4, 2, 5, 2, 1, 1, 11, 1];
+    int result = 0;
+    int value = -1;
+    for (int i = 0; i < nums.length; i++) {
+      int count = 0;
+      for (int j = 0; j < nums.length; j++) {
+        if (nums[i] == nums[j]) {
+          count++;
+        }
+      }
+      if (result < count) {
+        result = count;
+        value = nums[i];
+      }
+    }
+    print('Most repeatted number in list: $value');
   }
 }
