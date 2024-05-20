@@ -65,6 +65,8 @@ dependencies:
   reactive_date_range_picker: ^2.1.0
   calendar_date_picker2: ^1.0.2
   internet_connection_checker_plus: ^2.3.0
+  flutter_onboarding_slider: ^1.0.11
+  cupertino_onboarding: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -90,11 +92,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/hair_fixing_logo.png
-    - assets/hfz_logo.svg
-    - assets/hair_fixing_logo-removebg-preview.png
-    - assets/check.svg
-    - assets/dragon.jpg
+    - assets/
+    # - assets/hair_fixing_logo.png
+    # - assets/hfz_logo.svg
+    # - assets/hair_fixing_logo-removebg-preview.png
+    # - assets/check.svg
+    # - assets/dragon.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
