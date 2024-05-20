@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
@@ -12,11 +14,19 @@ class InternetConnectionChecking extends StatefulWidget {
 class _InternetConnectionCheckingState
     extends State<InternetConnectionChecking> {
   String status = 'Please check you are connection';
+  StreamSubscription? _streamSubscription;
 
   @override
   void initState() {
     super.initState();
     checkInternetStatus();
+  }
+
+  @override
+  void dispose() {
+    //! Make sure to cancel the screams that we are using to avoid the memory leakage
+    _streamSubscription?.cancel();
+    super.dispose();
   }
 
   void checkInternetStatus() {
