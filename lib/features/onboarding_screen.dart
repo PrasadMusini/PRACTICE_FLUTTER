@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:practice_flutter/common_utils/common_utils.dart';
 
 class OnboardingContents {
   final String title;
@@ -148,12 +149,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ? Padding(
                           padding: const EdgeInsets.all(30),
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
                                     builder: (context) => const DashBoardPage(),
                                   ),
                                   (route) => false);
+
+                              await setSeenOnboarding();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black,
@@ -259,16 +262,18 @@ class DashBoardPage extends StatelessWidget {
               title: const Text('Title'),
               content: const Text('Dialog Content'),
               actions: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(Icons.cancel_presentation)),
-                BackButton(
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+                ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
-                )
+                  child: const Text('Ok'),
+                ),
               ],
             );
           },
