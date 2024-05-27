@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -9,7 +11,17 @@ class SkeletonizerDemoPage extends StatefulWidget {
 }
 
 class _SkeletonizerDemoPageState extends State<SkeletonizerDemoPage> {
+  late Future<int> apiData;
+
   bool _enabled = true;
+
+  @override
+  void initState() {
+    super.initState();
+    apiData = Future.delayed(const Duration(seconds: 3), () {
+      return 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,24 +46,50 @@ class _SkeletonizerDemoPageState extends State<SkeletonizerDemoPage> {
           ),
         ),
       ),
-      body: Skeletonizer(
-        enabled: _enabled,
-        child: ListView.builder(
-          itemCount: 6,
-          padding: const EdgeInsets.all(16),
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                title: Text('Item number $index as title'),
-                subtitle: const Text('Subtitle here'),
-                trailing: const Icon(
-                  Icons.ac_unit,
-                  size: 32,
-                ),
+      body: FutureBuilder(
+        future: apiData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Skeletonizer(
+              enabled: true,
+              child: ListView.builder(
+                itemCount: 6,
+                padding: const EdgeInsets.all(16),
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      title: Text('Item number $index as title'),
+                      subtitle: const Text('Subtitle here'),
+                      trailing: const Icon(
+                        Icons.ac_unit,
+                        size: 32,
+                      ),
+                    ),
+                  );
+                },
               ),
             );
-          },
-        ),
+          } else if (snapshot.hasError) {
+            return const Text('Error');
+          } else {
+            return ListView.builder(
+              itemCount: 6,
+              padding: const EdgeInsets.all(16),
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text('Item number $index as title'),
+                    subtitle: const Text('Subtitle here'),
+                    trailing: const Icon(
+                      Icons.ac_unit,
+                      size: 32,
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }
