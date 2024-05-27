@@ -68,6 +68,7 @@ dependencies:
   flutter_onboarding_slider: ^1.0.11
   cupertino_onboarding: ^1.2.0
   shared_preferences: ^2.2.3
+  skeletonizer: ^1.1.2+1
 
 dev_dependencies:
   flutter_test:
