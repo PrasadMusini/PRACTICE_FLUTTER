@@ -13,14 +13,19 @@ class SkeletonizerDemoPage extends StatefulWidget {
 class _SkeletonizerDemoPageState extends State<SkeletonizerDemoPage> {
   late Future<int> apiData;
 
-  bool _enabled = true;
+  final bool _enabled = true;
 
   @override
   void initState() {
     super.initState();
-    apiData = Future.delayed(const Duration(seconds: 3), () {
+    apiData = apiCall();
+  }
+
+  Future<int> apiCall() async {
+    await Future.delayed(const Duration(seconds: 5), () {
       return 1;
     });
+    return 1;
   }
 
   @override
@@ -28,23 +33,14 @@ class _SkeletonizerDemoPageState extends State<SkeletonizerDemoPage> {
     return Scaffold(
       backgroundColor: Colors.black87,
       appBar: AppBar(title: const Text('Skeletonizer Demo')),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 0, right: 4),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 110),
-          child: FloatingActionButton(
-            child: Icon(
-              _enabled
-                  ? Icons.hourglass_bottom_rounded
-                  : Icons.hourglass_disabled_outlined,
-            ),
-            onPressed: () {
-              setState(() {
-                _enabled = !_enabled;
-              });
-            },
-          ),
-        ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.hourglass_bottom_rounded),
+        onPressed: () {
+          setState(() {
+            apiData = apiCall();
+          });
+          // apiData = apiCall();
+        },
       ),
       body: FutureBuilder(
         future: apiData,
