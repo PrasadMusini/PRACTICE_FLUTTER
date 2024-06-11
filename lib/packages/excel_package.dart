@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:practice_flutter/main.dart';
 
 class ExcelPack extends StatefulWidget {
   const ExcelPack({super.key});
@@ -54,7 +55,7 @@ class _ExcelPackState extends State<ExcelPack> {
 
       // Save the file
       final directory = await getApplicationDocumentsDirectory();
-      final path = '${directory.path}/user_data.xlsx';
+      final path = '${directory.path}/sample_excel_file.xlsx';
       final file = File(path);
       file.writeAsBytesSync(excel.save()!);
 
@@ -120,9 +121,23 @@ class _ExcelPackState extends State<ExcelPack> {
                 onPressed: _generateExcel,
                 child: const Text('Generate Excel File'),
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: goToOpenFileXPack,
+                child: const Text('Go to open file x pack'),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void goToOpenFileXPack() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const OpenFileXPack(),
       ),
     );
   }

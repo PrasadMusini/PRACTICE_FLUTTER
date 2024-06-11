@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:practice_flutter/features/auth.dart';
 
 class Page2 extends StatefulWidget {
@@ -17,7 +16,7 @@ class _Page2State extends State<Page2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: kIsWeb ? signinFromWeb() : signinFromMobile(),
+      body: signinFromMobile(),
     );
   }
 
@@ -188,13 +187,13 @@ class _Page2State extends State<Page2> {
 }
 
 class CustomField extends StatelessWidget {
+  final String? labelText;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   final void Function()? onTap;
   final FocusNode? focusNode;
   final String? errorText;
   final String? Function(String?)? validator;
-  final String? labelText;
   final String? counterText;
   final int? maxLength;
   final TextInputType? keyboardType;
@@ -206,6 +205,7 @@ class CustomField extends StatelessWidget {
 
   const CustomField({
     Key? key,
+    required this.labelText,
     this.controller,
     this.onChanged,
     this.onTap,
@@ -217,7 +217,6 @@ class CustomField extends StatelessWidget {
     this.keyboardType,
     this.errorMaxLines,
     this.suffixIcon,
-    this.labelText,
     this.inputFormatters,
     this.obscureText = false,
     this.maxLines = 1,
@@ -242,14 +241,40 @@ class CustomField extends StatelessWidget {
         errorText: errorText,
         filled: true,
         fillColor: const Color(0xFFfafafa),
-        border: border(borderColor: Colors.grey.shade400, radius: 5),
-        enabledBorder: border(borderColor: Colors.grey.shade400, radius: 5),
-        focusedBorder: border(
-          borderColor: const Color(0xFF7ba4d7),
-          radius: 5,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey.shade100,
+          ),
+          borderRadius: BorderRadius.circular(5.0),
         ),
-        errorBorder: border(borderColor: Colors.red.shade400, radius: 5),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey.shade300,
+          ),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            // color: Colors.grey.shade400,
+            color: Color(0xFF7ba4d7),
+            // width: 2.0,
+          ),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red.shade400,
+            width: 2.0,
+          ),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
         labelText: labelText,
+        labelStyle: const TextStyle(
+          color: Color(0xFF7ba4d7),
+        ),
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF7ba4d7),
+        ),
         suffixIcon: suffixIcon,
       ),
       inputFormatters: inputFormatters,
