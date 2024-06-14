@@ -17,16 +17,20 @@ dependencies:
   cupertino_onboarding: ^1.2.0
   date_picker_plus: ^4.0.0
   dio: ^5.4.3+1
+  dot_navigation_bar: ^1.0.2
   dotted_border: ^2.1.0
   excel: ^4.0.2
   file_downloader_flutter: ^0.0.5
   fl_chart: ^0.68.0
   flame: ^1.17.0
   flip_card: ^0.7.0
+  floating_frosted_bottom_bar: ^0.0.1
+  
   flutter:
     sdk: flutter
   flutter_carousel_widget: ^2.2.0
   flutter_datetime_picker_plus: ^2.2.0
+  flutter_floating_bottom_bar: ^1.2.0
   flutter_local_notifications: ^17.1.2
   flutter_onboarding_slider: ^1.0.11
   flutter_rating_bar: ^4.0.1
