@@ -157,7 +157,7 @@ class PdfInvoiceApi {
             ///
             /// PDF Table Create
             ///
-            pw.Table.fromTextArray(
+            pw.TableHelper.fromTextArray(
               headers: tableHeaders,
               data: tableData,
               headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
