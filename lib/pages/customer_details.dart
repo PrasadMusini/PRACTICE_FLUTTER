@@ -417,7 +417,7 @@ class CustomRadioButton extends StatefulWidget {
       {super.key, required this.selected, required this.onTap});
 
   @override
-  _CustomRadioButtonState createState() => _CustomRadioButtonState();
+  State<CustomRadioButton> createState() => _CustomRadioButtonState();
 }
 
 class _CustomRadioButtonState extends State<CustomRadioButton> {

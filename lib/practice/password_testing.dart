@@ -4,7 +4,7 @@ class PasswordStrengthChecker extends StatefulWidget {
   const PasswordStrengthChecker({super.key});
 
   @override
-  _PasswordStrengthCheckerState createState() =>
+  State<PasswordStrengthChecker> createState() =>
       _PasswordStrengthCheckerState();
 }
 

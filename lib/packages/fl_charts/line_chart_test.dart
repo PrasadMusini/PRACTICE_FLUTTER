@@ -1,4 +1,3 @@
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +43,7 @@ class LinesChartTest extends StatelessWidget {
                     sideTitles: SideTitles(
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
-                        final index = value.toInt();
+                        value.toInt();
                         // if (index >= 0 && index < students.length) {
                         //   return Text(students[index].name);
                         // }

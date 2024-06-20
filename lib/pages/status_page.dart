@@ -86,7 +86,6 @@ class _StatusPageState extends State<StatusPage> with TickerProviderStateMixin {
                               'assets/check.svg',
                               width: 70,
                               height: 70,
-                              color: primaryGreen,
                             ),
                           )
                         ],

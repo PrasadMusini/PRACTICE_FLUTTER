@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pdf/pdf.dart';
 
 class GenerateInvoiceWidget extends StatelessWidget {
   const GenerateInvoiceWidget({

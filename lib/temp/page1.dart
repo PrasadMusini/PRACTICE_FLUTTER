@@ -60,38 +60,25 @@ class Page1 extends StatelessWidget {
                 Expanded(
                   child: Container(
                     color: const Color.fromARGB(255, 93, 102, 230),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
-                              child: Container(
-                                child:
-//                        const Column(
-//                                   crossAxisAlignment: CrossAxisAlignment.start,
-//                                   mainAxisAlignment: MainAxisAlignment.start,
-//                                   children: [
-//                                     Text('10:00 Am'),
-//                                     Text('Head Wash'),
-//                                     Text('kondapur'),
-//                                   ],
-//                                 ),
-                                    const Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text('10:00 Am'),
-                                    Text('Head Wash'),
-                                    Text('kondapur'),
-                                  ],
-                                ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text('10:00 Am'),
+                                  Text('Head Wash'),
+                                  Text('kondapur'),
+                                ],
                               ),
                             ),
-                            const Column(
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text('status'),

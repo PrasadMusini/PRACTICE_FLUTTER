@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/widgets.dart';
 
 class LineChartSample extends StatelessWidget {
   const LineChartSample({super.key});

@@ -8,7 +8,7 @@ class ThemeChange extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: MyBox(child: MyButton(
           onPressed: () {
@@ -30,7 +30,7 @@ class MyButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
+        backgroundColor: WidgetStateProperty.all<Color>(
           Theme.of(context).colorScheme.secondary,
         ),
       ),

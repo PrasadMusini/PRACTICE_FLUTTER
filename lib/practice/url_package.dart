@@ -29,8 +29,7 @@ class UrlPack extends StatelessWidget {
     const destinationLatitude = 17.525830;
     const destinationLongitude = 78.421710;
 
-    const String sourceLocation =
-        "Your Current Location"; // Replace with getting current location (optional)
+// Replace with getting current location (optional)
     const String url =
         'https://www.google.com/maps?q=$destinationLatitude,$destinationLongitude';
 

@@ -1,14 +1,14 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 class CustomCalendarDialog extends StatefulWidget {
   final CalendarDatePicker2Config config;
 
-  const CustomCalendarDialog({Key? key, required this.config}) : super(key: key);
+  const CustomCalendarDialog({Key? key, required this.config})
+      : super(key: key);
 
   @override
-  _CustomCalendarDialogState createState() => _CustomCalendarDialogState();
+  State<CustomCalendarDialog> createState() => _CustomCalendarDialogState();
 }
 
 class _CustomCalendarDialogState extends State<CustomCalendarDialog> {
@@ -39,28 +39,29 @@ class _CustomCalendarDialogState extends State<CustomCalendarDialog> {
             ),
             // const SizedBox(height: 20),
             Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child:Row(
-
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(null);
-                  },
-                  child: const Text('Cancel'),
-                ),
-                ElevatedButton(
-                  onPressed: _selectedDates.length > 1 && _selectedDates[1] != null
-                      ? () {
-                    Navigator.of(context).pop(_selectedDates);
-                  }
-                      : null,
-                  child: const Text('OK'),
-                ),
-              ],
-            ),
-            )],
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(null);
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed:
+                        _selectedDates.length > 1 && _selectedDates[1] != null
+                            ? () {
+                                Navigator.of(context).pop(_selectedDates);
+                              }
+                            : null,
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

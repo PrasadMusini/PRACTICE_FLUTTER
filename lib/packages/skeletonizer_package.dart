@@ -13,8 +13,6 @@ class SkeletonizerDemoPage extends StatefulWidget {
 class _SkeletonizerDemoPageState extends State<SkeletonizerDemoPage> {
   late Future<int> apiData;
 
-  final bool _enabled = true;
-
   @override
   void initState() {
     super.initState();

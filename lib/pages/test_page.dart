@@ -71,16 +71,14 @@ class MyCard extends StatelessWidget {
                   Expanded(
                     child: Row(
                       children: [
-                        Expanded(
-                          child: Container(
-                            child: const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('10:00 Am'),
-                                Text('Head Wash'),
-                                Text('kondapur'),
-                              ],
-                            ),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('10:00 Am'),
+                              Text('Head Wash'),
+                              Text('kondapur'),
+                            ],
                           ),
                         ),
                         Container(
@@ -208,23 +206,21 @@ class MyCard extends StatelessWidget {
           color: Colors.grey,
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Row(
+        child: const Row(
           children: [
-            Container(
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Aug'),
-                  Text(
-                    '10',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text('1999'),
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Aug'),
+                Text(
+                  '10',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Text('1999'),
+              ],
             ),
-            const VerticalDivider(),
+            VerticalDivider(),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,41 +229,37 @@ class MyCard extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            child: const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('10:00 Am'),
-                                Text('Head Wash'),
-                                Text('kondapur'),
-                              ],
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('10:00 Am'),
+                              Text('Head Wash'),
+                              Text('kondapur'),
+                            ],
                           ),
                         ),
                         Expanded(
-                          child: Container(
-                            child: const Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text('status'),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Icon(
-                                      Icons.star_border_outlined,
-                                      size: 13,
-                                    ),
-                                    Text('4.5'),
-                                  ],
-                                ),
-                              ],
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text('status'),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.star_border_outlined,
+                                    size: 13,
+                                  ),
+                                  Text('4.5'),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text('Reschedule'),
