@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/web/screens/screen1.dart';
 import 'package:practice_flutter/web/screens/screen10.dart';
+import 'package:practice_flutter/web/screens/screen11.dart';
+import 'package:practice_flutter/web/screens/screen12.dart';
+import 'package:practice_flutter/web/screens/screen13.dart';
+import 'package:practice_flutter/web/screens/screen14.dart';
 import 'package:practice_flutter/web/screens/screen2.dart';
 import 'package:practice_flutter/web/screens/screen3.dart';
 import 'package:practice_flutter/web/screens/screen4.dart';
@@ -15,21 +19,25 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.lightGreenAccent[100],
-        body: const SingleChildScrollView(
+    return const Scaffold(
+        backgroundColor: Colors.grey,
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              // Screen1(),
-              // Screen2(),
-              // Screen3(),
-              // Screen4(),
-              // Screen5(),
-              // Screen6(),
-              // Screen7(),
-              // Screen8(),
-              // Screen9(),
+              Screen1(),
+              Screen2(content: 'test', backgroundColor: Colors.red),
+              Screen3(),
+              Screen4(),
+              Screen5(),
+              Screen6(),
+              Screen7(),
+              Screen8(),
+              Screen9(),
               Screen10(),
+              Screen11(),
+              Screen12(),
+              Screen13(),
+              Screen14(),
             ],
           ),
         ));
