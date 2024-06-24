@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen7 extends StatelessWidget {
   const Screen7({super.key});
@@ -49,35 +50,37 @@ class Screen7 extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 100),
+          SizedBox(height: (size.height * 0.14) * 0.4),
           Container(
-            padding: const EdgeInsets.all(35),
+            padding: EdgeInsets.all((size.height * 0.14) * 0.3),
             decoration: BoxDecoration(
                 // color: Colors.white,
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.grey)),
-            child: const Center(
+            child: Center(
               child: Column(
                 children: [
-                  Icon(Icons.arrow_outward_outlined,
+                  const Icon(Icons.arrow_outward_outlined,
                       size: 18, color: Colors.white),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'See All Recent',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                        style: Constants.txW5FpCw.copyWith(
+                          fontSize: size.width * 0.0085,
+                        ),
+                        // style: TextStyle(
+                        //     color: Colors.white,
+                        //     fontSize: 16,
+                        //     fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'Projects',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                        style: Constants.txW5FpCw.copyWith(
+                          fontSize: size.width * 0.0085,
+                        ),
                       ),
                     ],
                   ),
@@ -85,7 +88,7 @@ class Screen7 extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 50),
+          SizedBox(height: (size.height * 0.14) * 0.4),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen8 extends StatelessWidget {
   const Screen8({super.key});
@@ -10,45 +11,51 @@ class Screen8 extends StatelessWidget {
       color: const Color(0xFFe2eaf5),
       width: size.width,
       padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.152, vertical: size.height * 0.14),
+        horizontal: size.width * 0.152,
+      ).copyWith(top: size.height * 0.08),
       child: Column(
         children: [
-          Container(
-            child: const Text(
-              'We specialize in the design and development of your Webflow,Shopify or WordPress powered website. Webhosting support through\nWebflow, WP Engine or equivalent. SEO best practices with a focus on\npage speed optimization. Familiarity with MySQL, PHP, JavaScript,\nCloudflare, and WooCommerce.',
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-              ),
+          Text(
+            'We specialize in the design and development of your Webflow,Shopify or WordPress powered website. Webhosting support through\nWebflow, WP Engine or equivalent. SEO best practices with a focus on\npage speed optimization. Familiarity with MySQL, PHP, JavaScript,\nCloudflare, and WooCommerce.',
+            style: Constants.txW7FpCb.copyWith(
+              fontSize: size.width * 0.018,
+              height: 2,
             ),
+            // style: TextStyle(
+            //   fontSize: 35,
+            //   fontWeight: FontWeight.bold,
+            // ),
           ),
-          const SizedBox(height: 50),
-          serviceBox('Web Development'),
-          serviceBox('Web Development'),
-          serviceBox('Web Development'),
-          serviceBox('Web Development'),
-          serviceBox('Test Development'),
+          SizedBox(height: size.height * 0.08),
+          serviceBox(size, 'Web Development'),
+          serviceBox(size, 'Web Development'),
+          serviceBox(size, 'Web Development'),
+          serviceBox(size, 'Web Development'),
+          serviceBox(size, 'Test Development'),
           const Divider(),
         ],
       ),
     );
   }
 
-  Column serviceBox(String service) {
+  Column serviceBox(Size size, String service) {
     return Column(
       children: [
         const Divider(),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 30),
+          padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 service,
-                style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+                style: Constants.txW7FpCb.copyWith(
+                  fontSize: size.width * 0.014,
                 ),
+                // style: const TextStyle(
+                //   fontSize: 30,
+                //   fontWeight: FontWeight.bold,
+                // ),
               ),
               const CircleAvatar(
                 radius: 40,

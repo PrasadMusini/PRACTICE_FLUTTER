@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen9 extends StatelessWidget {
   const Screen9({super.key});
@@ -20,9 +21,27 @@ class Screen9 extends StatelessWidget {
           height: size.height / 1.8,
           child: Row(
             children: [
-              Container(
-                width: 70,
-                // color: Colors.green,
+              const SizedBox(
+                width: 50,
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(
+                        Icons.arrow_downward_outlined,
+                        size: 30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 6, right: 2),
+                        child: Divider(),
+                      ),
+                      Icon(
+                        Icons.arrow_upward_outlined,
+                        size: 30,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const VerticalDivider(
                 thickness: 0.5,
@@ -44,7 +63,7 @@ class Screen9 extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 30),
+                        SizedBox(width: size.width * 0.03),
                         Expanded(
                           flex: 7,
                           child: Container(
@@ -52,21 +71,26 @@ class Screen9 extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: const Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.stream,
                                   size: 25,
                                 ),
                                 // Spacer(),
                                 Text(
                                   'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable but also the leap into electronic typesetting, remaining essentially unchanged',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    height: 2,
-                                    fontWeight: FontWeight.bold,
+                                  // style: TextStyle(
+                                  //   fontSize: 24,
+                                  //   height: 2,
+                                  //   fontWeight: FontWeight.bold,
+                                  // ),
+                                  style: Constants.txW7FpCb.copyWith(
+                                    fontSize: size.width * 0.012,
+                                    height: 1.6,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 // Spacer(),
@@ -74,18 +98,25 @@ class Screen9 extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Read More',
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
+                                      'Developer Name',
+                                      style: Constants.txW7FpCb.copyWith(
+                                        fontSize: size.width * 0.014,
                                       ),
+                                      // style: TextStyle(
+                                      //   fontSize: 24,
+                                      //   fontWeight: FontWeight.bold,
+                                      // ),
                                     ),
                                     Text(
                                       'Description',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style: Constants.txW7FpCb.copyWith(
+                                          fontSize: (size.width * 0.016) / 2,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.grey),
+                                      // style: TextStyle(
+                                      //   fontSize: 12,
+                                      //   fontWeight: FontWeight.bold,
+                                      // ),
                                     ),
                                   ],
                                 )

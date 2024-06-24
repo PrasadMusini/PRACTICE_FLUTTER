@@ -378,13 +378,13 @@ packages:
     source: hosted
     version: "4.0.2"
   fading_edge_scrollview:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: fading_edge_scrollview
-      sha256: c25c2231652ce774cc31824d0112f11f653881f43d7f5302c05af11942052031
+      sha256: "1f84fe3ea8e251d00d5735e27502a6a250e4aa3d3b330d3fdcb475af741464ef"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "4.1.1"
   fake_async:
     dependency: transitive
     description:
@@ -518,6 +518,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.5.0+1"
+  flutter_infinite_marquee:
+    dependency: "direct main"
+    description:
+      name: flutter_infinite_marquee
+      sha256: d33cbfc5618674921695acd45269f355c788d3041a345b38a66d545a223ad99d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -645,6 +653,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.0"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      sha256: b1ac0fe2832c9cc95e5e88b57d627c5e68c223b9657f4b96e1487aa9098c7b82
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.2.1"
   google_maps:
     dependency: transitive
     description:
@@ -1626,6 +1642,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  widget_marquee:
+    dependency: "direct main"
+    description:
+      name: widget_marquee
+      sha256: "7a16d17a15adff1d0191535ffa6cf03d2b5373bbca333c7006788a712ee3f3a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.8"
   win32:
     dependency: transitive
     description:

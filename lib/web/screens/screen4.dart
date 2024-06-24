@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen4 extends StatelessWidget {
   const Screen4({super.key});
@@ -17,13 +18,20 @@ class Screen4 extends StatelessWidget {
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'I craft wonderful digital\nexperiences for brands',
+              // style: TextStyle(
+              //     color: Colors.white,
+              //     fontSize: size.width * 0.035,
+              //     fontWeight: FontWeight.bold),
+
               style: TextStyle(
+                  fontFamily: 'Sora',
                   color: Colors.white,
                   fontSize: size.width * 0.035,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 30),
             SizedBox(
@@ -57,39 +65,42 @@ class Screen4 extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: size.width / 9.5,
+          width: size.width / 9.9,
           height: (size.height - size.height * 0.2) / 2.5,
           alignment: Alignment.center,
           // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(45),
             border: Border.all(
               color: const Color.fromARGB(115, 168, 160, 160),
             ),
           ),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundColor: Colors.grey,
                 radius: 50,
               ),
-              SizedBox(height: 20),
-              Text(
-                '90%',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold),
-              )
+              const SizedBox(height: 20),
+              Text('90%',
+                  // style: TextStyle(
+                  //     color: Colors.white,
+                  //     fontSize: 50,
+                  //     fontWeight: FontWeight.bold),
+                  style:
+                      Constants.txW5FsCb.copyWith(fontSize: size.width * 0.024))
             ],
           ),
         ),
         const SizedBox(height: 20),
-        const Text(
+        Text(
           'Figma',
-          style: TextStyle(
-              color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+          style: Constants.txW8FpCw.copyWith(
+            fontSize: size.width * 0.012,
+          ),
+          // style: TextStyle(
+          //     color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ],
 

@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
+// ignore: must_be_immutable
 class Screen6 extends StatelessWidget {
-  const Screen6({super.key});
+  Screen6({super.key});
+
+  List<User> userData = [
+    User(
+        dates: '2015 - 2017',
+        course: 'Programming Course',
+        university: 'Harvard University'),
+    User(
+        dates: '2018 - 2021',
+        course: 'Programming Course',
+        university: 'California University'),
+    User(
+        dates: '2021 - 2023',
+        course: 'Computer Science',
+        university: 'Stanford University'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -12,95 +28,88 @@ class Screen6 extends StatelessWidget {
       height: size.height * 0.6,
       color: const Color(0xFFe2eaf5),
       padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.152, vertical: (size.height / 2) * 0.14),
-      alignment: Alignment.center,
-      child: Row(
+        horizontal: size.width * 0.152,
+      ),
+      // alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                const Row(
-                  children: [
-                    Icon(Icons.gpp_maybe_rounded),
-                    SizedBox(width: 10),
-                    Text(
-                      'My Education',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Card(
-                  elevation: 6,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 235, 240, 247),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 235, 240, 247),
-                          width: 0.4),
-                    ),
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      children: [
-                        informationBox('2015 - 2017', 'Programming Course',
-                            'Harvard University'),
-                        informationBox('2015 - 2017', 'Programming Course',
-                            'Harvard University'),
-                        informationBox('2015 - 2017', 'Programming Course',
-                            'Harvard University'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              educationTable(size, 'My Education', userData),
+              const SizedBox(width: 20),
+              educationTable(size, 'My Experience', userData),
+            ],
           ),
-          const SizedBox(width: 20),
-          Expanded(
-            child: Column(
-              children: [
-                const Row(
-                  children: [
-                    Icon(Icons.gpp_maybe_rounded),
-                    SizedBox(width: 10),
-                    Text(
-                      'My Experience',
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+        ],
+      ),
+    );
+  }
+
+  Expanded educationTable(Size size, String title, List<User> user) {
+    return Expanded(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.gpp_maybe_rounded),
+              const SizedBox(width: 10),
+              Text(
+                title, // 'My Education',
+                style: Constants.txW7FpCb.copyWith(
+                  fontSize: size.width * 0.014,
                 ),
-                const SizedBox(height: 20),
-                Card(
-                  elevation: 6,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 235, 240, 247),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 235, 240, 247),
-                          width: 0.4),
-                    ),
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      children: [
-                        informationBox('2015 - 2017', 'Programming Course',
-                            'Harvard University'),
-                        informationBox('2015 - 2017', 'Programming Course',
-                            'Harvard University'),
-                        informationBox('2015 - 2017', 'Programming Course',
-                            'Harvard University'),
-                      ],
-                    ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Card(
+            // elevation: 6,
+            color: const Color(0xFFe2eaf5),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 227, 236, 248),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                    color: const Color.fromARGB(255, 240, 237, 237), width: 1),
+                boxShadow: [
+                  // BoxShadow(
+                  //   color: Colors.black
+                  //       .withOpacity(0.5), // Shadow color with opacity
+                  //   offset: const Offset(0.4, 0.4), // Offset for X and Y (X, Y)
+                  //   blurRadius: 10, // Blur radius
+                  //   spreadRadius: 0.2, // Spread radius
+                  // ),
+                  BoxShadow(
+                    color: Colors.black.withOpacity(
+                        0.1), // Lighter shadow color with low opacity
+                    offset: const Offset(0, 4), // Offset for X and Y (X, Y)
+                    blurRadius: 10, // Blur radius
+                    spreadRadius: 2, // Spread radius
                   ),
-                ),
-              ],
+                ],
+              ),
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  informationBox(
+                      size, user[0].dates, user[0].course, user[0].university),
+                  const Divider(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    thickness: 0.5,
+                  ),
+                  informationBox(
+                      size, user[1].dates, user[1].course, user[1].university),
+                  const Divider(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    thickness: 0.5,
+                  ),
+                  informationBox(
+                      size, user[2].dates, user[2].course, user[2].university),
+                ],
+              ),
             ),
           ),
         ],
@@ -108,7 +117,8 @@ class Screen6 extends StatelessWidget {
     );
   }
 
-  Container informationBox(String dates, String content, String subContent) {
+  Container informationBox(
+      Size size, String dates, String content, String subContent) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
@@ -117,7 +127,7 @@ class Screen6 extends StatelessWidget {
               child: Text(
             dates, //'2015 - 2017',
             style: const TextStyle(
-                color: Color(0XFFe87765),
+                color: Color(0XFFea552b),
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
           )),
@@ -130,15 +140,20 @@ class Screen6 extends StatelessWidget {
                   children: [
                     Text(
                       content,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                      style: Constants.txW7FpCb.copyWith(
+                        fontSize: size.width * 0.01,
+                      ),
+                      // style: Constants.txW5FpCw.copyWith(
+                      //     fontSize: size.width * 0.01, color: Colors.black),
                     ),
                     const SizedBox(height: 6),
                     Text(
                       subContent,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: Constants.txW7FpCb.copyWith(
+                        fontSize: size.width * 0.0065,
                       ),
+                      // style: Constants.txW5FpCw.copyWith(
+                      //     fontSize: size.width * 0.0065, color: Colors.black),
                     ),
                   ],
                 ),
@@ -149,4 +164,11 @@ class Screen6 extends StatelessWidget {
       ),
     );
   }
+}
+
+class User {
+  final String dates;
+  final String course;
+  final String university;
+  User({required this.dates, required this.course, required this.university});
 }

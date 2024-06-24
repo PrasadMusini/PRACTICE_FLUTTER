@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen5 extends StatelessWidget {
   const Screen5({super.key});
@@ -8,51 +9,48 @@ class Screen5 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.4,
+      height: size.height * 0.5,
       color: Colors.black,
       padding: EdgeInsets.symmetric(
         horizontal: size.width * 0.152,
       ),
       alignment: Alignment.center,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        awardsLayer(),
-        awardsLayer(),
-        awardsLayer(),
-        awardsLayer(),
+        awardsLayer(size),
+        awardsLayer(size),
+        awardsLayer(size),
+        awardsLayer(size),
         const Divider(color: Color.fromARGB(255, 80, 80, 80)),
       ]),
     );
   }
 
-  Column awardsLayer() {
-    return const Column(
+  Column awardsLayer(Size size) {
+    return Column(
       children: [
-        Divider(color: Color.fromARGB(255, 80, 80, 80)),
+        const Divider(color: Color.fromARGB(255, 80, 80, 80)),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 14),
+          padding: const EdgeInsets.symmetric(vertical: 14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Site Of The Day',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: Constants.txW5FpCw.copyWith(
+                  fontSize: size.width * 0.01,
+                ),
               ),
               Text(
                 'CSS & Animation',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: Constants.txW5FpCw.copyWith(
+                  fontSize: size.width * 0.01,
+                ),
               ),
               Text(
                 '2018',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: Constants.txW5FpCw.copyWith(
+                  fontSize: size.width * 0.01,
+                ),
               ),
             ],
           ),

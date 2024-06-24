@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen3 extends StatelessWidget {
   const Screen3({super.key});
@@ -36,38 +37,39 @@ class Screen3 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.stream_sharp,
-                      size: 25,
+                      size: size.width * 0.02,
                     ),
-                    const Text(
-                      'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                    Text(
+                      'Hello! I’m David Petrix. Web designer from USA, California, San Francisco. I have rich experience in web site design and building, lso I am good at wordpress. I love to talk with you about our unique.',
+                      style: Constants.txW6F18Cb.copyWith(
+                        // fontSize: 30,
+                        fontSize: size.width * 0.016,
+                        height: 2,
                       ),
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
                             Text(
                               '2+',
-                              style: TextStyle(
-                                fontSize: 45,
-                                fontWeight: FontWeight.bold,
+                              style: Constants.txW8FsCb.copyWith(
+                                fontSize: size.height * 0.06,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            Text(
+                            const Text(
                               'Year of \nExperience',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Constants.txW6F16Cb,
+                              // style: TextStyle(
+                              //   fontSize: 18,
+                              //   fontWeight: FontWeight.bold,
+                              // ),
                             ),
                           ],
                         ),
@@ -75,20 +77,16 @@ class Screen3 extends StatelessWidget {
                           children: [
                             Text(
                               '2+',
-                              style: TextStyle(
-                                fontSize: 45,
-                                fontWeight: FontWeight.bold,
+                              style: Constants.txW8FsCb.copyWith(
+                                fontSize: size.height * 0.06,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            Text(
+                            const Text(
                               'Year of \nExperience',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Constants.txW6F16Cb,
                             ),
                           ],
                         ),
@@ -96,20 +94,25 @@ class Screen3 extends StatelessWidget {
                           children: [
                             Text(
                               '2+',
-                              style: TextStyle(
-                                fontSize: 45,
-                                fontWeight: FontWeight.bold,
+                              style: Constants.txW8FsCb.copyWith(
+                                fontSize: size.height * 0.06,
                               ),
+                              // style: TextStyle(
+                              //     fontFamily: 'Sora',
+                              //     color: Colors.black,
+                              //     fontSize: size.height * 0.06,
+                              //     fontWeight: FontWeight.w800),
+                              // style: TextStyle(
+                              //   fontSize: 45,
+                              //   fontWeight: FontWeight.bold,
+                              // ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            Text(
+                            const Text(
                               'Year of \nExperience',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Constants.txW6F18Cb,
                             ),
                           ],
                         ),
@@ -122,14 +125,8 @@ class Screen3 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.black,
                       ),
-                      child: const Text(
-                        'Download CV',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child:
+                          const Text('Download CV', style: Constants.txW6F18Cw),
                     )
                   ],
                 ),
