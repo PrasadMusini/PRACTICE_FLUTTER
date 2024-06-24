@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/imports.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen14 extends StatelessWidget {
   const Screen14({super.key});
@@ -18,23 +19,27 @@ class Screen14 extends StatelessWidget {
             children: [
               const Text(
                 'Copyright © 2024 Petrix. All rights reserved.',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+                style: Constants.txW6F18Cg,
+                // style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     'Terms & Conditions',
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                    style: Constants.txW6F18Cg,
                   ),
-                  Text(
+                  SizedBox(
+                    width: size.width * 0.04,
+                  ),
+                  const Text(
                     'Privacy Policy',
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                    style: Constants.txW6F18Cg,
                   ),
                 ],
               ),
               Container(
                 width: (size.height * 0.14) * 0.5,
-                height: (size.height * 0.14) * 0.7,
+                height: (size.height * 0.14) * 0.6,
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(5),

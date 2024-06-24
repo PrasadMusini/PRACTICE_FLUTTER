@@ -18,26 +18,56 @@ class Screen9 extends StatelessWidget {
             color: Colors.white,
           ),
           width: size.width,
-          height: size.height / 1.8,
+          height: size.height / 1.8, // size.height / 1.8,
           child: Row(
             children: [
               const SizedBox(
                 width: 50,
                 child: Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(
-                        Icons.arrow_downward_outlined,
-                        size: 30,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RotatedBox(
+                                quarterTurns: 3,
+                                child: Text(
+                                  'prev',
+                                  style: Constants.txW5FpCb,
+                                )),
+                            SizedBox(height: 10),
+                            Icon(
+                              Icons.arrow_downward_outlined,
+                              size: 15,
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 6, right: 2),
+                        padding: EdgeInsets.only(
+                          left: 8,
+                        ),
                         child: Divider(),
                       ),
-                      Icon(
-                        Icons.arrow_upward_outlined,
-                        size: 30,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.arrow_upward_outlined,
+                              size: 15,
+                            ),
+                            SizedBox(height: 10),
+                            RotatedBox(
+                                quarterTurns: 3,
+                                child: Text(
+                                  'next',
+                                  style: Constants.txW5FpCb,
+                                )),
+                          ],
+                        ),
                       ),
                     ],
                   ),

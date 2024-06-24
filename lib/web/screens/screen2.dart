@@ -12,7 +12,7 @@ class Screen2 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.16,
+      height: size.height * 0.2, // height: size.height * 0.16,
       color: backgroundColor,
       alignment: Alignment.center,
       child: InfiniteMarquee(

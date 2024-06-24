@@ -66,7 +66,8 @@ class Screen4 extends StatelessWidget {
       children: [
         Container(
           width: size.width / 9.9,
-          height: (size.height - size.height * 0.2) / 2.5,
+          height: (size.height - size.height * 0.2) /
+              2, //  (size.height - size.height * 0.2) / 2.5
           alignment: Alignment.center,
           // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           decoration: BoxDecoration(

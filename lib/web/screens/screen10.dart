@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen10 extends StatelessWidget {
   const Screen10({super.key});
@@ -8,15 +9,18 @@ class Screen10 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
         width: size.width,
-        height: size.height,
+        height: size.height * 1.2,
         color: const Color(0XFFe0ebf2),
         child: Stack(
           children: [
             Positioned.fill(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.152,
-                    vertical: size.height * 0.14),
+                  // horizontal: size.width * 0.152,
+                  //   vertical: size.height * 0.14
+                  horizontal: size.width / 16,
+                  vertical: size.height * 0.16,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -30,19 +34,27 @@ class Screen10 extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 80,
+              bottom: 16, // 80
               child: Center(
                 child: Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(18), // 20
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        offset: const Offset(5, 5),
+                        blurRadius: 1,
+                        spreadRadius: 0.5,
+                      ),
+                    ],
                   ),
                   child: const Text(
                     'Explore More',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        // fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -55,25 +67,31 @@ class Screen10 extends StatelessWidget {
   Container newsCard(Size size) {
     return Container(
       color: Colors.white,
-      width: size.width / 4.6,
-      height: size.height * 0.62,
+      width: size.width / 3.8, //size.width / 4.6,
+      // height: size.height * 0.62,
       padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'August 11, 2023',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+            // style: TextStyle(
+            //   fontSize: 16,
+            //   fontWeight: FontWeight.bold,
+            // ),
+            style: Constants.txW7FpCb.copyWith(
+              fontSize: size.width * 0.01,
             ),
           ),
-          const Text(
+          Text(
             'Fresh Design Ideas &\nInspiration For 2023',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+            // style: TextStyle(
+            //   fontSize: 24,
+            //   fontWeight: FontWeight.bold,
+            // ),
+            style: Constants.txW7FpCb.copyWith(
+              fontSize: size.width * 0.02,
             ),
           ),
           const Text(
