@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen11 extends StatelessWidget {
   const Screen11({super.key});
@@ -30,30 +31,75 @@ class Screen11 extends StatelessWidget {
           SizedBox(
             height: size.height * 0.06,
           ),
-          Container(
-            width: size.width / 2,
-            padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.05,
-            ),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                // color: Colors.black,
-                border: Border.all(color: Colors.grey)),
-            child: Text(
-              'Contact Form',
-              style: TextStyle(
-                  fontFamily: 'Sora',
-                  color: Colors.white,
-                  fontSize: size.width * 0.016,
-                  fontWeight: FontWeight.w800),
-              // style: TextStyle(
-              //     color: Colors.white,
-              //     fontSize: 22,
-              //     fontWeight: FontWeight.bold),
-            ),
+          ContactMeButton(
+            size: size,
+            content: 'Contact Form',
+            hoverColor: Constants.orangeColor,
           )
         ],
+      ),
+    );
+  }
+}
+
+class ContactMeButton extends StatefulWidget {
+  const ContactMeButton({
+    super.key,
+    required this.size,
+    required this.content,
+    required this.hoverColor,
+  });
+
+  final Size size;
+  final String content;
+  final Color hoverColor;
+
+  @override
+  State<ContactMeButton> createState() => _ContactMeButtonState();
+}
+
+class _ContactMeButtonState extends State<ContactMeButton> {
+  Color textColor = Colors.black;
+
+  bool isHover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() {
+          textColor = widget.hoverColor;
+          isHover = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          textColor = Colors.black;
+          isHover = false;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeIn,
+        child: Container(
+          width: widget.size.width / 2.2,
+          padding: EdgeInsets.symmetric(
+            vertical: widget.size.height * 0.03,
+          ),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: isHover ? Constants.orangeColor : Colors.black,
+              border: Border.all(color: Colors.grey)),
+          child: Text(
+            widget.content, //'Contact Form',
+            style: TextStyle(
+                fontFamily: 'Sora',
+                color: isHover ? Colors.black : Colors.white,
+                fontSize: widget.size.width * 0.016,
+                fontWeight: FontWeight.w800),
+          ),
+        ),
       ),
     );
   }

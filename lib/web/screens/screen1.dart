@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:practice_flutter/animations/effects/top_bounce_animation.dart';
+import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen1 extends StatelessWidget {
@@ -8,16 +10,16 @@ class Screen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
+    return Container(
+      color: const Color(0xFFe2eaf5),
       width: size.width,
       height: size.height,
       child: Stack(
         children: [
-          const Positioned.fill(
+          Positioned.fill(
             child: Center(
-              child: Icon(
-                Icons.person,
-                size: 400,
+              child: Image.network(
+                'https://petrix-react.vercel.app/images/banner_img.png',
               ),
             ),
           ),
@@ -37,35 +39,24 @@ class Screen1 extends StatelessWidget {
                           style: Constants.txW6F18Cb,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add),
+                      Row(
+                        children: [
+                          SizedBox(
+                              height: size.height * 0.1,
+                              child: HoverIconContainer(size: size)),
+                          SizedBox(width: size.width * 0.01),
+                          const Text(
+                            'Work\nProcess',
+                            style: Constants.txW6F18Cb,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  // const SizedBox(
-                  //   height: 130,
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Text(
-                  //       'test',
-                  //       style: TextStyle(
-                  //           color: Colors.white,
-                  //           fontSize: size.width * 0.089,
-                  //           fontWeight: FontWeight.bold),
-                  //     )
-                  //   ],
-                  // ),
                   const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // IconButton(
-                      //   onPressed: () {},
-                      //   icon: const Icon(Icons.home),
-                      // ),
                       Row(
                         children: [
                           Container(
@@ -76,7 +67,12 @@ class Screen1 extends StatelessWidget {
                               border: Border.all(color: Colors.black),
                             ),
                             alignment: Alignment.center,
-                            child: const Icon(Icons.arrow_downward_rounded),
+                            child: const BounceFromTopAnimation(
+                              delay: 1,
+                              begin: -20,
+                              end: 20,
+                              child: Icon(Icons.arrow_downward_rounded),
+                            ),
                           ),
                           const SizedBox(width: 20),
                           const Text(
@@ -86,14 +82,9 @@ class Screen1 extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        // width: 400,
                         width: size.width / 5.22,
                         child: const Text(
                           'Feel Free to send me a message if you want to enhance your recruitment. \nFacebook . Twitter . Linkedin . Dribbble',
-                          // style: TextStyle(
-                          //     fontFamily: 'Sora',
-                          //     fontWeight: FontWeight.w600,
-                          //     fontSize: 20),
                           style: Constants.txW6F18Cb,
                         ),
                       ),
@@ -101,40 +92,28 @@ class Screen1 extends StatelessWidget {
                   ),
                   SizedBox(
                     height: size.height / 7.2,
-                    // height: 120,
                   ),
                 ],
               ),
             ),
           ),
-          // Positioned(
-          //   bottom: 0,
-          //   left: 0,
-          //   right: 0,
-          //   child: Container(
-          //     width: size.width,
-          //     height: 100,
-          //     color: Colors.black,
-          //   ),
-          // )
-
           Align(
             alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'This is ',
+                  'Dev ',
                   style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Colors.black,
-                      fontSize: size.width * 0.089,
-                      fontWeight: FontWeight.w900),
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                    fontSize: size.width * 0.089,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
                 Text(
-                  'Center',
+                  'Prasad',
                   style: TextStyle(
-                    // color: Colors.transparent,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w900,
                     fontSize: size.width * 0.089,
@@ -143,29 +122,65 @@ class Screen1 extends StatelessWidget {
                       ..strokeWidth = 2.5
                       ..color = Colors.black,
                   ),
-
-                  // TextStyle(
-                  //         color: Colors.white,
-                  //         fontSize: size.width * 0.089,
-                  //         fontWeight: FontWeight.bold)
-                  //     .copyWith(
-                  //   foreground: Paint()
-                  //     ..style = PaintingStyle.stroke
-                  //     ..strokeWidth = 0.1
-                  //     ..color = Colors.red,
-                  // ),
                 ),
                 Text(
-                  ' text',
+                  ' Musini',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontSize: size.width * 0.089,
-                      fontWeight: FontWeight.bold),
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                    fontSize: size.width * 0.089,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ],
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class HoverIconContainer extends StatefulWidget {
+  final Size size;
+
+  const HoverIconContainer({Key? key, required this.size}) : super(key: key);
+
+  @override
+  State<HoverIconContainer> createState() => _HoverIconContainerState();
+}
+
+class _HoverIconContainerState extends State<HoverIconContainer> {
+  bool _isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() {
+          _isHovering = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          _isHovering = false;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 400),
+        padding: EdgeInsets.all(
+          _isHovering ? widget.size.height * 0.02 : widget.size.height * 0.03,
+        ),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.black, width: 1.3),
+          color: _isHovering ? Colors.black : Colors.transparent,
+        ),
+        alignment: Alignment.center,
+        child: Icon(
+          Icons.add,
+          color: _isHovering ? Colors.white : Colors.black,
+        ),
       ),
     );
   }

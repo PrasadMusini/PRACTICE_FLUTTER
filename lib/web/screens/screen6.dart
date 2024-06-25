@@ -3,22 +3,22 @@ import 'package:practice_flutter/web/utilities/constants.dart';
 
 // ignore: must_be_immutable
 class Screen6 extends StatelessWidget {
-  Screen6({super.key});
+  const Screen6({super.key});
 
-  List<User> userData = [
-    User(
-        dates: '2015 - 2017',
-        course: 'Programming Course',
-        university: 'Harvard University'),
-    User(
-        dates: '2018 - 2021',
-        course: 'Programming Course',
-        university: 'California University'),
-    User(
-        dates: '2021 - 2023',
-        course: 'Computer Science',
-        university: 'Stanford University'),
-  ];
+  // List<User> userData = [
+  //   User(
+  //       dates: '2015 - 2017',
+  //       course: 'Programming Course',
+  //       university: 'Harvard University'),
+  //   User(
+  //       dates: '2018 - 2021',
+  //       course: 'Programming Course',
+  //       university: 'California University'),
+  //   User(
+  //       dates: '2021 - 2023',
+  //       course: 'Computer Science',
+  //       university: 'Stanford University'),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -166,9 +166,9 @@ class Screen6 extends StatelessWidget {
   }
 }
 
-class User {
-  final String dates;
-  final String course;
-  final String university;
-  User({required this.dates, required this.course, required this.university});
-}
+// class User {
+//   final String dates;
+//   final String course;
+//   final String university;
+//   User({required this.dates, required this.course, required this.university});
+// }

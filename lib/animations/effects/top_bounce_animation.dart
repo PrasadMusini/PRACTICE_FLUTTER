@@ -1,10 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class BounceFromTopAnimation extends StatefulWidget {
   final double delay;
+  final double begin;
+  final double end;
   final Widget child;
+
   const BounceFromTopAnimation(
-      {super.key, required this.delay, required this.child});
+      {super.key,
+      required this.delay,
+      this.begin = -100,
+      this.end = 0,
+      required this.child});
 
   @override
   State<BounceFromTopAnimation> createState() => _BounceFromTopAnimationState();
@@ -29,10 +37,19 @@ class _BounceFromTopAnimationState extends State<BounceFromTopAnimation>
     Animation<double> curve =
         CurvedAnimation(curve: Curves.easeOutCubic, parent: _controller);
 
-    _animation = Tween<double>(begin: -100, end: 0).animate(curve)
-      ..addListener(() {
-        setState(() {});
-      });
+    _animation =
+        Tween<double>(begin: widget.begin, end: widget.end).animate(curve)
+          ..addListener(() {
+            setState(() {});
+          });
+// Loop animation
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.reset();
+      } else if (status == AnimationStatus.dismissed) {
+        _controller.forward();
+      }
+    });
 
     _controller.forward();
   }

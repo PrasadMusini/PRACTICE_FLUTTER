@@ -12,22 +12,42 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
-class Assets {
-  Assets._();
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
 
-  static const SvgGenImage check = SvgGenImage('assets/check.svg');
-  static const AssetGenImage dragon = AssetGenImage('assets/dragon.jpg');
-  static const AssetGenImage hairFixingLogoRemovebgPreview =
-      AssetGenImage('assets/hair_fixing_logo-removebg-preview.png');
-  static const AssetGenImage hairFixingLogo =
-      AssetGenImage('assets/hair_fixing_logo.png');
-  static const SvgGenImage hfzLogo = SvgGenImage('assets/hfz_logo.svg');
-  static const AssetGenImage image1 = AssetGenImage('assets/image1.png');
-  static const AssetGenImage image2 = AssetGenImage('assets/image2.png');
-  static const AssetGenImage image3 = AssetGenImage('assets/image3.png');
+  /// File path: assets/images/Prasad_Image-removebg.png
+  AssetGenImage get prasadImageRemovebg =>
+      const AssetGenImage('assets/images/Prasad_Image-removebg.png');
+
+  /// File path: assets/images/check.svg
+  SvgGenImage get check => const SvgGenImage('assets/images/check.svg');
+
+  /// File path: assets/images/dragon.jpg
+  AssetGenImage get dragon => const AssetGenImage('assets/images/dragon.jpg');
+
+  /// File path: assets/images/hair_fixing_logo-removebg-preview.png
+  AssetGenImage get hairFixingLogoRemovebgPreview => const AssetGenImage(
+      'assets/images/hair_fixing_logo-removebg-preview.png');
+
+  /// File path: assets/images/hair_fixing_logo.png
+  AssetGenImage get hairFixingLogo =>
+      const AssetGenImage('assets/images/hair_fixing_logo.png');
+
+  /// File path: assets/images/hfz_logo.svg
+  SvgGenImage get hfzLogo => const SvgGenImage('assets/images/hfz_logo.svg');
+
+  /// File path: assets/images/image1.png
+  AssetGenImage get image1 => const AssetGenImage('assets/images/image1.png');
+
+  /// File path: assets/images/image2.png
+  AssetGenImage get image2 => const AssetGenImage('assets/images/image2.png');
+
+  /// File path: assets/images/image3.png
+  AssetGenImage get image3 => const AssetGenImage('assets/images/image3.png');
 
   /// List of all assets
-  static List<dynamic> get values => [
+  List<dynamic> get values => [
+        prasadImageRemovebg,
         check,
         dragon,
         hairFixingLogoRemovebgPreview,
@@ -37,6 +57,12 @@ class Assets {
         image2,
         image3
       ];
+}
+
+class Assets {
+  Assets._();
+
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

@@ -78,84 +78,7 @@ class Screen9 extends StatelessWidget {
                 color: Colors.black26,
               ),
               Expanded(
-                child: Container(
-                    padding: EdgeInsets.all(
-                      (size.height / 1.8) / 10,
-                    ), // color: Colors.blue,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: size.width * 0.03),
-                        Expanded(
-                          flex: 7,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Icon(
-                                  Icons.stream,
-                                  size: 25,
-                                ),
-                                // Spacer(),
-                                Text(
-                                  'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable but also the leap into electronic typesetting, remaining essentially unchanged',
-                                  // style: TextStyle(
-                                  //   fontSize: 24,
-                                  //   height: 2,
-                                  //   fontWeight: FontWeight.bold,
-                                  // ),
-                                  style: Constants.txW7FpCb.copyWith(
-                                    fontSize: size.width * 0.012,
-                                    height: 1.6,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                // Spacer(),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Developer Name',
-                                      style: Constants.txW7FpCb.copyWith(
-                                        fontSize: size.width * 0.014,
-                                      ),
-                                      // style: TextStyle(
-                                      //   fontSize: 24,
-                                      //   fontWeight: FontWeight.bold,
-                                      // ),
-                                    ),
-                                    Text(
-                                      'Description',
-                                      style: Constants.txW7FpCb.copyWith(
-                                          fontSize: (size.width * 0.016) / 2,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.grey),
-                                      // style: TextStyle(
-                                      //   fontSize: 12,
-                                      //   fontWeight: FontWeight.bold,
-                                      // ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
+                child: profileCard(size),
               ), // Expanded(child: Container(color: Colors.blue,))
             ],
           ),
@@ -192,5 +115,86 @@ class Screen9 extends StatelessWidget {
         //   ],
         // ),
         );
+  }
+
+  Container profileCard(Size size) {
+    return Container(
+        padding: EdgeInsets.all(
+          (size.height / 1.8) / 10,
+        ), // color: Colors.blue,
+        child: Row(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            SizedBox(width: size.width * 0.03),
+            Expanded(
+              flex: 7,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Icon(
+                      Icons.stream,
+                      size: 25,
+                    ),
+                    // Spacer(),
+                    Text(
+                      'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable but also the leap into electronic typesetting, remaining essentially unchanged',
+                      // style: TextStyle(
+                      //   fontSize: 24,
+                      //   height: 2,
+                      //   fontWeight: FontWeight.bold,
+                      // ),
+                      style: Constants.txW7FpCb.copyWith(
+                        fontSize: size.width * 0.012,
+                        height: 1.6,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    // Spacer(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Developer Name',
+                          style: Constants.txW7FpCb.copyWith(
+                            fontSize: size.width * 0.014,
+                          ),
+                          // style: TextStyle(
+                          //   fontSize: 24,
+                          //   fontWeight: FontWeight.bold,
+                          // ),
+                        ),
+                        Text(
+                          'Description',
+                          style: Constants.txW7FpCb.copyWith(
+                              fontSize: (size.width * 0.016) / 2,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey),
+                          // style: TextStyle(
+                          //   fontSize: 12,
+                          //   fontWeight: FontWeight.bold,
+                          // ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }

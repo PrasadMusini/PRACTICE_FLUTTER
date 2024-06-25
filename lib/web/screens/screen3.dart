@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:practice_flutter/web/utilities/constants.dart';
 
 class Screen3 extends StatelessWidget {
@@ -22,25 +20,31 @@ class Screen3 extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Container(
-                color: Colors.grey.shade200,
-                child: const Icon(
-                  Icons.person,
-                  size: 100,
-                ),
+                // color: Colors.grey.shade200,
+                child: Image.network(
+                    'https://petrix-react.vercel.app/_next/static/media/about_shapes.df78a495.png'),
+                // const Icon(
+                //   Icons.person,
+                //   size: 100,
+                // ),
               ),
             ),
             Expanded(
               flex: 6,
               child: Container(
-                color: Colors.grey.shade400,
+                // color: Colors.grey.shade400,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.stream_sharp,
-                      size: size.width * 0.02,
+                    Image.network(
+                      'https://petrix-react.vercel.app/_next/static/media/about_shapes.df78a495.png',
+                      width: size.width * 0.02,
                     ),
+                    // Icon(
+                    //   Icons.stream_sharp,
+                    //   size: size.width * 0.02,
+                    // ),
                     Text(
                       'Hello! I’m David Petrix. Web designer from USA, California, San Francisco. I have rich experience in web site design and building, lso I am good at wordpress. I love to talk with you about our unique.',
                       style: Constants.txW6F18Cb.copyWith(
@@ -118,21 +122,60 @@ class Screen3 extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 40),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.black,
-                      ),
-                      child:
-                          const Text('Download CV', style: Constants.txW6F18Cw),
-                    )
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const DownloadCvButton(content: 'Download CV')
                   ],
                 ),
               ),
             ),
           ],
         ));
+  }
+}
+
+class DownloadCvButton extends StatefulWidget {
+  const DownloadCvButton({
+    super.key,
+    required this.content,
+  });
+
+  final String content;
+
+  @override
+  State<DownloadCvButton> createState() => _DownloadCvButtonState();
+}
+
+class _DownloadCvButtonState extends State<DownloadCvButton> {
+  bool isHover = false;
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() {
+          isHover = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          isHover = false;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: isHover ? Constants.orangeColor : Colors.black,
+          ),
+          child: Text(widget.content,
+              style: Constants.txW6F18Cw.copyWith(
+                color: isHover ? Colors.black : Colors.white,
+              )),
+        ),
+      ),
+    );
   }
 }

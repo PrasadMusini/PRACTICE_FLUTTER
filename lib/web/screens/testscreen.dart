@@ -1,130 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/web/utilities/constants.dart';
-import 'package:practice_flutter/web/utilities/shadow_button.dart';
 
-class Screen10 extends StatelessWidget {
-  const Screen10({super.key});
+class Testscreen extends StatelessWidget {
+  const Testscreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-        width: size.width,
-        height: size.height,
-        color: const Color(0XFFe0ebf2),
-        child: Stack(
-          children: [
-            Positioned(
-              top: size.height * 0.09,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  // horizontal: size.width * 0.152,
-                  //   vertical: size.height * 0.14
-                  horizontal: size.width / 16,
-                  // vertical: size.height * 0.16,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    newsCard(size),
-                    newsCard(size),
-                    newsCard(size),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: size.height * 0.08, // 80
-              child: Center(
-                child: ShadowButton(
-                  size: size,
-                  content: 'Explore More',
-                ),
-              ),
-            )
-          ],
-        ));
-  }
-
-  Container newsCard(Size size) {
-    return Container(
-      // width: size.width / 4, //size.width / 4.6,
-      // height: size.height * 0.62,
-      padding: const EdgeInsets.all(24),
-      margin: EdgeInsets.only(left: size.width * 0.03),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            offset: const Offset(7, 7),
-            blurRadius: 1,
-            spreadRadius: 0.5,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'August 11, 2023',
-            // style: TextStyle(
-            //   fontSize: 16,
-            //   fontWeight: FontWeight.bold,
-            // ),
-            style: Constants.txW7FpCb.copyWith(
-              fontSize: size.width * 0.01,
-            ),
-          ),
-          SizedBox(height: size.height * 0.02),
-          Text(
-            'Fresh Design Ideas &\nInspiration For 2023',
-            // style: TextStyle(
-            //   fontSize: 24,
-            //   fontWeight: FontWeight.bold,
-            // ),
-            style: Constants.txW7FpCb.copyWith(
-              fontSize: size.width * 0.015,
-            ),
-          ),
-          SizedBox(height: size.height * 0.02),
-          const Text(
-            'Duis aute irure dolor in reprehenderit fugiat',
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          SizedBox(height: size.height * 0.02),
-          Image.network(
-              'https://petrix-react.vercel.app/images/blog_img_1.jpg'),
-          SizedBox(height: size.height * 0.02),
-          Row(
-            children: [
-              const Text(
-                'Read More',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              // const SizedBox(width: 10),
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.arrow_right_sharp))
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-/* 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -242,4 +121,3 @@ class Screen10 extends StatelessWidget {
     );
   }
 }
- */
