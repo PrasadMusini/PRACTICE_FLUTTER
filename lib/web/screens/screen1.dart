@@ -24,16 +24,17 @@ class Screen1 extends StatelessWidget {
             ),
           ),
           Positioned.fill(
-            child: Padding(
+            child: Container(
+              // color: Colors.green.shade400,
               padding: EdgeInsets.symmetric(horizontal: size.width / 16)
-                  .copyWith(top: size.height * 0.24),
+                  .copyWith(top: size.height * 0.14), // size.height * 0.24
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: size.width / 5.3,
+                        width: size.width / 4, // size.width / 5.3,
                         child: const Text(
                           'Hello, I’m David Petrix, UX/UI designer and front-end developer based in san francisco.',
                           style: Constants.txW6F18Cb,
@@ -61,7 +62,7 @@ class Screen1 extends StatelessWidget {
                         children: [
                           Container(
                             width: size.width * 0.022,
-                            height: size.height / 11,
+                            height: size.height / 9.5,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(color: Colors.black),
@@ -82,16 +83,17 @@ class Screen1 extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        width: size.width / 5.22,
+                        width: size.width / 4, // size.width / 5.22,
                         child: const Text(
-                          'Feel Free to send me a message if you want to enhance your recruitment. \nFacebook . Twitter . Linkedin . Dribbble',
+                          'Feel Free to send me a message if you want to enhance your recruitment. \nFacebook . Linkedin . Instagram',
                           style: Constants.txW6F18Cb,
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: size.height / 7.2,
+                    height: size.height * 0.05,
+                    // height: size.height / 7.2,
                   ),
                 ],
               ),
@@ -167,7 +169,7 @@ class _HoverIconContainerState extends State<HoverIconContainer> {
         });
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.all(
           _isHovering ? widget.size.height * 0.02 : widget.size.height * 0.03,
         ),

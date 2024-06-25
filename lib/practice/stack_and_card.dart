@@ -40,7 +40,7 @@ class StackAndCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(18),
               child: Image.asset(
-                Assets.dragon.path,
+                Assets.images.dragon.path,
                 height: 100,
                 fit: BoxFit.cover,
               ),

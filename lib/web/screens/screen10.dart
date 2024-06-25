@@ -10,7 +10,7 @@ class Screen10 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
         width: size.width,
-        height: size.height,
+        height: size.height * 1.2,
         color: const Color(0XFFe0ebf2),
         child: Stack(
           children: [
@@ -29,7 +29,9 @@ class Screen10 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     newsCard(size),
+                    SizedBox(width: size.width * 0.03),
                     newsCard(size),
+                    SizedBox(width: size.width * 0.03),
                     newsCard(size),
                   ],
                 ),
@@ -55,7 +57,7 @@ class Screen10 extends StatelessWidget {
       // width: size.width / 4, //size.width / 4.6,
       // height: size.height * 0.62,
       padding: const EdgeInsets.all(24),
-      margin: EdgeInsets.only(left: size.width * 0.03),
+      // margin: EdgeInsets.only(left: size.width * 0.03),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -93,15 +95,22 @@ class Screen10 extends StatelessWidget {
             ),
           ),
           SizedBox(height: size.height * 0.02),
-          const Text(
-            'Duis aute irure dolor in reprehenderit fugiat',
-            style: TextStyle(
-              fontSize: 16,
+          SizedBox(
+            width: size.width / 5,
+            child: const Text(
+              'Duis aute irure dolor in reprehenderit fugiat',
+              style: TextStyle(
+                fontSize: 16,
+              ),
             ),
           ),
           SizedBox(height: size.height * 0.02),
-          Image.network(
-              'https://petrix-react.vercel.app/images/blog_img_1.jpg'),
+          Container(
+            color: Colors.grey,
+            width: size.width / 4.5,
+            child: Image.network(
+                'https://petrix-react.vercel.app/images/blog_img_1.jpg'),
+          ),
           SizedBox(height: size.height * 0.02),
           Row(
             children: [

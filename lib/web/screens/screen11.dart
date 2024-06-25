@@ -29,7 +29,7 @@ class Screen11 extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: size.height * 0.06,
+            height: size.height * 0.07,
           ),
           ContactMeButton(
             size: size,
@@ -84,7 +84,7 @@ class _ContactMeButtonState extends State<ContactMeButton> {
         child: Container(
           width: widget.size.width / 2.2,
           padding: EdgeInsets.symmetric(
-            vertical: widget.size.height * 0.03,
+            vertical: widget.size.height * 0.04,
           ),
           alignment: Alignment.center,
           decoration: BoxDecoration(

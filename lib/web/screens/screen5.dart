@@ -9,11 +9,11 @@ class Screen5 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.5,
+      height: size.height * 0.8,
       color: Colors.black,
       padding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.152,
-      ),
+          // horizontal: size.width * 0.152,
+          horizontal: size.width / 16),
       alignment: Alignment.center,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         awardsLayer(size),
@@ -36,20 +36,26 @@ class Screen5 extends StatelessWidget {
             children: [
               Text(
                 'Site Of The Day',
-                style: Constants.txW5FpCw.copyWith(
-                  fontSize: size.width * 0.01,
+                // style: Constants.txW5FpCw.copyWith(
+                //   fontSize: size.width * 0.01,
+                // ),
+                style: Constants.txW6F18Cb.copyWith(
+                  fontSize: size.width * 0.014,
+                  color: Colors.white,
                 ),
               ),
               Text(
                 'CSS & Animation',
-                style: Constants.txW5FpCw.copyWith(
-                  fontSize: size.width * 0.01,
+                style: Constants.txW6F18Cb.copyWith(
+                  fontSize: size.width * 0.014,
+                  color: Colors.white,
                 ),
               ),
               Text(
                 '2018',
-                style: Constants.txW5FpCw.copyWith(
-                  fontSize: size.width * 0.01,
+                style: Constants.txW6F18Cb.copyWith(
+                  fontSize: size.width * 0.014,
+                  color: Colors.white,
                 ),
               ),
             ],

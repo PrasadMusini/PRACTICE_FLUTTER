@@ -35,7 +35,7 @@ class _ShadowButtonState extends State<ShadowButton> {
         curve: Curves.fastLinearToSlowEaseIn,
         child: Container(
           width: widget.size.width / 7.4,
-          height: widget.size.height * 0.075,
+          height: widget.size.height * 0.085, // 0.075
           alignment: Alignment.center,
           // padding: const EdgeInsets.all(20), // 20
           decoration: BoxDecoration(

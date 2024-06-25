@@ -12,7 +12,8 @@ class Screen3 extends StatelessWidget {
         height: size.height -
             size.height * 0.14, // later subtract with header height
         padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.152, vertical: size.height * 0.14),
+            horizontal: size.width * 0.152,
+            vertical: size.height * 0.05), // vertical: size.height * 0.14
         color: const Color(0xfffae8e0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -20,7 +21,7 @@ class Screen3 extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Container(
-                // color: Colors.grey.shade200,
+                color: const Color.fromARGB(255, 247, 238, 235),
                 child: Image.network(
                     'https://petrix-react.vercel.app/_next/static/media/about_shapes.df78a495.png'),
                 // const Icon(
@@ -31,7 +32,7 @@ class Screen3 extends StatelessWidget {
             ),
             Expanded(
               flex: 6,
-              child: Container(
+              child: SizedBox(
                 // color: Colors.grey.shade400,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,9 +123,9 @@ class Screen3 extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
                     const DownloadCvButton(content: 'Download CV')
                   ],
                 ),
@@ -165,7 +166,7 @@ class _DownloadCvButtonState extends State<DownloadCvButton> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: isHover ? Constants.orangeColor : Colors.black,

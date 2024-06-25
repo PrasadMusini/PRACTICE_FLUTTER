@@ -56,6 +56,14 @@ class Constants {
       fontFamily: FontFamily.sora,
       color: Colors.black,
       fontWeight: FontWeight.w700);
+  static const txW4FsCb38 = TextStyle(
+      fontFamily: FontFamily.sora,
+      color: Colors.black38,
+      fontWeight: FontWeight.w500);
+  static const txW7FsCo = TextStyle(
+      fontFamily: FontFamily.sora,
+      color: orangeColor,
+      fontWeight: FontWeight.w700);
 }
 
 List<User> userData = [

@@ -8,9 +8,14 @@ class Screen9 extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
+        width: size.width,
+        height: size.height * 0.8,
         color: const Color(0xfffae8e0),
         padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.187, vertical: size.height * 0.14),
+            horizontal: size.width / 7, vertical: size.height * 0.1),
+        // padding: EdgeInsets.symmetric(
+        //     horizontal: size.width * 0.187, vertical: size.height * 0.14),
+        // alignment: Alignment.center,
         child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
@@ -158,7 +163,7 @@ class Screen9 extends StatelessWidget {
                       //   fontWeight: FontWeight.bold,
                       // ),
                       style: Constants.txW7FpCb.copyWith(
-                        fontSize: size.width * 0.012,
+                        fontSize: size.width * 0.013,
                         height: 1.6,
                         fontWeight: FontWeight.w600,
                       ),
@@ -169,8 +174,8 @@ class Screen9 extends StatelessWidget {
                       children: [
                         Text(
                           'Developer Name',
-                          style: Constants.txW7FpCb.copyWith(
-                            fontSize: size.width * 0.014,
+                          style: Constants.txW8FsCb.copyWith(
+                            fontSize: size.width * 0.015,
                           ),
                           // style: TextStyle(
                           //   fontSize: 24,

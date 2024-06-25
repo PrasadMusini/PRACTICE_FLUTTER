@@ -98,7 +98,7 @@ class Screen13 extends StatelessWidget {
             SocialMediaAccountBox(
                 size: size,
                 content: 'Github',
-                hoverColor: const Color(0XFF4078C0)),
+                hoverColor: const Color.fromARGB(255, 100, 100, 101)),
           ],
         ));
   }

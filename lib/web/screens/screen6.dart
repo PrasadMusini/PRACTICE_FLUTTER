@@ -25,11 +25,11 @@ class Screen6 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.6,
+      height: size.height * 0.9,
       color: const Color(0xFFe2eaf5),
-      padding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.152,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: size.width / 16
+          // horizontal: size.width * 0.152,
+          ),
       // alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,9 +56,8 @@ class Screen6 extends StatelessWidget {
               const SizedBox(width: 10),
               Text(
                 title, // 'My Education',
-                style: Constants.txW7FpCb.copyWith(
-                  fontSize: size.width * 0.014,
-                ),
+                style: Constants.txW6F18Cb.copyWith(
+                    fontSize: size.width * 0.018, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -126,10 +125,16 @@ class Screen6 extends StatelessWidget {
           Expanded(
               child: Text(
             dates, //'2015 - 2017',
-            style: const TextStyle(
-                color: Color(0XFFea552b),
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
+            // style: Constants.txW6F18Cb.copyWith(
+            //   fontSize: size.width * 0.014,
+            // ),
+            style: Constants.txW7FsCo.copyWith(
+              fontSize: size.width * 0.014,
+            ),
+            // style: const TextStyle(
+            //     color: Color(0XFFea552b),
+            //     fontSize: 16,
+            //     fontWeight: FontWeight.bold),
           )),
           Expanded(
             child: Row(
@@ -141,7 +146,7 @@ class Screen6 extends StatelessWidget {
                     Text(
                       content,
                       style: Constants.txW7FpCb.copyWith(
-                        fontSize: size.width * 0.01,
+                        fontSize: size.width * 0.014,
                       ),
                       // style: Constants.txW5FpCw.copyWith(
                       //     fontSize: size.width * 0.01, color: Colors.black),
@@ -149,8 +154,8 @@ class Screen6 extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       subContent,
-                      style: Constants.txW7FpCb.copyWith(
-                        fontSize: size.width * 0.0065,
+                      style: Constants.txW4FsCb38.copyWith(
+                        fontSize: size.width * 0.01,
                       ),
                       // style: Constants.txW5FpCw.copyWith(
                       //     fontSize: size.width * 0.0065, color: Colors.black),

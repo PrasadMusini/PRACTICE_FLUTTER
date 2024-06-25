@@ -124,7 +124,7 @@ class Screen4 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width,
-      height: size.height - size.height * 0.2,
+      height: size.height - size.height * 0.1, //0.2
       child: Container(
         color: Colors.black,
         padding: EdgeInsets.symmetric(
@@ -180,7 +180,7 @@ class Screen4 extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: size.width / 9.9,
+          width: size.width / 9.5, //9.9
           height: (size.height - size.height * 0.2) / 2.5,
           alignment: Alignment.center,
           // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
