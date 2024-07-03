@@ -11,8 +11,20 @@ class Page2 extends StatefulWidget {
 }
 
 class _Page2State extends State<Page2> {
-  Color textFieldFillColor = const Color(0xFFfafafa);
-  Color blueColor = const Color(0xFF7ba4d7);
+  final _formKey = GlobalKey<FormState>();
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,93 +33,84 @@ class _Page2State extends State<Page2> {
   }
 
   Widget signinFromMobile() {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
+        controller: _scrollController,
         padding: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Welcome back'),
-            const Text('Please enter your informations'),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomField(
-              labelText: 'Email',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomField(
-              labelText: 'Password',
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Remember me'),
-                Text('Forgot Password'),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: CustomBtn(
-                    backgroundColor: Colors.black,
-                    radius: 5,
-                    onPressed: () {},
-                    child: const Text('Login'),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: horizontalDivider(),
-                ),
-                const Text('   OR   '),
-                Expanded(
-                  child: horizontalDivider(),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Expanded(
-                //   child: CustomBtn(
-                //     backgroundColor: Colors.white,
-                //     radius: 5,
-                //     onPressed: () {},
-                //     child: const Text('Signin in with Google'),
-                //   ),
-                // ),
-                authBox(Icons.golf_course),
-                authBox(Icons.egg_alt_rounded),
-                authBox(Icons.unarchive_rounded),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Row(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: size.height / 5),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Don\'t have an account? '),
-                Text('Sign up for free :)'),
+                // SizedBox(
+                //   height: size.height / 5,
+                // ),
+                const Text('Welcome back x'),
+                const Text('Please enter your informations'),
+                const SizedBox(height: 20),
+                const CustomField(
+                  labelText: 'Email',
+                ),
+                const SizedBox(height: 20),
+                const CustomField(
+                  labelText: 'Password',
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Remember me'),
+                    Text('Forgot Password'),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomBtn(
+                        backgroundColor: Colors.black,
+                        radius: 5,
+                        onPressed: () {},
+                        child: const Text('Login'),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: horizontalDivider(),
+                    ),
+                    const Text('   OR   '),
+                    Expanded(
+                      child: horizontalDivider(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    authBox(Icons.golf_course),
+                    authBox(Icons.egg_alt_rounded),
+                    authBox(Icons.unarchive_rounded),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Don\'t have an account? '),
+                    Text('Sign up for free :)'),
+                  ],
+                ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -117,7 +120,7 @@ class _Page2State extends State<Page2> {
     return OutlinedButton(
       onPressed: () {},
       style: OutlinedButton.styleFrom(
-        backgroundColor: textFieldFillColor,
+        backgroundColor: Colors.white10,
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         side: BorderSide(color: Colors.grey.shade400),
         shape: RoundedRectangleBorder(
@@ -127,38 +130,6 @@ class _Page2State extends State<Page2> {
       child: Icon(icon),
     );
   }
-  //  Widget authBox(IconData icon) {
-  //   return InkWell(
-  //     child: Container(
-  //       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-  //       decoration: BoxDecoration(
-  //         color: textFieldFillColor,
-  //         border: Border.all(
-  //           color: Colors.grey.shade400,
-  //         ),
-  //         borderRadius: BorderRadius.circular(10),
-  //       ),
-  //       child: Icon(icon),
-  //     ),
-  //   );
-
-  // Widget signinFromWeb() {
-  //   return Row(
-  //     children: [
-  //       Expanded(
-  //         child: Container(
-  //           color: Colors.greenAccent.shade400,
-  //         ),
-  //       ),
-  //       Expanded(
-  //         child: Container(
-  //           padding: const EdgeInsets.all(50),
-  //           child: signinFromMobile(),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
 
   Widget signinFromWeb() {
     return Row(

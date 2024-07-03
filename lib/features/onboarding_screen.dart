@@ -1,41 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:practice_flutter/common_utils/common_utils.dart';
-
-class OnboardingContents {
-  final String title;
-  final String image;
-  final String desc;
-
-  OnboardingContents({
-    required this.title,
-    required this.image,
-    required this.desc,
-  });
-}
-
-List<OnboardingContents> contents = [
-  OnboardingContents(
-    title: "Track Your work and get the result",
-    image: "assets/image1.png",
-    desc: "Remember to keep track of your professional accomplishments.",
-  ),
-  OnboardingContents(
-    title: "Stay organized with team",
-    image: "assets/image2.png",
-    desc: '''But understanding the contributions our colleagues make 
-        to our teams and companies.''',
-  ),
-  OnboardingContents(
-    title: "Get notified when work happens",
-    image: "assets/image3.png",
-    desc:
-        "Take control of notifications, collaborate live or on your own time.",
-  ),
-];
+import 'package:practice_flutter/gen/assets.gen.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -289,3 +258,35 @@ class DashBoardPage extends StatelessWidget {
     );
   }
 }
+
+class OnboardingContents {
+  final String title;
+  final String image;
+  final String desc;
+
+  OnboardingContents({
+    required this.title,
+    required this.image,
+    required this.desc,
+  });
+}
+
+List<OnboardingContents> contents = [
+  OnboardingContents(
+    title: "Track Your work and get the result",
+    image: Assets.images.image1.path,
+    desc: "Remember to keep track of your professional accomplishments.",
+  ),
+  OnboardingContents(
+    title: "Stay organized with team",
+    image: Assets.images.image2.path,
+    desc: '''But understanding the contributions our colleagues make 
+        to our teams and companies.''',
+  ),
+  OnboardingContents(
+    title: "Get notified when work happens",
+    image: Assets.images.image3.path,
+    desc:
+        "Take control of notifications, collaborate live or on your own time.",
+  ),
+];

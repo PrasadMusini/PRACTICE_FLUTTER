@@ -12,6 +12,8 @@ class _LoginState extends State<Login> {
   Color textFieldFillColor = const Color(0xFFfafafa);
   Color blueColor = const Color(0xFF7ba4d7);
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,85 +22,99 @@ class _LoginState extends State<Login> {
   }
 
   Widget signinFromMobile() {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Welcome back'),
-            const Text('Please enter your informations'),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomField(
-              labelText: 'Email',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomField(
-              labelText: 'Password',
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Remember me'),
-                Text('Forgot Password'),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: CustomBtn(
-                    backgroundColor: Colors.black,
-                    radius: 5,
-                    onPressed: () {},
-                    child: const Text('Login'),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: horizontalDivider(),
-                ),
-                const Text('   OR   '),
-                Expanded(
-                  child: horizontalDivider(),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                authBox(Icons.golf_course),
-                authBox(Icons.egg_alt_rounded),
-                authBox(Icons.unarchive_rounded),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Row(
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30)
+              .copyWith(top: size.height / 5),
+          child: Form(
+            key: _formKey,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Don\'t have an account? '),
-                Text('Sign up for free :)'),
+                const Text('Welcome back'),
+                const Text('Please enter your informations'),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CustomField(
+                  labelText: 'Name',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CustomField(
+                  labelText: 'Email',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CustomField(
+                  labelText: 'Password',
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Remember me'),
+                    Text('Forgot Password'),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomBtn(
+                        backgroundColor: Colors.black,
+                        radius: 5,
+                        onPressed: () {},
+                        child: const Text('Login'),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: horizontalDivider(),
+                    ),
+                    const Text('   OR   '),
+                    Expanded(
+                      child: horizontalDivider(),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    authBox(Icons.golf_course),
+                    authBox(Icons.egg_alt_rounded),
+                    authBox(Icons.unarchive_rounded),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Don\'t have an account? '),
+                    Text('Sign up for free :)'),
+                  ],
+                ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
