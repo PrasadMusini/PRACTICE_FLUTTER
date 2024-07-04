@@ -4,7 +4,7 @@ class BounceFromLeftAnimation extends StatefulWidget {
   final double delay;
   final Widget child;
   const BounceFromLeftAnimation(
-      {super.key, required this.delay, required this.child});
+      {super.key, this.delay = 1, required this.child});
 
   @override
   State<BounceFromLeftAnimation> createState() =>

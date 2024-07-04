@@ -23,18 +23,20 @@ import 'package:flutter/material.dart';
 
 class ScaleSplashScreen extends StatefulWidget {
   final Widget child;
-  final Widget destinationScreen;
+  // final Widget destinationScreen;
   final double delay;
   final double beginScale;
   final double endScale;
+  final void Function(AnimationStatus)? doneAnimation;
 
   const ScaleSplashScreen({
     super.key,
     required this.child,
-    required this.destinationScreen,
+    //  this.destinationScreen,
     required this.delay,
     this.beginScale = 1.0,
     this.endScale = 10.0,
+    this.doneAnimation,
   });
 
   @override
@@ -59,20 +61,24 @@ class _ScaleSplashScreenState extends State<ScaleSplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       _controller.forward();
     });
 
     // _controller.forward();
 
     // Navigate to the next screen after the animation completes
-    _controller.addStatusListener((status) {
+    _controller.addStatusListener((status) => widget.doneAnimation?.call(status)
+
+        /* {
       if (status == AnimationStatus.completed) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => widget.destinationScreen),
         );
       }
-    });
+    } */
+
+        );
   }
 
   @override
