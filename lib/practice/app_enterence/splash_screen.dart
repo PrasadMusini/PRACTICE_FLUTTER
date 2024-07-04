@@ -46,6 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
           child: ScaleSplashScreen(
+        endScale: 800.0,
+        delay: 3,
         doneAnimation: (status) {
           if (status == AnimationStatus.completed) {
             Navigator.pushReplacement(
@@ -60,7 +62,6 @@ class _SplashScreenState extends State<SplashScreen> {
             // FadeRoute(page: _destinationScreenFuture);
           }
         },
-        delay: 1,
         child: const Text('Splash Screen'),
       )),
     );

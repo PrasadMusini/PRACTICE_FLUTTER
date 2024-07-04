@@ -1,26 +1,5 @@
 import 'package:flutter/material.dart';
 
-/* class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ScaleSplashScreen(
-      delay: 5,
-      beginScale: 0,
-      destinationScreen: const NextScreen(),
-      child: Container(
-        width: 100,
-        height: 100,
-        color: Colors.red,
-        child: const Center(
-          child: Text('Splash Screen'),
-        ),
-      ),
-    );
-  }
-} */
-
 class ScaleSplashScreen extends StatefulWidget {
   final Widget child;
   // final Widget destinationScreen;
@@ -32,7 +11,6 @@ class ScaleSplashScreen extends StatefulWidget {
   const ScaleSplashScreen({
     super.key,
     required this.child,
-    //  this.destinationScreen,
     required this.delay,
     this.beginScale = 1.0,
     this.endScale = 10.0,
@@ -61,13 +39,10 @@ class _ScaleSplashScreenState extends State<ScaleSplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 700), () {
       _controller.forward();
     });
 
-    // _controller.forward();
-
-    // Navigate to the next screen after the animation completes
     _controller.addStatusListener((status) => widget.doneAnimation?.call(status)
 
         /* {
@@ -77,7 +52,6 @@ class _ScaleSplashScreenState extends State<ScaleSplashScreen>
         );
       }
     } */
-
         );
   }
 
