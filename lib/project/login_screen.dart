@@ -11,7 +11,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   Color textFieldFillColor = const Color(0xFFfafafa);
   Color blueColor = const Color(0xFF7ba4d7);
-
+  bool? checkValue = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -55,11 +55,27 @@ class _LoginState extends State<Login> {
                 const CustomField(
                   labelText: 'Password',
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Remember me'),
-                    Text('Forgot Password'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Checkbox(
+                          value: checkValue,
+                          shape: const CircleBorder(),
+                          side: const BorderSide(
+                              strokeAlign: BorderSide.strokeAlignCenter),
+                          onChanged: (value) {
+                            setState(() {
+                              checkValue = value;
+                            });
+                          },
+                        ),
+                        const Text('Remember me'),
+                      ],
+                    ),
+                    const Text('Forgot Password'),
                   ],
                 ),
                 const SizedBox(
@@ -71,7 +87,13 @@ class _LoginState extends State<Login> {
                       child: CustomBtn(
                         backgroundColor: Colors.black,
                         radius: 5,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const Home(),
+                            ),
+                          );
+                        },
                         child: const Text('Login'),
                       ),
                     ),
@@ -139,6 +161,19 @@ class _LoginState extends State<Login> {
     return Container(
       height: 0.5,
       color: Colors.grey.shade400,
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Home'),
+      ),
     );
   }
 }
