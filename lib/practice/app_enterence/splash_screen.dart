@@ -1,10 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/animations/effects/left_bounce_animation.dart';
+import 'package:practice_flutter/animations/effects/right_bounce_animation.dart';
+import 'package:practice_flutter/animations/effects/splash_scale_animation.dart';
+import 'package:practice_flutter/animations/navigation_effects/fade_navigation.dart';
 import 'package:practice_flutter/practice/app_enterence/consts.dart';
 import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
 import 'package:practice_flutter/practice/app_enterence/onboarding_screen.dart';
 import 'package:practice_flutter/practice/app_enterence/login_screen.dart';
+import 'package:practice_flutter/practice/practice_ui.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,42 +18,51 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late Widget _destinationScreenFuture;
+
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), _checkVisited);
+    _checkVisited();
   }
 
-  _checkVisited() async {
+  Future<void> _checkVisited() async {
     bool visited = await SharedPreferencesHelper.getVisited();
 
     if (visited) {
       bool loggedIn = await SharedPreferencesHelper.getLoggedIn();
       if (loggedIn) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
+        _destinationScreenFuture = const HomeScreen();
       } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
+        _destinationScreenFuture = const LoginScreen();
       }
     } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
-      );
+      _destinationScreenFuture = const PracticeUI();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Splash Screen'),
-      ),
+          child: ScaleSplashScreen(
+        doneAnimation: (status) {
+          if (status == AnimationStatus.completed) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BounceFromRightAnimation(
+                        delay: 1,
+                        child: _destinationScreenFuture,
+                      )),
+            );
+
+            // FadeRoute(page: _destinationScreenFuture);
+          }
+        },
+        delay: 1,
+        child: const Text('Splash Screen'),
+      )),
     );
   }
 }

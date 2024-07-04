@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/practice/app_enterence/consts.dart';
 import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
+import 'package:practice_flutter/practice/app_enterence/splash_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,10 +14,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+
     _checkLoggedIn();
   }
 
-  _checkLoggedIn() async {
+  Future<void> _checkLoggedIn() async {
     bool loggedIn = await SharedPreferencesHelper.getLoggedIn();
 
     if (loggedIn) {
