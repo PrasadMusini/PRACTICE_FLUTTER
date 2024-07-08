@@ -201,7 +201,7 @@ class Screen4 extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              LoadingNumbersAnimation(
+              AnimationLoadingNumbers(
                 percentage: 99,
                 delay: 5,
                 style:

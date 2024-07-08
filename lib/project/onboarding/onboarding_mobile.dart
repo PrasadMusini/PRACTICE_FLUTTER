@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:practice_flutter/common_utils/common_utils.dart';
+import 'package:practice_flutter/animations/navigation_effects/right_slide_navigation.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
-import 'package:practice_flutter/practice/app_enterence/consts.dart';
-import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
-import 'package:practice_flutter/practice/app_enterence/login_screen.dart';
+import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
 import 'package:practice_flutter/project/signin/signin_mobile.dart';
 
-class PracticeUI extends StatefulWidget {
-  const PracticeUI({super.key});
+class OnboardingMobile extends StatefulWidget {
+  const OnboardingMobile({super.key});
 
   @override
-  State<PracticeUI> createState() => _PracticeUIState();
+  State<OnboardingMobile> createState() => _OnboardingMobileState();
 }
 
-class _PracticeUIState extends State<PracticeUI> {
+class _OnboardingMobileState extends State<OnboardingMobile> {
   late PageController _controller;
 
   @override
@@ -69,26 +67,31 @@ class _PracticeUIState extends State<PracticeUI> {
                 itemCount: contents.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: const EdgeInsets.all(40.0).copyWith(bottom: 20),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Image.asset(
-                          contents[i].image,
-                          height: SizeConfig.blockV! * 35,
+                        Column(
+                          children: [
+                            Image.asset(
+                              contents[i].image,
+                              height: SizeConfig.blockV! * 35,
+                            ),
+                            SizedBox(
+                              height: (height >= 840) ? 60 : 30,
+                            ),
+                            Text(
+                              contents[i].title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: "Mulish",
+                                fontWeight: FontWeight.w600,
+                                fontSize: (width <= 550) ? 30 : 35,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: (height >= 840) ? 60 : 30,
-                        ),
-                        Text(
-                          contents[i].title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: "Mulish",
-                            fontWeight: FontWeight.w600,
-                            fontSize: (width <= 550) ? 30 : 35,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
+                        // SizedBox(height: height * 0.04),
                         Text(
                           contents[i].desc,
                           style: TextStyle(
@@ -140,14 +143,21 @@ class _PracticeUIState extends State<PracticeUI> {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () async {
-                                            await SharedPreferencesHelper
-                                                .setVisited(true);
+                                            await SharedPrefsHelper
+                                                .setVisitStatus(status: true);
 
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const LoginScreen(),
+                                            // Navigator.of(context)
+                                            //     .pushReplacement(
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         const SigninMobile(),
+                                            //   ),
+                                            // );
+
+                                            Navigator.pushReplacement(
+                                              context,
+                                              NavigateWithRightSlideAnimation(
+                                                page: const SigninMobile(),
                                               ),
                                             );
                                           },

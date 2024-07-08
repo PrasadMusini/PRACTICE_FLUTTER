@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/project/login/login_mobile.dart';
 
 class LoginWeb extends StatelessWidget {
   const LoginWeb({super.key});

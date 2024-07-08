@@ -25,6 +25,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/dragon.jpg
   AssetGenImage get dragon => const AssetGenImage('assets/images/dragon.jpg');
 
+  /// File path: assets/images/facebook_logo.png
+  AssetGenImage get facebookLogo =>
+      const AssetGenImage('assets/images/facebook_logo.png');
+
+  /// File path: assets/images/google_logo.png
+  AssetGenImage get googleLogo =>
+      const AssetGenImage('assets/images/google_logo.png');
+
   /// File path: assets/images/hair_fixing_logo-removebg-preview.png
   AssetGenImage get hairFixingLogoRemovebgPreview => const AssetGenImage(
       'assets/images/hair_fixing_logo-removebg-preview.png');
@@ -50,6 +58,8 @@ class $AssetsImagesGen {
         prasadImageRemovebg,
         check,
         dragon,
+        facebookLogo,
+        googleLogo,
         hairFixingLogoRemovebgPreview,
         hairFixingLogo,
         hfzLogo,

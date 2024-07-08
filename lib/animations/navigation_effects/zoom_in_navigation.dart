@@ -1,9 +1,9 @@
 // zoom_route.dart
 import 'package:flutter/material.dart';
 
-class ZoomInRoute extends PageRouteBuilder {
+class NavigateWithZoomInAnimation extends PageRouteBuilder {
   final Widget page;
-  ZoomInRoute({required this.page})
+  NavigateWithZoomInAnimation({required this.page})
       : super(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionDuration:

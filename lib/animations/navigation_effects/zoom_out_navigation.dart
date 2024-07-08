@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ZoomOutRoute extends PageRouteBuilder {
+class NavigateWithZoomOutAnimation extends PageRouteBuilder {
   final Widget page;
-  ZoomOutRoute({required this.page})
+  NavigateWithZoomOutAnimation({required this.page})
       : super(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionDuration:

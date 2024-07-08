@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
-class BounceFromBottomAnimation extends StatefulWidget {
+class AnimationFromBottomToTop extends StatefulWidget {
   final Widget child;
   final double delay;
-  const BounceFromBottomAnimation(
-      {super.key, required this.child, required this.delay});
+  final double beginScale;
+  final double endScale;
+  const AnimationFromBottomToTop(
+      {super.key,
+      required this.child,
+      required this.delay,
+      this.beginScale = 100,
+      this.endScale = 0});
 
   @override
-  State<BounceFromBottomAnimation> createState() =>
-      _BounceFromBottomAnimationState();
+  State<AnimationFromBottomToTop> createState() =>
+      _AnimationFromBottomToTopState();
 }
 
-class _BounceFromBottomAnimationState extends State<BounceFromBottomAnimation>
+class _AnimationFromBottomToTopState extends State<AnimationFromBottomToTop>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -30,7 +36,8 @@ class _BounceFromBottomAnimationState extends State<BounceFromBottomAnimation>
     final Animation<double> curve =
         CurvedAnimation(curve: Curves.easeOutCubic, parent: _controller);
 
-    _animation = Tween<double>(begin: 100, end: 0).animate(curve)
+    _animation = Tween<double>(begin: widget.beginScale, end: widget.endScale)
+        .animate(curve)
       ..addListener(() {
         setState(() {});
       });

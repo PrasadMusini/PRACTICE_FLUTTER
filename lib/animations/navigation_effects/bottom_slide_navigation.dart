@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class BottomSlideRoute extends PageRouteBuilder {
+class NavigateWithBottomSlideAnimation extends PageRouteBuilder {
   final Widget page;
-  BottomSlideRoute({required this.page})
+  NavigateWithBottomSlideAnimation({required this.page})
       : super(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

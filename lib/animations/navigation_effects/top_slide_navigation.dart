@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class TopSlideRoute extends PageRouteBuilder {
+class NavigateWithTopSlideAnimation extends PageRouteBuilder {
   final Widget page;
-  TopSlideRoute({required this.page})
+  NavigateWithTopSlideAnimation({required this.page})
       : super(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

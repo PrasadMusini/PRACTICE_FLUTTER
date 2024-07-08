@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class RightSlideRoute extends PageRouteBuilder {
+class NavigateWithRightSlideAnimation extends PageRouteBuilder {
   final Widget page;
-  RightSlideRoute({required this.page})
+  NavigateWithRightSlideAnimation({required this.page})
       : super(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

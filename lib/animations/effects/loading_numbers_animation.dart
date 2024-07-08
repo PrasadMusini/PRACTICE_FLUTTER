@@ -27,12 +27,12 @@ class _HomeState extends State<Home> {
   }
 } */
 
-class LoadingNumbersAnimation extends StatefulWidget {
+class AnimationLoadingNumbers extends StatefulWidget {
   final double percentage;
   final double delay;
   final TextStyle style;
 
-  const LoadingNumbersAnimation(
+  const AnimationLoadingNumbers(
       {super.key,
       required this.percentage,
       required this.delay,
@@ -40,11 +40,11 @@ class LoadingNumbersAnimation extends StatefulWidget {
           fontSize: 24, fontWeight: FontWeight.w600, color: Colors.black)});
 
   @override
-  State<LoadingNumbersAnimation> createState() =>
-      _LoadingNumbersAnimationState();
+  State<AnimationLoadingNumbers> createState() =>
+      _AnimationLoadingNumbersState();
 }
 
-class _LoadingNumbersAnimationState extends State<LoadingNumbersAnimation> {
+class _AnimationLoadingNumbersState extends State<AnimationLoadingNumbers> {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(

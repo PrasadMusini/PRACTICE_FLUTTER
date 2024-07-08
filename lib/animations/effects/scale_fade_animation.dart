@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ScaleFadeAnimation extends StatefulWidget {
+class AnimationScaleFade extends StatefulWidget {
   final double delay;
   final Widget child;
-  const ScaleFadeAnimation(
+  const AnimationScaleFade(
       {super.key, required this.delay, required this.child});
 
   @override
-  State<ScaleFadeAnimation> createState() => _ScaleFadeAnimationState();
+  State<AnimationScaleFade> createState() => _AnimationScaleFadeState();
 }
 
-class _ScaleFadeAnimationState extends State<ScaleFadeAnimation>
+class _AnimationScaleFadeState extends State<AnimationScaleFade>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

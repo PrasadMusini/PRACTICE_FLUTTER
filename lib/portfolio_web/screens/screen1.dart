@@ -68,10 +68,10 @@ class Screen1 extends StatelessWidget {
                               border: Border.all(color: Colors.black),
                             ),
                             alignment: Alignment.center,
-                            child: const BounceFromTopAnimation(
+                            child: const AnimationFromTopToBottom(
                               delay: 1,
-                              begin: -20,
-                              end: 20,
+                              beginScale: -20,
+                              endScale: 20,
                               child: Icon(Icons.arrow_downward_rounded),
                             ),
                           ),

@@ -1,23 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/animations/effects/left_bounce_animation.dart';
 import 'package:practice_flutter/animations/effects/right_bounce_animation.dart';
 import 'package:practice_flutter/animations/effects/splash_scale_animation.dart';
-import 'package:practice_flutter/animations/navigation_effects/fade_navigation.dart';
-import 'package:practice_flutter/practice/app_enterence/consts.dart';
-import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
-import 'package:practice_flutter/practice/app_enterence/onboarding_screen.dart';
-import 'package:practice_flutter/practice/app_enterence/login_screen.dart';
-import 'package:practice_flutter/practice/practice_ui.dart';
+import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
+import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
+import 'package:practice_flutter/project/onboarding/onboarding_mobile.dart';
+import 'package:practice_flutter/project/signin/signin_mobile.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashMobile extends StatefulWidget {
+  const SplashMobile({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashMobile> createState() => _SplashMobileState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashMobileState extends State<SplashMobile> {
   late Widget _destinationScreenFuture;
 
   @override
@@ -27,17 +24,17 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _checkVisited() async {
-    bool visited = await SharedPreferencesHelper.getVisited();
+    bool visited = await SharedPrefsHelper.getVisitStatus();
 
     if (visited) {
-      bool loggedIn = await SharedPreferencesHelper.getLoggedIn();
+      bool loggedIn = await SharedPrefsHelper.getLoginStatus();
       if (loggedIn) {
-        _destinationScreenFuture = const HomeScreen();
+        _destinationScreenFuture = const MainScreenMobile();
       } else {
-        _destinationScreenFuture = const LoginScreen();
+        _destinationScreenFuture = const SigninMobile();
       }
     } else {
-      _destinationScreenFuture = const PracticeUI();
+      _destinationScreenFuture = const OnboardingMobile();
     }
   }
 
@@ -46,7 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
           child: AnimationSplashScale(
-        endScale: 800.0,
+        backgroundColor: Colors.red.shade400,
+        beginScale: 0.0,
+        endScale: 2.0,
         delay: 3,
         doneAnimation: (status) {
           if (status == AnimationStatus.completed) {
@@ -58,8 +57,6 @@ class _SplashScreenState extends State<SplashScreen> {
                         child: _destinationScreenFuture,
                       )),
             );
-
-            // FadeRoute(page: _destinationScreenFuture);
           }
         },
         child: const Text('Splash Screen'),

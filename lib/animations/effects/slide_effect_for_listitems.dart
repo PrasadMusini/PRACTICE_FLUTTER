@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 
-class AnimatedListScreen extends StatefulWidget {
-  const AnimatedListScreen({super.key});
+class AnimatedListItems extends StatefulWidget {
+  final Widget child;
+  final int listlength;
+  final double delayInMilliseconds;
+  const AnimatedListItems(
+      {super.key,
+      required this.child,
+      this.listlength = 10,
+      this.delayInMilliseconds = 300});
 
   @override
-  State<AnimatedListScreen> createState() => _AnimatedListScreenState();
+  State<AnimatedListItems> createState() => _AnimatedListItemsState();
 }
 
-class _AnimatedListScreenState extends State<AnimatedListScreen>
+class _AnimatedListItemsState extends State<AnimatedListItems>
     with SingleTickerProviderStateMixin {
-  final List<String> _items = List.generate(10, (index) => "Item $index");
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-
   @override
   void initState() {
     super.initState();
     _addItems();
   }
 
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
   void _addItems() {
-    Future.delayed(const Duration(milliseconds: 300), () {
-      for (int i = 0; i < _items.length; i++) {
+    Future.delayed(Duration(milliseconds: widget.delayInMilliseconds.toInt()),
+        () {
+      for (int i = 0; i < widget.listlength; i++) {
         Future.delayed(Duration(milliseconds: 100 * i), () {
           _listKey.currentState!.insertItem(i);
         });
@@ -38,25 +45,26 @@ class _AnimatedListScreenState extends State<AnimatedListScreen>
         key: _listKey,
         initialItemCount: 0,
         itemBuilder: (context, index, animation) {
-          return _buildItem(_items[index], animation);
+          return _buildItem(index, animation);
         },
       ),
     );
   }
 
-  Widget _buildItem(String item, Animation<double> animation) {
+  Widget _buildItem(int item, Animation<double> animation) {
     return SizeTransition(
       sizeFactor: animation,
       axis: Axis.vertical,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.all(20),
-        color: Colors.grey,
-        child: Text(
-          item,
-          style: const TextStyle(fontSize: 18),
-        ),
-      ),
+      child: widget.child,
+      // Container(
+      //   margin: const EdgeInsets.symmetric(vertical: 10),
+      //   padding: const EdgeInsets.all(20),
+      //   color: Colors.grey,
+      //   child: Text(
+      //     item,
+      //     style: const TextStyle(fontSize: 18),
+      //   ),
+      // ),
     );
   }
 }

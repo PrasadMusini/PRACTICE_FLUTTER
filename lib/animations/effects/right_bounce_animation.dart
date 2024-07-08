@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class BounceFromRightAnimation extends StatefulWidget {
+class AnimationFromRightToLeft extends StatefulWidget {
   final Widget child;
   final double delay;
-  const BounceFromRightAnimation(
+  const AnimationFromRightToLeft(
       {super.key, required this.child, required this.delay});
 
   @override
-  State<BounceFromRightAnimation> createState() =>
-      _BounceFromRightAnimationState();
+  State<AnimationFromRightToLeft> createState() =>
+      _AnimationFromRightToLeftState();
 }
 
-class _BounceFromRightAnimationState extends State<BounceFromRightAnimation>
+class _AnimationFromRightToLeftState extends State<AnimationFromRightToLeft>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

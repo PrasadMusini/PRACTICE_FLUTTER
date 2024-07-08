@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 
-class AnimationSplashScale extends StatefulWidget {
+class AnimationSplashEaseInOut extends StatefulWidget {
   final Widget child;
   final double delay;
   final double beginScale;
   final double endScale;
-  final Color? backgroundColor;
   final void Function(AnimationStatus)? doneAnimation;
-
-  const AnimationSplashScale({
+  const AnimationSplashEaseInOut({
     super.key,
     required this.child,
     required this.delay,
     this.beginScale = 1.0,
     this.endScale = 10.0,
-    this.backgroundColor,
     this.doneAnimation,
   });
 
   @override
-  State<AnimationSplashScale> createState() => _AnimationSplashScaleState();
+  State<AnimationSplashEaseInOut> createState() =>
+      _AnimationSplashEaseInOutState();
 }
 
-class _AnimationSplashScaleState extends State<AnimationSplashScale>
+class _AnimationSplashEaseInOutState extends State<AnimationSplashEaseInOut>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -31,17 +29,21 @@ class _AnimationSplashScaleState extends State<AnimationSplashScale>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: widget.delay.toInt()),
+      duration: const Duration(seconds: 2),
       vsync: this,
-    );
+    )..addListener(() {
+        setState(() {});
+      });
 
-    _animation =
-        Tween<double>(begin: widget.beginScale, end: widget.endScale).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
 
-    Future.delayed(const Duration(milliseconds: 700), () {
-      _controller.forward();
+    _controller.forward().then((_) {
+      Future.delayed(const Duration(seconds: 1), () {
+        setState(() {
+          _animation = Tween<double>(begin: 1, end: 2000).animate(_controller);
+          _controller.forward(from: 0);
+        });
+      });
     });
 
     _controller
@@ -57,7 +59,7 @@ class _AnimationSplashScaleState extends State<AnimationSplashScale>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.backgroundColor,
+      backgroundColor: Colors.red[400],
       body: Center(
         child: AnimatedBuilder(
           animation: _animation,

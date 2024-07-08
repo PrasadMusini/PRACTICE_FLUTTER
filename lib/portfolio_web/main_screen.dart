@@ -32,13 +32,9 @@ class _MainScreenState extends State<MainScreen> {
   final GlobalKey _screen4Key = GlobalKey();
   final GlobalKey _screenNKey = GlobalKey();
 
-  late ScrollController _webScrollController;
-
   @override
   void initState() {
     // initialize scroll controllers
-    _webScrollController = ScrollController();
-
     super.initState();
   }
 
