@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:practice_flutter/common_utils/common_utils.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/practice/app_enterence/consts.dart';
-import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
 import 'package:practice_flutter/practice/app_enterence/login_screen.dart';
-import 'package:practice_flutter/project/signin/signin_mobile.dart';
 
 class PracticeUI extends StatefulWidget {
   const PracticeUI({super.key});

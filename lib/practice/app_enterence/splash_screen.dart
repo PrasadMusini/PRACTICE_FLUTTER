@@ -1,12 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/animations/effects/left_bounce_animation.dart';
 import 'package:practice_flutter/animations/effects/right_bounce_animation.dart';
 import 'package:practice_flutter/animations/effects/splash_scale_animation.dart';
-import 'package:practice_flutter/animations/navigation_effects/fade_navigation.dart';
 import 'package:practice_flutter/practice/app_enterence/consts.dart';
 import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
-import 'package:practice_flutter/practice/app_enterence/onboarding_screen.dart';
 import 'package:practice_flutter/practice/app_enterence/login_screen.dart';
 import 'package:practice_flutter/practice/practice_ui.dart';
 

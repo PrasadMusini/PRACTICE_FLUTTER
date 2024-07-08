@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/practice/app_enterence/consts.dart';
 import 'package:practice_flutter/practice/app_enterence/home_screen.dart';
-import 'package:practice_flutter/practice/app_enterence/splash_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

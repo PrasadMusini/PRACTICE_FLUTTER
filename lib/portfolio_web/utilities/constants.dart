@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/gen/fonts.gen.dart';
 
 class Constants {

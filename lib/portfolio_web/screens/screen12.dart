@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/gen/fonts.gen.dart';
-import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
 
 class Screen12 extends StatelessWidget {
   const Screen12({super.key});

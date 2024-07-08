@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:practice_flutter/animations/effects/top_bounce_animation.dart';
-import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
 
 class Screen1 extends StatelessWidget {
