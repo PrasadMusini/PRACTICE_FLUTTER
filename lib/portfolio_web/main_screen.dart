@@ -15,7 +15,6 @@ import 'package:practice_flutter/portfolio_web/screens/screen12.dart';
 import 'package:practice_flutter/portfolio_web/screens/screen13.dart';
 import 'package:practice_flutter/portfolio_web/screens/screen14.dart';
 import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
-import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -89,53 +88,47 @@ class _MainScreenState extends State<MainScreen> {
           const SizedBox(width: 20),
         ],
       ),
-      body: WebSmoothScroll(
+      body: SingleChildScrollView(
         controller: _scrollController,
-        // scrollOffset: 100,
-        curve: Curves.easeInOutCirc,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Column(
-            children: [
-              Screen1(
-                key: _screen1Key,
-              ),
-              Screen2(
-                  key: _screen2Key,
-                  content: 'ABOUT ME',
-                  backgroundColor: Colors.black),
-              Screen3(
-                key: _screen3Key,
-              ),
-              Screen4(
-                key: _screen4Key,
-              ),
-              const Screen2(
-                  content: 'AWARDS', backgroundColor: Constants.orangeColor),
-              const Screen5(),
-              const Screen6(),
-              const Screen2(
-                  content: 'PORTFOLIO', backgroundColor: Constants.orangeColor),
-              const Screen7(),
-              const Screen2(
-                  content: 'SERVICES', backgroundColor: Constants.orangeColor),
-              const Screen8(),
-              const Screen2(
-                  content: 'TESTIMONIAL',
-                  backgroundColor: Constants.orangeColor),
-              const Screen9(),
-              const Screen2(
-                  content: 'OUR NEWS', backgroundColor: Constants.orangeColor),
-              const Screen10(),
-              const Screen2(
-                  content: 'LET\'S TALK ',
-                  backgroundColor: Constants.orangeColor),
-              const Screen11(),
-              const Screen12(),
-              const Screen13(),
-              const Screen14(),
-            ],
-          ),
+        child: Column(
+          children: [
+            Screen1(
+              key: _screen1Key,
+            ),
+            Screen2(
+                key: _screen2Key,
+                content: 'ABOUT ME',
+                backgroundColor: Colors.black),
+            Screen3(
+              key: _screen3Key,
+            ),
+            Screen4(
+              key: _screen4Key,
+            ),
+            const Screen2(
+                content: 'AWARDS', backgroundColor: Constants.orangeColor),
+            const Screen5(),
+            const Screen6(),
+            const Screen2(
+                content: 'PORTFOLIO', backgroundColor: Constants.orangeColor),
+            const Screen7(),
+            const Screen2(
+                content: 'SERVICES', backgroundColor: Constants.orangeColor),
+            const Screen8(),
+            const Screen2(
+                content: 'TESTIMONIAL', backgroundColor: Constants.orangeColor),
+            const Screen9(),
+            const Screen2(
+                content: 'OUR NEWS', backgroundColor: Constants.orangeColor),
+            const Screen10(),
+            const Screen2(
+                content: 'LET\'S TALK ',
+                backgroundColor: Constants.orangeColor),
+            const Screen11(),
+            const Screen12(),
+            const Screen13(),
+            const Screen14(),
+          ],
         ),
       ),
     );

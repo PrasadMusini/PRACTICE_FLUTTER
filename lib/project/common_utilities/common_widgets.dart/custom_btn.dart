@@ -7,6 +7,7 @@ class CustomBtn extends StatelessWidget {
   final Color borderColor;
   final double? radius;
   final double verticalPadding;
+  final double horizontalPadding;
   const CustomBtn(
       {super.key,
       required this.onPressed,
@@ -14,6 +15,7 @@ class CustomBtn extends StatelessWidget {
       this.backgroundColor,
       this.borderColor = const Color(0xFF000000),
       this.verticalPadding = 0,
+      this.horizontalPadding = 0,
       this.radius = 5});
 
   @override
@@ -25,7 +27,8 @@ class CustomBtn extends StatelessWidget {
           side: BorderSide(
             color: borderColor,
           ),
-          padding: EdgeInsets.symmetric(vertical: verticalPadding),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding, vertical: verticalPadding),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius!),
           ),

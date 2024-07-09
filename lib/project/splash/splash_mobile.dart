@@ -4,6 +4,7 @@ import 'package:practice_flutter/animations/effects/right_bounce_animation.dart'
 import 'package:practice_flutter/animations/effects/splash_scale_animation.dart';
 import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
 import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
+import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
 import 'package:practice_flutter/project/onboarding/onboarding_mobile.dart';
 import 'package:practice_flutter/project/signin/signin_mobile.dart';
 
@@ -29,7 +30,7 @@ class _SplashMobileState extends State<SplashMobile> {
     if (visited) {
       bool loggedIn = await SharedPrefsHelper.getLoginStatus();
       if (loggedIn) {
-        _destinationScreenFuture = const MainScreenMobile();
+        _destinationScreenFuture = const HomeMobile();
       } else {
         _destinationScreenFuture = const SigninMobile();
       }

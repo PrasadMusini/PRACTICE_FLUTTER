@@ -6,6 +6,7 @@ import 'package:practice_flutter/project/common_utilities/common_widgets.dart/cu
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_textfield.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
+import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
 import 'package:practice_flutter/project/signin/signin_mobile.dart';
 
 class SignupMobile extends StatefulWidget {
@@ -129,7 +130,7 @@ class _SignupMobileState extends State<SignupMobile> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               NavigateWithRightSlideAnimation(
-                                  page: const MainScreenMobile()),
+                                  page: const HomeMobile()),
                               (Route<dynamic> route) => false);
                         },
                         child: Text('Submit',
