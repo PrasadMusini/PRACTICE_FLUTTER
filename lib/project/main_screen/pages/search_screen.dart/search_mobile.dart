@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:practice_flutter/gen/assets.gen.dart';
+import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_textfield.dart';
 
 class SearchMobile extends StatelessWidget {
   const SearchMobile({super.key});
@@ -14,18 +16,20 @@ class SearchMobile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                header(context),
+                const SizedBox(height: 15),
                 Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        context.pop();
-                      },
-                      child: const CircleAvatar(
-                        radius: 26,
-                        child: Icon(Icons.arrow_back_rounded),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     context.pop();
+                    //   },
+                    //   child: const CircleAvatar(
+                    //     radius: 26,
+                    //     child: Icon(Icons.arrow_back_rounded),
+                    //   ),
+                    // ),
+                    // const SizedBox(width: 12),
                     // searchBar(),
                     Expanded(child: searchBar())
                   ],
@@ -61,6 +65,14 @@ class SearchMobile extends StatelessWidget {
   }
 
   Hero searchBar() {
+    return const Hero(
+        tag: 'tag-search',
+        child: CustomField(
+          hintText: 'What do you want to eat?',
+          suffixIcon: Icon(Icons.search),
+        ));
+  }
+/*   Hero searchBar() {
     return Hero(
       tag: 'tag-search',
       child: Container(
@@ -68,7 +80,7 @@ class SearchMobile extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13),
+          borderRadius: BorderRadius.circular(8),
           color: Colors.grey.shade100,
           border: Border.all(
             color: Colors.grey.shade400,
@@ -76,7 +88,7 @@ class SearchMobile extends StatelessWidget {
         ),
         child: const Row(
           children: [
-            Text('Search for '),
+            Text('What do you want to eat?'),
             // animatedSlideText(),
             Spacer(),
             Icon(Icons.search),
@@ -86,7 +98,7 @@ class SearchMobile extends StatelessWidget {
         ),
       ),
     );
-  }
+  } */
 
   Column menuItems(String title) {
     return Column(children: [
@@ -166,5 +178,32 @@ class SearchMobile extends StatelessWidget {
         },
       ),
     ]);
+  }
+
+  Row header(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                context.pop();
+              },
+              child: const CircleAvatar(
+                radius: 26,
+                child: Icon(Icons.arrow_back_rounded),
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Text('User Name'),
+          ],
+        ),
+        CircleAvatar(
+          radius: 20,
+          child: Image.asset(Assets.images.googleLogo.path),
+        ),
+      ],
+    );
   }
 }

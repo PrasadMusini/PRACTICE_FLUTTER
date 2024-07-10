@@ -12,12 +12,12 @@ class MainScreenMobile extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       // body: Expanded(child: widget.navigationShell),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push(context.namedLocation(Routes.screenTest.name));
-        },
-        child: const Icon(Icons.settings),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     context.push(context.namedLocation(Routes.screenTest.name));
+      //   },
+      //   child: const Icon(Icons.settings),
+      // ),
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navigationShell.currentIndex,

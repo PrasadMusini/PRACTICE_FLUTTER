@@ -1,21 +1,20 @@
 import 'package:animated_read_more_text/animated_read_more_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/add_to_card.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
-import 'package:add_to_cart_button/add_to_cart_button.dart';
 
-class OrdersMobile extends StatefulWidget {
-  const OrdersMobile({super.key});
+class OrderItemMobile extends StatefulWidget {
+  const OrderItemMobile({super.key});
 
   @override
-  State<OrdersMobile> createState() => _OrdersMobileState();
+  State<OrderItemMobile> createState() => _OrderItemMobileState();
 }
 
-class _OrdersMobileState extends State<OrdersMobile> {
-  // int _quantity = 1;
-
+class _OrderItemMobileState extends State<OrderItemMobile> {
   Container addToCartButton() {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -52,16 +51,21 @@ class _OrdersMobileState extends State<OrdersMobile> {
   }
 
   Positioned backBtn() {
-    return const Positioned(
+    return Positioned(
       top: 15,
       left: 15,
-      child: CircleAvatar(
-        radius: 22,
-        backgroundColor: Colors.black,
-        child: Icon(
-          Icons.keyboard_arrow_left_rounded,
-          size: 20,
-          color: Colors.white,
+      child: GestureDetector(
+        onTap: () {
+          context.pop();
+        },
+        child: const CircleAvatar(
+          radius: 22,
+          backgroundColor: Colors.black,
+          child: Icon(
+            Icons.keyboard_arrow_left_rounded,
+            size: 20,
+            color: Colors.white,
+          ),
         ),
       ),
     );
@@ -231,43 +235,3 @@ class _OrdersMobileState extends State<OrdersMobile> {
     );
   }
 }
-
-
-
-          /*  GestureDetector(
-            onTap: () {
-              _quantity > 1 ? () => setState(() => _quantity--) : null;
-            },
-            child: Icon(
-              Icons.remove,
-              size: 20,
-              color: _quantity > 1 ? Colors.black : Colors.grey.shade500,
-            ),
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.remove,
-              size: 20,
-              color: _quantity > 1 ? Colors.black : Colors.grey.shade500,
-            ),
-            onPressed: _quantity > 1 ? () => setState(() => _quantity--) : null,
-          ),
-          Text('$_quantity', style: const TextStyle(fontSize: 14)),
-          GestureDetector(
-            onTap: () {
-              setState(() => _quantity++);
-            },
-            child: const Icon(
-              Icons.add,
-              size: 20,
-              color: Colors.black,
-            ),
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-              size: 20,
-              color: Colors.black,
-            ),
-            onPressed: () => setState(() => _quantity++),
-          ), */

@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+  animated_read_more_text:
+    dependency: "direct main"
+    description:
+      name: animated_read_more_text
+      sha256: "4d0143aa2d8a900cb0721560fe8703070c2758e24fd7348fefb00c8228a1d3af"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.6"
   animated_text_kit:
     dependency: transitive
     description:
@@ -1458,6 +1466,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
+  upi_payment_qrcode_generator:
+    dependency: "direct main"
+    description:
+      name: upi_payment_qrcode_generator
+      sha256: cf6e53d71c57f18acb53e1c4a39331db21ee3c27388b7c1bc2f3260a8f471944
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   url_launcher:
     dependency: "direct main"
     description:

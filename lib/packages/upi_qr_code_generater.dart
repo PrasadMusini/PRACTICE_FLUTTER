@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:upi_payment_qrcode_generator/upi_payment_qrcode_generator.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-/// Creates The UPI Payment QRCode
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class UpiQrCodeGenerater extends StatefulWidget {
+  const UpiQrCodeGenerater({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<UpiQrCodeGenerater> createState() => _UpiQrCodeGeneraterState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _UpiQrCodeGeneraterState extends State<UpiQrCodeGenerater> {
   final upiDetailsWithAmount = UPIDetails(
     upiID: "prasadmusini1999@axl",
     payeeName: "with amount",

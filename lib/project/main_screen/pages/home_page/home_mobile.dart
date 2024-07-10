@@ -123,65 +123,74 @@ class HomeMobile extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Row(
-              children: [
-                Container(
-                  width: 145,
-                  height: 160,
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: const Stack(
-                    children: [
-                      Positioned(
-                        top: 8,
-                        right: 6,
-                        child: Icon(Icons.favorite_border),
-                      )
-                    ],
-                  ),
-                ),
-                const Column(
+          return GestureDetector(
+            onTap: () {
+              // context.pushNamed(Routes.screenOrderItem.name);
+              context.push(context.namedLocation(Routes.screenOrderItem.name));
+            },
+            child: Hero(
+              tag: 'tag-order-item',
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Row(
                   children: [
-                    Text('Item Name'),
-                    Text(
-                      'description',
-                      style: TextStyle(fontSize: 10),
+                    Container(
+                      width: 145,
+                      height: 160,
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: const Stack(
+                        children: [
+                          Positioned(
+                            top: 8,
+                            right: 6,
+                            child: Icon(Icons.favorite_border),
+                          )
+                        ],
+                      ),
                     ),
-                    Text(
-                      'description',
-                      style: TextStyle(fontSize: 10),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    const Column(
                       children: [
+                        Text('Item Name'),
+                        Text(
+                          'description',
+                          style: TextStyle(fontSize: 10),
+                        ),
+                        Text(
+                          'description',
+                          style: TextStyle(fontSize: 10),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              Icons.star_border_purple500_outlined,
-                              size: 14,
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star_border_purple500_outlined,
+                                  size: 14,
+                                ),
+                                Text(
+                                  '4.5',
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ],
                             ),
                             Text(
-                              '4.5',
+                              '10 - 15min',
                               style: TextStyle(fontSize: 10),
                             ),
                           ],
                         ),
-                        Text(
-                          '10 - 15min',
-                          style: TextStyle(fontSize: 10),
-                        ),
                       ],
-                    ),
+                    )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
           );
         },
@@ -360,18 +369,18 @@ class HomeMobile extends StatelessWidget {
             const Text('User Name'),
           ],
         ),
-        const Row(
+        Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 20,
               backgroundColor: Colors.grey,
               child: Icon(Icons.card_travel_outlined),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             CircleAvatar(
               radius: 20,
-              backgroundColor: Colors.grey,
-              child: Icon(Icons.notifications_paused_sharp),
+              backgroundColor: Colors.grey.shade300,
+              child: const Icon(Icons.notifications_paused_sharp),
             ),
           ],
         ),

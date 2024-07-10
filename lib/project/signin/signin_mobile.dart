@@ -5,7 +5,6 @@ import 'package:practice_flutter/project/common_utilities/common_widgets.dart/cu
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_textfield.dart';
 import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
-import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
 import 'package:practice_flutter/project/signup/signup_mobile.dart';
 
