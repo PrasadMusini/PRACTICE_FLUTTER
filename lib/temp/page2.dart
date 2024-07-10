@@ -70,7 +70,7 @@ class _Page2State extends State<Page2> {
                 Row(
                   children: [
                     Expanded(
-                      child: CustomBtn(
+                      child: Page2Btn(
                         backgroundColor: Colors.black,
                         radius: 5,
                         onPressed: () {},
@@ -264,12 +264,12 @@ class CustomField extends StatelessWidget {
   }
 }
 
-class CustomBtn extends StatelessWidget {
+class Page2Btn extends StatelessWidget {
   final void Function()? onPressed;
   final Widget? child;
   final Color? backgroundColor;
   final double? radius;
-  const CustomBtn(
+  const Page2Btn(
       {super.key,
       required this.onPressed,
       required this.child,

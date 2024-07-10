@@ -49,7 +49,7 @@ class MainScreenMobile extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border_outlined),
             activeIcon: Icon(Icons.favorite),
-            label: 'Favorates',
+            label: 'Favorates', // Wish List
             backgroundColor: Colors.deepPurple,
           ),
           BottomNavigationBarItem(

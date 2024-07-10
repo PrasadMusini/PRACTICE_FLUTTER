@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "67.0.0"
+  add_to_cart_button:
+    dependency: "direct main"
+    description:
+      name: add_to_cart_button
+      sha256: "7a6c01b29870a07412cb8415fd7e211bdf021ede2afc3b6525c4e5ef4bfc96b2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.6"
   analyzer:
     dependency: transitive
     description:
