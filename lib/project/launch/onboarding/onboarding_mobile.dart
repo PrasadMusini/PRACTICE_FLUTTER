@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:practice_flutter/animations/navigation_effects/right_slide_navigation.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
-import 'package:practice_flutter/project/signin/signin_mobile.dart';
+import 'package:practice_flutter/project/auth/signin/signin_mobile.dart';
 
 class OnboardingMobile extends StatefulWidget {
   const OnboardingMobile({super.key});

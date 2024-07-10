@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
+import 'package:practice_flutter/project/common_utilities/styles.dart';
+import 'package:practice_flutter/project/main_screen/pages/orders_page/item.dart';
 import 'package:practice_flutter/project/navigation/router.dart';
 
 class HomeMobile extends StatelessWidget {
@@ -10,7 +12,7 @@ class HomeMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,7 +48,7 @@ class HomeMobile extends StatelessWidget {
 
                     const SizedBox(height: 15),
                     //MARK: Menu
-                    menu(),
+                    menu(size),
                   ],
                 ),
               ),
@@ -109,7 +111,7 @@ class HomeMobile extends StatelessWidget {
     );
   }
 
-  Column menu() {
+  Column menu(Size size) {
     return Column(children: [
       const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,75 +125,8 @@ class HomeMobile extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              // context.pushNamed(Routes.screenOrderItem.name);
-              context.push(context.namedLocation(Routes.screenOrderItem.name));
-            },
-            child: Hero(
-              tag: 'tag-order-item',
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 145,
-                      height: 160,
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: const Stack(
-                        children: [
-                          Positioned(
-                            top: 8,
-                            right: 6,
-                            child: Icon(Icons.favorite_border),
-                          )
-                        ],
-                      ),
-                    ),
-                    const Column(
-                      children: [
-                        Text('Item Name'),
-                        Text(
-                          'description',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                        Text(
-                          'description',
-                          style: TextStyle(fontSize: 10),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star_border_purple500_outlined,
-                                  size: 14,
-                                ),
-                                Text(
-                                  '4.5',
-                                  style: TextStyle(fontSize: 10),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              '10 - 15min',
-                              style: TextStyle(fontSize: 10),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
+          return Item(
+            index: index,
           );
         },
       ),
@@ -317,8 +252,8 @@ class HomeMobile extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13),
-          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
           border: Border.all(
             color: Colors.grey.shade400,
           ),
@@ -388,30 +323,3 @@ class HomeMobile extends StatelessWidget {
     );
   }
 }
-
-
-/*   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main Screen'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              SharedPrefsHelper.setLoginStatus();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const SigninMobile()),
-              );
-            },
-            icon: const Icon(Icons.logout),
-          ),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: const Center(
-        child: Text('Main Screen'),
-      ),
-    );
-  } 
-}*/

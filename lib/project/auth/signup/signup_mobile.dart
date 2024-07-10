@@ -5,9 +5,8 @@ import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_textfield.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
-import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
-import 'package:practice_flutter/project/signin/signin_mobile.dart';
+import 'package:practice_flutter/project/auth/signin/signin_mobile.dart';
 
 class SignupMobile extends StatefulWidget {
   final double topPadding;

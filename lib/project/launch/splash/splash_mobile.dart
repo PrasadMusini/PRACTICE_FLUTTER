@@ -5,8 +5,8 @@ import 'package:practice_flutter/animations/effects/splash_scale_animation.dart'
 import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
 import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
-import 'package:practice_flutter/project/onboarding/onboarding_mobile.dart';
-import 'package:practice_flutter/project/signin/signin_mobile.dart';
+import 'package:practice_flutter/project/launch/onboarding/onboarding_mobile.dart';
+import 'package:practice_flutter/project/auth/signin/signin_mobile.dart';
 
 class SplashMobile extends StatefulWidget {
   const SplashMobile({super.key});

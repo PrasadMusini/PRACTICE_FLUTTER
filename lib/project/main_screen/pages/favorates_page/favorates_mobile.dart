@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:practice_flutter/imports.dart';
+import 'package:practice_flutter/project/common_utilities/styles.dart';
+import 'package:practice_flutter/project/main_screen/pages/orders_page/item.dart';
 
 class FavoratesMobile extends StatelessWidget {
   const FavoratesMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Favorates Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Favorates',
+          style: Styles.txStyF12FWbFFsCb.copyWith(
+            fontSize: 22,
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView.builder(
+          // physics: const NeverScrollableScrollPhysics(), // Disable scrolling
+          // shrinkWrap: true,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Item(
+              index: index,
+            );
+          },
+        ),
       ),
     );
   }
