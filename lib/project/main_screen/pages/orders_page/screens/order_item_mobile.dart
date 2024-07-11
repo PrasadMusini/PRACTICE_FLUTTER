@@ -1,6 +1,5 @@
 import 'package:animated_read_more_text/animated_read_more_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/add_to_card.dart';

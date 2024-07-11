@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/add_to_card.dart';
+import 'package:practice_flutter/project/common_utilities/common_widgets.dart/like_button.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
-import 'package:go_router/go_router.dart';
-import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/order_item_mobile.dart';
-import 'package:practice_flutter/project/navigation/router.dart';
 
 class Item extends StatefulWidget {
   final int index;
@@ -20,12 +19,17 @@ class Item extends StatefulWidget {
 }
 
 class _ItemState extends State<Item> {
+  bool isIntialState = true;
+  bool likeStatus = false;
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.width * 0.5,
+      // height: size.width * 0.5,
+      height: 0.55.sw,
       decoration: BoxDecoration(
+        // color: Colors.grey,
+        // border: Border.all(color: Colors.red),
         border: (widget.itemCount - 1) == widget.index
             ? null
             : Border(
@@ -39,17 +43,22 @@ class _ItemState extends State<Item> {
         children: [
           Positioned.fill(
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              // padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(vertical: 0.02.sh),
+
               child: Row(
                 children: [
                   Container(
-                    width: size.width * 0.42,
-                    height: size.width * 0.4,
+                    // width: size.width * 0.42,
+                    width: 0.425.sw,
+                    // height: size.width * 0.4,
+
+                    height: 0.19.sh,
                     clipBehavior: Clip.antiAlias,
                     // padding: const EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
                         color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(18)),
+                        borderRadius: BorderRadius.circular(16)),
                     child: Stack(
                       children: [
                         Positioned.fill(
@@ -58,12 +67,54 @@ class _ItemState extends State<Item> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        const Positioned(
-                          top: 8,
-                          right: 6,
-                          child: Icon(
-                            Icons.favorite_border,
+                        Positioned(
+                          top: 10,
+                          right: 8,
+                          child: LikeBtn(
+                            onTap: (bool isLiked) {
+                              setState(() {
+                                likeStatus = !likeStatus;
+                              });
+                              return Future.value(!isLiked);
+                            },
+                            likeBuilder: (isLiked) {
+                              return Icon(
+                                likeStatus
+                                    ? Icons.favorite_rounded
+                                    : Icons.favorite_border_rounded,
+                                color: likeStatus ? Colors.red : Colors.black,
+                              );
+                            },
                           ),
+                          /* LikeButton(
+                            animationDuration:
+                                const Duration(milliseconds: 300),
+                            onTap: (bool isLiked) {
+                              setState(() {
+                                likeStatus = !likeStatus;
+                              });
+                              return Future.value(!isLiked);
+                            },
+                            likeCountAnimationType: LikeCountAnimationType.all,
+                            likeBuilder: (bool isLiked) {
+                              return Icon(
+                                likeStatus
+                                    ? Icons.favorite_rounded
+                                    : Icons.favorite_border_rounded,
+                                color: likeStatus ? Colors.red : Colors.black,
+                              );
+                            },
+                            bubblesColor: const BubblesColor(
+                              dotPrimaryColor: Colors.black,
+                              dotSecondaryColor: Colors.green,
+                              dotLastColor: Colors.red,
+                            ),
+                          ), */
+
+                          // Icon(
+                          //   Icons.favorite_border,
+                          // ),
+
                           // Icon(
                           //   Icons.favorite_rounded,
                           //   color: Colors.red,
@@ -101,7 +152,7 @@ class _ItemState extends State<Item> {
                       // width: size.width * 0.42,
                       // height: size.width * 0.4,
                       padding: const EdgeInsets.symmetric(vertical: 5)
-                          .copyWith(left: size.width * 0.03),
+                          .copyWith(left: 0.03.sw),
                       alignment: Alignment.topLeft,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,17 +165,23 @@ class _ItemState extends State<Item> {
                           Text(
                             '\$123.00',
                             style: Styles.txStyF12FWbFFpCb.copyWith(
-                                fontSize: 14, fontWeight: FontWeight.w500),
+                                fontSize: 14.sp, fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 4,
                           ),
                           Text(
                             'This text exceeds the maximum number of lines. The text will be truncated, and an "Expand" button will appear, replacing the default "Read more" button. The text and "Expand" button are styled with a custom font size and color. The text is blue with a font size of 16.0, and the "Expand" button is red with a font size of some. The AnimatedReadMoreText widget is a Flutter package that provides a user-friendly and visually appealing way to present lengthy text content. It dynamically adapts text length based on a predefined maximum line count, ensuring optimal readability on various screen sizes.',
-                            maxLines: 3,
+                            maxLines: 4,
                             overflow: TextOverflow.ellipsis,
+                            // style: Styles.txStyF12FWbFFpCb.copyWith(
+                            //   // fontSize: 10,
+                            //   fontSize: 0.03.sw,
+                            // ),
                             style: Styles.txStyF12FWbFFpCb.copyWith(
-                              fontSize: 10,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black,
+                              fontSize: 11.sp,
                             ),
                           ),
                           // const Text(
@@ -144,15 +201,20 @@ class _ItemState extends State<Item> {
                                   Text(
                                     '4.5',
                                     style: Styles.txStyF12FWbFFpCb.copyWith(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.black,
+                                      fontSize: 10.sp,
+                                    ),
                                   ),
                                 ],
                               ),
                               Text(
                                 '10 - 15min',
                                 style: Styles.txStyF12FWbFFpCb.copyWith(
-                                    fontSize: 10, fontWeight: FontWeight.w500),
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black,
+                                  fontSize: 10.sp,
+                                ),
                               ),
                             ],
                           ),
@@ -164,36 +226,29 @@ class _ItemState extends State<Item> {
               ),
             ),
           ),
+          //MARK: Add to cart
           Positioned(
-            bottom: 8,
+            bottom: 10,
             left: isIntialState
-                ? size.width * 0.42 / 2.4
-                : size.width *
-                    0.42 /
-                    3.7, // intial position 2.4 | expand position 3.7
+                ? 0.425.sw / 2.5
+                : 0.425.sw / 4.2, // intial position 2.4 | expand position 3.7
             child: AddToCardBtn(
               counterCallback: (count) {
                 print('count: $count');
                 if (count > 0) {
                   isIntialState = false;
                 } else {
-                  isIntialState = false;
+                  isIntialState = true;
                 }
                 setState(() {});
               },
             ),
-
-            // Container(
-            //     padding:
-            //         const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-            //     color: Colors.black26)
           ),
         ],
       ),
     );
   }
 
-  bool isIntialState = true;
   Container addToCartButton() {
     return Container(
       padding: const EdgeInsets.all(12),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
-import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_textfield.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 
 class SearchMobile extends StatelessWidget {
