@@ -71,7 +71,8 @@ dependencies:
   add_to_cart_button: ^0.0.6
   animated_read_more_text: ^0.0.6
   upi_payment_qrcode_generator: ^1.4.0
-  animated_segmented_tab_control: ^2.0.0
+  flutter_native_splash: ^2.4.1
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   build_runner: null
@@ -86,6 +87,14 @@ dev_dependencies:
 
 dependency_overrides:
   fading_edge_scrollview: ^4.1.1
+
+flutter_native_splash:
+  color: "#011307"
+  branding: assets/images/g1.png
+  image: assets/images/facebook_logo.png
+  color_dark: "#563224"
+  branding_bottom_padding_android: 50
+  
 
 flutter_gen:
   output: lib/gen/

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:practice_flutter/imports.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
-import 'package:practice_flutter/project/main_screen/pages/orders_page/item.dart';
+import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/item.dart';
 
 class FavoratesMobile extends StatelessWidget {
   const FavoratesMobile({super.key});
@@ -27,6 +26,7 @@ class FavoratesMobile extends StatelessWidget {
           itemBuilder: (context, index) {
             return Item(
               index: index,
+              itemCount: 10,
             );
           },
         ),

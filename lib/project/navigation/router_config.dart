@@ -4,7 +4,7 @@ import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/favorates_page/favorates_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/not_found.dart';
-import 'package:practice_flutter/project/main_screen/pages/orders_page/order_item/order_item_mobile.dart';
+import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/order_item_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/orders_page/orders_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/profile_page/profile_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/search_screen.dart/search_mobile.dart';

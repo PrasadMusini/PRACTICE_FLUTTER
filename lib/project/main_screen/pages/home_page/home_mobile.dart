@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
-import 'package:practice_flutter/project/main_screen/pages/orders_page/item.dart';
+import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/item.dart';
 import 'package:practice_flutter/project/navigation/router.dart';
 
 class HomeMobile extends StatelessWidget {
@@ -126,6 +126,7 @@ class HomeMobile extends StatelessWidget {
         itemBuilder: (context, index) {
           return Item(
             index: index,
+            itemCount: 10,
           );
         },
       ),
