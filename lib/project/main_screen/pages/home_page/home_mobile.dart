@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
+import 'package:practice_flutter/practice/carousel_example.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
+import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_carousel.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/like_button.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/item.dart';
@@ -36,7 +38,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     SizedBox(height: 0.006.sh),
                     header(),
                     SizedBox(height: 0.02.sh),
-                    searchBar(context),
+                    // searchBar(context),
                     SizedBox(height: 0.02.sh),
                     specialOffers(),
                     SizedBox(height: 0.02.sh),
@@ -171,7 +173,7 @@ class _HomeMobileState extends State<HomeMobile> {
         ),
         Container(
           // height: 180,
-          height: ScreenUtil().screenHeight / 3.5,
+          height: ScreenUtil().screenHeight / 2.9,
           color: Colors.grey.shade200,
           child: ListView.builder(
             itemCount: 10,
@@ -184,7 +186,7 @@ class _HomeMobileState extends State<HomeMobile> {
                 // width: 0.43.sw,
                 // width: 0.425.sw,
                 // height: 0.19.sh,
-                // color: Colors.grey.shade400,
+                color: Colors.grey.shade400,
                 child: DisplayItem(
                   likebtn: LikeBtn(
                     onTap: (bool isLiked) {
@@ -306,7 +308,7 @@ class _HomeMobileState extends State<HomeMobile> {
   Column specialOffers() {
     return Column(
       children: [
-        /* Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -326,30 +328,29 @@ class _HomeMobileState extends State<HomeMobile> {
               ),
             ),
           ],
-        ), */
-        Container(
-          width: double.infinity,
-          height: 140,
-          color: Colors.grey,
-          alignment: AlignmentDirectional.bottomStart,
-          child: Text(
-            'Special deals',
-            style: Styles.txStyF12FWbFFpCb.copyWith(
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-              fontSize: 15.sp,
-            ),
-          ),
-
-          // child: CarouselSlider(
-          //   options: CarouselOptions(
-          //     autoPlay: true,
-          //     aspectRatio: 2.0,
-          //     enlargeCenterPage: true,
-          //   ),
-          //   items: imageSliders,
-          // ),
         ),
+        Container(
+            // width: double.infinity,
+            // height: 140,
+            // color: Colors.grey,
+            alignment: AlignmentDirectional.bottomStart,
+            child: const CustomCarousel(
+              height: 140,
+            )),
+        // Container(
+        //   width: double.infinity,
+        //   height: 140,
+        //   color: Colors.grey,
+        //   alignment: AlignmentDirectional.bottomStart,
+        //   child: Text(
+        //     'Special deals',
+        //     style: Styles.txStyF12FWbFFpCb.copyWith(
+        //       fontWeight: FontWeight.normal,
+        //       color: Colors.black,
+        //       fontSize: 15.sp,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
@@ -369,7 +370,7 @@ class _HomeMobileState extends State<HomeMobile> {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: Colors.white,
+            // color: Colors.white,
             border: Border.all(
               color: Colors.grey.shade400,
             ),
@@ -431,28 +432,34 @@ class _HomeMobileState extends State<HomeMobile> {
               child: Image.asset(Assets.images.dragon.path,
                   width: 50, height: 50, fit: BoxFit.cover),
             ), */
-            Container(
-              clipBehavior: Clip.antiAlias,
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade300,
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.black,
-                    Colors.red,
-                  ],
+            GestureDetector(
+              onTap: () {
+                context.push(context.namedLocation(Routes.screenStory.name));
+                // Story
+              },
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.shade300,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.black,
+                      Colors.red,
+                    ],
+                  ),
                 ),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  // radius: 20,  0.058.sw
+                  child: Image.asset(Assets.images.dragon.path,
+                      width: 0.13.sw, height: 0.13.sw, fit: BoxFit.cover),
+                ),
                 // radius: 20,  0.058.sw
-                child: Image.asset(Assets.images.dragon.path,
-                    width: 0.13.sw, height: 0.13.sw, fit: BoxFit.cover),
               ),
-              // radius: 20,  0.058.sw
             ),
 
             // CircleAvatar(
@@ -502,12 +509,12 @@ class DisplayItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 0.18.sh,
+          width: 0.42.sw,
+          height: 0.19.sh,
           clipBehavior: Clip.antiAlias,
-          // padding: const EdgeInsets.symmetric(horizontal: 5),
           decoration: BoxDecoration(
-              color: Colors.grey.shade400,
-              borderRadius: BorderRadius.circular(12)),
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(16)),
           child: Stack(
             children: [
               Positioned.fill(
@@ -516,56 +523,102 @@ class DisplayItem extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+
+              //MARK: Like
               Positioned(
-                  top: 10,
-                  right: 8,
-                  // child: Icon(Icons.favorite_border),
-                  child: likebtn)
+                top: 8,
+                right: 5,
+                child: LikeBtn(
+                  onTap: (bool isLiked) {
+                    return Future.value(true);
+                  },
+                  likeBuilder: (isLiked) {
+                    return const Icon(
+                      Icons.favorite_rounded,
+                      color: Color(0xffff3040),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
-        Text(
-          'Item Name',
-          style: Styles.txStyF12FWbFFpCb
-              .copyWith(fontSize: 20.sp, fontWeight: FontWeight.w600),
-        ),
-        Text(
-          'This text exceeds the maximum number of lines. The text will be truncated, and an "Expand" button will appear, replacing the default "Read more" button. The text and "Expand" button are styled with a custom font size and color. The text is blue with a font size of 16.0, and the "Expand" button is red with a font size of some. The AnimatedReadMoreText widget is a Flutter package that provides a user-friendly and visually appealing way to present lengthy text content. It dynamically adapts text length based on a predefined maximum line count, ensuring optimal readability on various screen sizes.',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: Styles.txStyF12FWbFFpCb
-              .copyWith(fontSize: 10.sp, fontWeight: FontWeight.normal),
-        ),
-        // Text(
-        //   'description',
-        //   style: Styles.txStyF12FWbFFpCb.copyWith(
-        //       fontSize: 10.sp, fontWeight: FontWeight.normal),
-        // ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+        Expanded(
+          child: Container(
+            color: const Color.fromARGB(255, 78, 119, 182),
+            // width: size.width * 0.42,
+            // height: size.width * 0.4,
+            height: 0.19.sh,
+            // padding: const EdgeInsets.symmetric(vertical: 5)
+            //     .copyWith(left: 0.03.sw),
+            alignment: Alignment.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.star_border_purple500_outlined,
-                  size: 14,
+                Text(
+                  'Item Name',
+                  style: Styles.txStyF12FWbFFpCb
+                      .copyWith(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  '4.5',
+                  '\$123.00',
                   style: Styles.txStyF12FWbFFpCb
-                      .copyWith(fontSize: 10.sp, fontWeight: FontWeight.normal),
+                      .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  'This text exceeds the maximum number of lines. The text will be truncated, and an "Expand" button will appear, replacing the default "Read more" button. The text and "Expand" button are styled with a custom font size and color. The text is blue with a font size of 16.0, and the "Expand" button is red with a font size of some. The AnimatedReadMoreText widget is a Flutter package that provides a user-friendly and visually appealing way to present lengthy text content. It dynamically adapts text length based on a predefined maximum line count, ensuring optimal readability on various screen sizes.',
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  // style: Styles.txStyF12FWbFFpCb.copyWith(
+                  //   // fontSize: 10,
+                  //   fontSize: 0.03.sw,
+                  // ),
+                  style: Styles.txStyF12FWbFFpCb.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
+                ),
+                // const Text(
+                //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                //   style: TextStyle(fontSize: 10),
+                // ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star_border_purple500_outlined,
+                          size: 14,
+                        ),
+                        Text(
+                          '4.5',
+                          style: Styles.txStyF12FWbFFpCb.copyWith(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                            fontSize: 10.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '10 - 15min',
+                      style: Styles.txStyF12FWbFFpCb.copyWith(
+                        fontWeight: FontWeight.normal,
+                        color: Colors.black,
+                        fontSize: 10.sp,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            Text(
-              '10 - 15min',
-              style: Styles.txStyF12FWbFFpCb
-                  .copyWith(fontSize: 10.sp, fontWeight: FontWeight.normal),
-            ),
-          ],
+          ),
         ),
       ],
     );

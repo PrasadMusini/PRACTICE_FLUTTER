@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:practice_flutter/imports.dart';
 
 class MainScreenMobile extends StatelessWidget {
   final StatefulNavigationShell navigationShell;

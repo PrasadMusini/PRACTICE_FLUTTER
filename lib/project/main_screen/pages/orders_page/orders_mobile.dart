@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_flutter/project/common_utilities/common_widgets.dart/back_button.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/active_orders.dart';
@@ -21,7 +22,7 @@ class _OrdersMobileState extends State<OrdersMobile> {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: appBar(),
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
@@ -58,7 +59,7 @@ class _OrdersMobileState extends State<OrdersMobile> {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             const Divider(),
             Expanded(child: orderScreens[_selectedSegment]),
             /* 
@@ -254,18 +255,25 @@ class _OrdersMobileState extends State<OrdersMobile> {
 
   AppBar appBar() {
     return AppBar(
-      title: Row(
+      title: Text(
+        'Orders',
+        style: Styles.txStyF12FWbFFpCb.copyWith(
+          fontSize: 24,
+        ),
+      ),
+      /*  Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const CircleAvatar(
-            radius: 22,
-            backgroundColor: Colors.black,
-            child: Icon(
-              Icons.keyboard_arrow_left_rounded,
-              size: 20,
-              color: Colors.white,
-            ),
-          ),
+          // const CircleAvatar(
+          //   radius: 22,
+          //   backgroundColor: Colors.black,
+          //   child: Icon(
+          //     Icons.keyboard_arrow_left_rounded,
+          //     size: 20,
+          //     color: Colors.white,
+          //   ),
+          // ),
+          const BackBtn(),
           Text(
             'Orders',
             style: Styles.txStyF12FWbFFpCb.copyWith(
@@ -274,7 +282,7 @@ class _OrdersMobileState extends State<OrdersMobile> {
           ),
           const SizedBox(width: 20),
         ],
-      ),
+      ), */
     );
   }
 }

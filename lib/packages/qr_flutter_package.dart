@@ -19,7 +19,7 @@ class QrFlutterPack extends StatelessWidget {
                   version: QrVersions.auto,
                   size: 320,
                   gapless: true,
-                  // embeddedImage: const AssetImage('assets/dragon.jpg'),
+                  // embeddedImage: const AssetImage('Assets.images.dragon.path'),
                   embeddedImageStyle: const QrEmbeddedImageStyle(
                     size: Size(80, 80),
                   ),

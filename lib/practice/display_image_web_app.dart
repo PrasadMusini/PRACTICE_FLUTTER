@@ -35,7 +35,9 @@ class WebImage extends StatelessWidget {
                 ),
 
                 // Local Image
-                SizedBox(width: 300, child: Image.asset('assets/dragon.jpg')),
+                SizedBox(
+                    width: 300,
+                    child: Image.asset('Assets.images.dragon.path')),
               ],
             ),
           )),

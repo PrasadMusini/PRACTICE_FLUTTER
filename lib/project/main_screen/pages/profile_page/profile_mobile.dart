@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/imports.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 
@@ -52,6 +51,8 @@ class _ProfileMobileState extends State<ProfileMobile> {
             expandedHeight: 140.0,
             floating: false,
             pinned: true,
+            excludeHeaderSemantics: true,
+            stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,
               titlePadding:

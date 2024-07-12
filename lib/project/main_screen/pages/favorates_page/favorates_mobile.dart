@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/imports.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/item.dart';
 

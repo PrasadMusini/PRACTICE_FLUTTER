@@ -7,6 +7,7 @@ class AppRouter {
 class Routes {
   static AppRouter screenHome = AppRouter(path: '/home', name: 'Home');
   static AppRouter screenSearch = AppRouter(path: 'search', name: 'Search');
+  static AppRouter screenStory = AppRouter(path: '/story', name: 'Story');
 
   static AppRouter screenOrderItem =
       AppRouter(path: '/order-item', name: 'Order-item');

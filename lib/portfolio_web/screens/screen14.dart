@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/imports.dart';
 import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
 
 class Screen14 extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:practice_flutter/packages/story.dart';
 import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/favorates_page/favorates_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
@@ -35,31 +36,31 @@ final GoRouter router = GoRouter(
             navigatorKey: _homeBranchNavigatorKey,
             routes: <RouteBase>[
               GoRoute(
-                  path: Routes.screenHome.path,
-                  name: Routes.screenHome.name,
-                  builder: (context, state) => const HomeMobile(),
-                  routes: <RouteBase>[
-                    GoRoute(
-                      path: Routes.screenSearch.path,
-                      name: Routes.screenSearch.name,
-                      pageBuilder: (context, state) => CupertinoPage(
-                          key: state.pageKey, child: const SearchMobile()),
+                path: Routes.screenHome.path,
+                name: Routes.screenHome.name,
+                builder: (context, state) => const HomeMobile(),
+                routes: <RouteBase>[
+                  GoRoute(
+                    path: Routes.screenSearch.path,
+                    name: Routes.screenSearch.name,
+                    pageBuilder: (context, state) => CupertinoPage(
+                        key: state.pageKey, child: const SearchMobile()),
 
-                      // pageBuilder: (context, state) => CustomTransitionPage(
-                      //   key: state.pageKey,
-                      //   child: const SearchMobile(),
-                      //   transitionsBuilder:
-                      //       (context, animation, secondaryAnimation, child) =>
-                      //           SlideTransition(
-                      //     position: Tween<Offset>(
-                      //             begin: const Offset(-1, 0), end: Offset.zero)
-                      //         .animate(animation),
-                      //     child: child,
-                      //   ),
-                      // ),
-                    ),
+                    // pageBuilder: (context, state) => CustomTransitionPage(
+                    //   key: state.pageKey,
+                    //   child: const SearchMobile(),
+                    //   transitionsBuilder:
+                    //       (context, animation, secondaryAnimation, child) =>
+                    //           SlideTransition(
+                    //     position: Tween<Offset>(
+                    //             begin: const Offset(-1, 0), end: Offset.zero)
+                    //         .animate(animation),
+                    //     child: child,
+                    //   ),
+                    // ),
+                  ),
 
-                    /* GoRoute(
+                  /* GoRoute(
                         path: Routes.userSub1Screen.path,
                         name: Routes.userSub1Screen.name,
                         pageBuilder: (context, state) => CustomTransitionPage(
@@ -96,7 +97,8 @@ final GoRouter router = GoRouter(
                             ),
                           ),
                         ]), */
-                  ])
+                ],
+              ),
             ]),
         //MARK: Branch 2
         StatefulShellBranch(
@@ -241,6 +243,12 @@ final GoRouter router = GoRouter(
       name: Routes.screenOrderItem.name,
       pageBuilder: (context, state) =>
           CupertinoPage(key: state.pageKey, child: const OrderItemMobile()),
+    ),
+    GoRoute(
+      path: Routes.screenStory.path,
+      name: Routes.screenStory.name,
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const Story()),
     ),
 
     /* 

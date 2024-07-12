@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/imports.dart';
 import 'package:practice_flutter/practice/app_enterence/consts.dart';
 import 'package:practice_flutter/practice/app_enterence/login_screen.dart';
 

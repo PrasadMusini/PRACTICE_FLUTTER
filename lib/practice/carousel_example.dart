@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
-class CustomCarousel extends StatefulWidget {
-  const CustomCarousel({super.key});
+class CarouselExample extends StatefulWidget {
+  const CarouselExample({super.key});
 
   @override
-  State<CustomCarousel> createState() => _CustomCarouselState();
+  State<CarouselExample> createState() => _CarouselExampleState();
 }
 
-class _CustomCarouselState extends State<CustomCarousel> {
+class _CarouselExampleState extends State<CarouselExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
