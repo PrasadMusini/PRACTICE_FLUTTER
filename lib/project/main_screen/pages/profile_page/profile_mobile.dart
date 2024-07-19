@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
+import 'package:practice_flutter/project/navigation/router.dart';
+import 'package:practice_flutter/project/theme/them_provider.dart';
+import 'package:practice_flutter/project/theme/theme_colors.dart';
+import 'package:provider/provider.dart';
 
 class ProfileMobile extends StatefulWidget {
   const ProfileMobile({super.key});
@@ -12,6 +17,7 @@ class ProfileMobile extends StatefulWidget {
 class _ProfileMobileState extends State<ProfileMobile> {
   final ScrollController _scrollController = ScrollController();
   bool _showMoreIcon = false;
+  bool _isSwitch = false;
 
   @override
   void initState() {
@@ -37,56 +43,120 @@ class _ProfileMobileState extends State<ProfileMobile> {
   void dispose() {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
+
+    themeProvider.dispose();
     super.dispose();
+  }
+
+  late ThemeProvider themeProvider;
+  @override
+  void didChangeDependencies() {
+    themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: const Color(0XFFf0f4f7),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 140.0,
-            floating: false,
-            pinned: true,
-            excludeHeaderSemantics: true,
-            stretch: true,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: false,
-              titlePadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8.0),
-              title: header(),
-              background: const Material(
-                color: Colors.grey,
+      // backgroundColor: const Color(0XFFf0f4f7),
+      body: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, _) => CustomScrollView(
+          controller: _scrollController,
+          slivers: <Widget>[
+            SliverAppBar(
+              expandedHeight: 140.0,
+              floating: false,
+              pinned: true,
+              excludeHeaderSemantics: true,
+              stretch: true,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: false,
+                titlePadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8.0),
+                title: header(themeProvider),
+                background: Material(
+                  color: themeProvider.isDarkTheme
+                      ? selectedItemBg2
+                      : selectedItemBgLight,
+                ),
               ),
             ),
-          ),
-          SliverFillRemaining(
-            fillOverscroll: false,
-            // hasScrollBody: false,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  optionCard(title: 'Profile Page'),
-                  optionCard(title: 'Profile Page'),
-                  optionCard(title: 'Profile Page'),
-                  optionCard(title: 'Profile Page'),
-                  const SizedBox(height: 10),
-                  optionCard(title: 'Profile Page'),
-                  optionCard(title: 'Profile Page'),
-                  optionCard(title: 'Profile Page'),
-                  optionCard(title: 'Profile Page'),
-                  const SizedBox(height: 10),
-                  Container(height: 150, color: Colors.grey),
-                  logoutBtn(),
-                ],
+            SliverFillRemaining(
+              fillOverscroll: false,
+              // hasScrollBody: false,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    optionCard(
+                      title: 'Change Theme',
+                      trillingIcon: SizedBox(
+                        width: 70,
+                        height: 25,
+                        child: Switch(
+                          value: _isSwitch,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: Colors.white,
+                          activeColor: Colors.grey.shade300,
+                          activeTrackColor: Colors.grey,
+                          onChanged: (bool value) {
+                            // setState(() {
+                            // _isSwitch = value;
+                            // });
+                            _isSwitch = !_isSwitch;
+                            themeProvider.changeTheme();
+                          },
+                        ),
+                      ),
+                    ),
+                    optionCard(
+                        title: 'Edit Profile',
+                        onTap: () {
+                          context.goNamed(Routes.screenProfileOption.name,
+                              pathParameters: {'title': 'Edit Profile'});
+                        }),
+                    optionCard(
+                        title: 'How to order',
+                        onTap: () {
+                          context.goNamed(Routes.screenProfileOption.name,
+                              pathParameters: {'title': 'How to order'});
+                        }),
+                    optionCard(
+                        title: 'Terms & Conditions',
+                        onTap: () {
+                          context.goNamed(Routes.screenProfileOption.name,
+                              pathParameters: {'title': 'Terms & Conditions'});
+                        }),
+                    const SizedBox(height: 10),
+                    optionCard(
+                        title: 'Cancel Orders and Policies',
+                        onTap: () {
+                          context.goNamed(Routes.screenProfileOption.name,
+                              pathParameters: {
+                                'title': 'Cancel Orders and Policies'
+                              });
+                        }),
+                    optionCard(
+                        title: 'About Us',
+                        onTap: () {
+                          context.goNamed(Routes.screenProfileOption.name,
+                              pathParameters: {'title': 'About Us'});
+                        }),
+                    optionCard(
+                        title: 'Contact Us',
+                        onTap: () {
+                          context.goNamed(Routes.screenProfileOption.name,
+                              pathParameters: {'title': 'Contact Us'});
+                        }),
+                    const SizedBox(height: 150),
+                    logoutBtn(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -128,43 +198,62 @@ class _ProfileMobileState extends State<ProfileMobile> {
     );
   }
 
-  Container optionCard({required String title}) {
-    return Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-                bottom: BorderSide(
-              color: Colors.grey.shade300,
-            ))),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.fromLTRB(15, 15, 5, 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title),
-            const Icon(
-              Icons.arrow_right_rounded, //arrow_forward_ios_rounded
-              color: Colors.black,
-            )
-          ],
-        ));
+  GestureDetector optionCard({
+    required String title,
+    void Function()? onTap,
+    Widget trillingIcon = const Icon(
+      Icons.arrow_right_rounded,
+      color: Colors.black,
+    ),
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+          decoration: BoxDecoration(
+              color: themeProvider.isDarkTheme ? primaryDark : primaryLight,
+              border: Border(
+                  bottom: BorderSide(
+                      color: themeProvider.isDarkTheme
+                          ? selectedItemBg1
+                          : selectedItemBgLight))),
+          alignment: Alignment.center,
+          padding: const EdgeInsets.fromLTRB(15, 15, 5, 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: Styles.txStyF12FW3FFsCb.copyWith(
+                  fontSize: 13,
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              ),
+              trillingIcon,
+            ],
+          )),
+    );
   }
 
-  Widget header() {
+  Widget header(ThemeProvider themeProvider) {
     return Row(
       children: [
-        const CircleAvatar(
+        CircleAvatar(
           radius: 14,
-          backgroundColor: Colors.black,
+          backgroundColor:
+              themeProvider.isDarkTheme ? primaryLight : primaryDark,
           child: Text(
             'Z',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: themeProvider.isDarkTheme ? primaryDark : primaryLight,
+            ),
           ),
         ),
         const SizedBox(width: 10),
-        const Text(
+        Text(
           'Starting Title',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+          ),
         ),
         const Spacer(),
         if (_showMoreIcon) const Icon(Icons.more_vert),

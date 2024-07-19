@@ -1,32 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-class MainScreenMobile extends StatelessWidget {
-  final StatefulNavigationShell navigationShell;
-  const MainScreenMobile({super.key, required this.navigationShell});
+/* void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return MaterialApp(
+      theme: themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+      home: const MainScreenMobile(),
+    );
+  }
+} */
+
+class MainScreenMobile extends StatelessWidget {
+  const MainScreenMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(child: navigationShell),
-      // body: Expanded(child: widget.navigationShell),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     context.push(context.namedLocation(Routes.screenTest.name));
-      //   },
-      //   child: const Icon(Icons.settings),
-      // ),
+      appBar: AppBar(
+        title: const Text('Theme Switcher'),
+        actions: [
+          Switch(
+            value: themeProvider.isDarkMode,
+            onChanged: (value) {
+              themeProvider.toggleTheme(value);
+            },
+          ),
+        ],
+      ),
+      body: const Center(
+        child: Text(
+          'Switch between Dark and Light Theme',
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: navigationShell.currentIndex,
-        onTap: (index) {
-          navigationShell.goBranch(
-            index,
-            initialLocation: index == navigationShell.currentIndex,
-          );
-        },
+        currentIndex: 0,
+        onTap: (index) {},
         elevation: 5,
         landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
         showUnselectedLabels: false,
@@ -49,7 +73,7 @@ class MainScreenMobile extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border_outlined),
             activeIcon: Icon(Icons.favorite),
-            label: 'Favorates', // Wish List
+            label: 'Favorites',
             backgroundColor: Colors.deepPurple,
           ),
           BottomNavigationBarItem(
@@ -73,31 +97,13 @@ class MainScreenMobile extends StatelessWidget {
   }
 }
 
+class ThemeProvider with ChangeNotifier {
+  bool _isDarkMode = false;
 
-/*   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main Screen'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              SharedPrefsHelper.setLoginStatus();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const SigninMobile()),
-              );
-            },
-            icon: const Icon(Icons.logout),
-          ),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: const Center(
-        child: Text('Main Screen'),
-      ),
-    );
+  bool get isDarkMode => _isDarkMode;
+
+  void toggleTheme(bool isOn) {
+    _isDarkMode = isOn;
+    notifyListeners();
   }
- */
-
-
+}

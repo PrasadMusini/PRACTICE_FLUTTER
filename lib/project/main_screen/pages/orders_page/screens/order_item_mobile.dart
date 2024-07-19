@@ -7,6 +7,7 @@ import 'package:practice_flutter/project/common_utilities/common_widgets.dart/cu
 import 'package:practice_flutter/project/common_utilities/styles.dart';
 
 class OrderItemMobile extends StatefulWidget {
+  // final int index;
   const OrderItemMobile({super.key});
 
   @override
@@ -221,17 +222,14 @@ class _OrderItemMobileState extends State<OrderItemMobile> {
       top: 0,
       left: 0,
       right: 0,
-      child: Hero(
-        tag: 'menu-item-1',
-        child: Container(
+      child: Container(
+        height: size.height * 0.3,
+        color: Colors.green.shade300,
+        alignment: Alignment.center,
+        child: Image.asset(
+          Assets.images.dragon.path,
+          fit: BoxFit.cover,
           height: size.height * 0.3,
-          color: Colors.green.shade300,
-          alignment: Alignment.center,
-          child: Image.asset(
-            Assets.images.dragon.path,
-            fit: BoxFit.cover,
-            height: size.height * 0.3,
-          ),
         ),
       ),
     );

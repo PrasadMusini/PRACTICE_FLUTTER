@@ -17,10 +17,9 @@ class FavoratesMobile extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding:
-            const EdgeInsets.symmetric(horizontal: 12).copyWith(bottom: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: ListView.builder(
-          // physics: const NeverScrollableScrollPhysics(), // Disable scrolling
+          physics: const BouncingScrollPhysics(), // Disable scrolling
           // shrinkWrap: true,
           itemCount: 10,
           itemBuilder: (context, index) {

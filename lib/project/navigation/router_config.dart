@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:practice_flutter/packages/story.dart';
+import 'package:practice_flutter/project/auth/signin/signin_mobile.dart';
+import 'package:practice_flutter/project/auth/signup/signup_mobile.dart';
+import 'package:practice_flutter/project/launch/onboarding/onboarding_mobile.dart';
+import 'package:practice_flutter/project/launch/splash/splash_mobile.dart';
+import 'package:practice_flutter/project/main_screen/pages/notification_screen.dart';
+import 'package:practice_flutter/project/main_screen/pages/profile_page/profile_option.dart';
+import 'package:practice_flutter/project/main_screen/pages/story/story.dart';
 import 'package:practice_flutter/project/main_screen/main_screen_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/favorates_page/favorates_mobile.dart';
 import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
@@ -20,7 +26,8 @@ final _ordersBranchNavigatorKey = GlobalKey<NavigatorState>();
 final _profileBranchNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
-  initialLocation: Routes.screenHome.path,
+  initialLocation: Routes.screenSplash.path,
+  // initialLocation: Routes.screenHome.path,
   navigatorKey: _rootNavigatorKey,
   debugLogDiagnostics: true,
   errorPageBuilder: (context, state) {
@@ -44,59 +51,10 @@ final GoRouter router = GoRouter(
                     path: Routes.screenSearch.path,
                     name: Routes.screenSearch.name,
                     pageBuilder: (context, state) => CupertinoPage(
-                        key: state.pageKey, child: const SearchMobile()),
-
-                    // pageBuilder: (context, state) => CustomTransitionPage(
-                    //   key: state.pageKey,
-                    //   child: const SearchMobile(),
-                    //   transitionsBuilder:
-                    //       (context, animation, secondaryAnimation, child) =>
-                    //           SlideTransition(
-                    //     position: Tween<Offset>(
-                    //             begin: const Offset(-1, 0), end: Offset.zero)
-                    //         .animate(animation),
-                    //     child: child,
-                    //   ),
-                    // ),
+                      key: state.pageKey,
+                      child: const SearchMobile(),
+                    ),
                   ),
-
-                  /* GoRoute(
-                        path: Routes.userSub1Screen.path,
-                        name: Routes.userSub1Screen.name,
-                        pageBuilder: (context, state) => CustomTransitionPage(
-                              key: state.pageKey,
-                              child: const Sub1UserPage(),
-                              transitionsBuilder: (context, animation,
-                                      secondaryAnimation, child) =>
-                                  SlideTransition(
-                                position: Tween<Offset>(
-                                        begin: const Offset(-1, 0),
-                                        end: Offset.zero)
-                                    .animate(animation),
-                                child: child,
-                              ),
-                            ),
-                        routes: [
-                          GoRoute(
-                            path: 'usertestingpath',
-                            name: 'usertestingpath',
-                            pageBuilder: (context, state) =>
-                                CustomTransitionPage(
-                              child: const Scaffold(
-                                body: Center(child: Text('userSub2Screen')),
-                              ),
-                              transitionsBuilder: (context, animation,
-                                      secondaryAnimation, child) =>
-                                  SlideTransition(
-                                position: Tween<Offset>(
-                                        begin: const Offset(-1, 0),
-                                        end: Offset.zero)
-                                    .animate(animation),
-                                child: child,
-                              ),
-                            ),
-                          ),
-                        ]), */
                 ],
               ),
             ]),
@@ -108,42 +66,6 @@ final GoRouter router = GoRouter(
               path: Routes.screenFavorates.path,
               name: Routes.screenFavorates.name,
               builder: (context, state) => const FavoratesMobile(),
-              /* routes: <RouteBase>[
-                GoRoute(
-                  path: Routes.testSub1Screen.path,
-                  name: Routes.testSub1Screen.name,
-                  pageBuilder: (context, state) => CustomTransitionPage(
-                    // key: state.pageKey,
-                    child: const Sub1TestPage(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                                begin: const Offset(-1, 0), end: Offset.zero)
-                            .animate(animation),
-                        child: child,
-                      );
-                    },
-                  ),
-                ),
-                GoRoute(
-                  path: Routes.testSub2Screen.path,
-                  name: Routes.testSub2Screen.name,
-                  pageBuilder: (context, state) => CustomTransitionPage(
-                    key: state.pageKey,
-                    child: const Sub2TestPage(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                                begin: const Offset(-1, 0), end: Offset.zero)
-                            .animate(animation),
-                        child: child,
-                      );
-                    },
-                  ),
-                )
-              ], */
             ),
           ],
         ),
@@ -156,33 +78,6 @@ final GoRouter router = GoRouter(
               path: Routes.screenOrders.path,
               name: Routes.screenOrders.name,
               builder: (context, state) => const OrdersMobile(),
-              /* routes: <RouteBase>[
-                  GoRoute(
-                    path: Routes.demoSub1Screen.path,
-                    name: Routes.demoSub1Screen.name,
-                    pageBuilder: (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      child: const Sub1DemoPage(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return ScaleTransition(scale: animation, child: child);
-                      },
-                    ),
-                  ),
-                  GoRoute(
-                    path: Routes.demoSub2Screen.path,
-                    name: Routes.demoSub2Screen.name,
-                    pageBuilder: (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      child: const Sub2DemoPage(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return ScaleTransition(
-                            scale: secondaryAnimation, child: child);
-                      },
-                    ),
-                  )
-                ], */
             )
           ],
         ),
@@ -195,33 +90,20 @@ final GoRouter router = GoRouter(
               path: Routes.screenProfile.path,
               name: Routes.screenProfile.name,
               builder: (context, state) => const ProfileMobile(),
-              /* routes: <RouteBase>[
-                  GoRoute(
-                    path: Routes.demoSub1Screen.path,
-                    name: Routes.demoSub1Screen.name,
-                    pageBuilder: (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      child: const Sub1DemoPage(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return ScaleTransition(scale: animation, child: child);
-                      },
-                    ),
-                  ),
-                  GoRoute(
-                    path: Routes.demoSub2Screen.path,
-                    name: Routes.demoSub2Screen.name,
-                    pageBuilder: (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      child: const Sub2DemoPage(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return ScaleTransition(
-                            scale: secondaryAnimation, child: child);
-                      },
-                    ),
-                  )
-                ], */
+              routes: <RouteBase>[
+                GoRoute(
+                    path: '${Routes.screenProfileOption.path}/:title',
+                    name: Routes.screenProfileOption.name,
+                    pageBuilder: (context, state) {
+                      final title = state.pathParameters['title']!;
+                      return CupertinoPage(
+                        key: state.pageKey,
+                        child: ProfileOption(
+                          title: title,
+                        ),
+                      );
+                    }),
+              ],
             )
           ],
         ),
@@ -232,7 +114,10 @@ final GoRouter router = GoRouter(
       name: Routes.screenTest.name,
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
-        child: const Testscreen(),
+        child: const Testscreen(
+          index: 1,
+          itemCount: 1,
+        ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },
@@ -250,8 +135,36 @@ final GoRouter router = GoRouter(
       pageBuilder: (context, state) =>
           CupertinoPage(key: state.pageKey, child: const Story()),
     ),
-
-    /* 
+    GoRoute(
+      path: Routes.screenSplash.path,
+      name: Routes.screenSplash.name,
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const SplashMobile()),
+    ),
+    GoRoute(
+      path: Routes.screenOnBoarding.path,
+      name: Routes.screenOnBoarding.name,
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const OnboardingMobile()),
+    ),
+    GoRoute(
+      path: Routes.screenSignin.path,
+      name: Routes.screenSignin.name,
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const SigninMobile()),
+    ),
+    GoRoute(
+      path: Routes.screenSignup.path,
+      name: Routes.screenSignup.name,
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const SignupMobile()),
+    ),
+    GoRoute(
+      path: Routes.screenNotifications.path,
+      name: Routes.screenNotifications.name,
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const NotificationScreen()),
+    ),
     GoRoute(
       path: Routes.screen404.path,
       name: Routes.screen404.name,
@@ -263,23 +176,5 @@ final GoRouter router = GoRouter(
         },
       ),
     ),
- */
-    /* GoRoute(
-      path: '/sub1user',
-      name: 'Sub1user',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        child: const Sub1UserPage(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return SlideTransition(
-            position:
-                Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero)
-                    .animate(animation),
-            child: child,
-          );
-        },
-      ),
-    )
-   */
   ],
 );

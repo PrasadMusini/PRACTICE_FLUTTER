@@ -101,6 +101,7 @@ class StatusItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         /*  
         Container(
@@ -233,8 +234,9 @@ class StatusItem extends StatelessWidget {
         ),
          */
         Container(
-          height: 0.22.sh,
-          // padding: EdgeInsets.symmetric(vertical: 0.02.sh),
+          // height: 0.2.sh,
+          height: 0.18.sh,
+          margin: EdgeInsets.symmetric(vertical: 0.02.sh),
           decoration: const BoxDecoration(
               // color: Colors.grey,
               // border: (widget.itemCount - 1) == widget.index
@@ -253,8 +255,10 @@ class StatusItem extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      width: 0.42.sw,
-                      height: 0.19.sh,
+                      // width: 0.42.sw,
+                      // height: 0.19.sh,
+                      width: 0.425.sw,
+                      height: 0.18.sh,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                           color: Colors.grey.shade300,
@@ -266,86 +270,62 @@ class StatusItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        color: const Color.fromARGB(255, 78, 119, 182),
-                        child: Expanded(
-                          child: Container(
-                            // width: size.width * 0.42,
-                            // height: size.width * 0.4,
-                            height: 0.19.sh,
-                            padding: const EdgeInsets.symmetric(vertical: 5)
-                                .copyWith(left: 0.03.sw),
-                            alignment: Alignment.topLeft,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: EdgeInsets.only(left: 0.03.sw),
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Item Name',
+                              style: Styles.txStyF20FW6FFsCb,
+                            ),
+                            const SizedBox(
+                              height: 3,
+                            ),
+                            Row(
                               children: [
-                                Text(
-                                  'Item Name',
-                                  style: Styles.txStyF12FWbFFpCb.copyWith(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
+                                const Icon(
+                                  Icons.star_border_purple500_outlined,
+                                  size: 14,
                                 ),
                                 Text(
-                                  '\$123.00',
-                                  style: Styles.txStyF12FWbFFpCb.copyWith(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500),
+                                  '4.5  ',
+                                  style: Styles.txStyF14FW6FFsCb,
                                 ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
+                                const Text('•'),
                                 Text(
-                                  'This text exceeds the maximum number of lines. The text will be truncated, and an "Expand" button will appear, replacing the default "Read more" button. The text and "Expand" button are styled with a custom font size and color. The text is blue with a font size of 16.0, and the "Expand" button is red with a font size of some. The AnimatedReadMoreText widget is a Flutter package that provides a user-friendly and visually appealing way to present lengthy text content. It dynamically adapts text length based on a predefined maximum line count, ensuring optimal readability on various screen sizes.',
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  // style: Styles.txStyF12FWbFFpCb.copyWith(
-                                  //   // fontSize: 10,
-                                  //   fontSize: 0.03.sw,
-                                  // ),
-                                  style: Styles.txStyF12FWbFFpCb.copyWith(
-                                    fontWeight: FontWeight.normal,
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                // const Text(
-                                //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                                //   style: TextStyle(fontSize: 10),
-                                // ),
-                                const Spacer(),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.star_border_purple500_outlined,
-                                          size: 14,
-                                        ),
-                                        Text(
-                                          '4.5',
-                                          style:
-                                              Styles.txStyF12FWbFFpCb.copyWith(
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black,
-                                            fontSize: 10.sp,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      '10 - 15min',
-                                      style: Styles.txStyF12FWbFFpCb.copyWith(
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.black,
-                                        fontSize: 10.sp,
-                                      ),
-                                    ),
-                                  ],
+                                  '  10 - 15min',
+                                  style: Styles.txStyF14FW6FFsCb,
                                 ),
                               ],
                             ),
-                          ),
+                            Text(
+                              'This text exceeds the maximum number of lines. The text will be truncated, and an "Expand" button will appear, replacing the default "Read more" button. The text and "Expand" button are styled with a custom font size and color. The text is blue with a font size of 16.0, and the "Expand" button is red with a font size of some. The AnimatedReadMoreText widget is a Flutter package that provides a user-friendly and visually appealing way to present lengthy text content. It dynamically adapts text length based on a predefined maximum line count, ensuring optimal readability on various screen sizes.',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: Styles.txStyF12FW3FFsCb,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '10% OFF  -',
+                                  style: Styles.txStyF12FW5FFsCb,
+                                ),
+                                Text(
+                                  '  upto ₹50',
+                                  style: Styles.txStyF20FW6FFsCb.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),

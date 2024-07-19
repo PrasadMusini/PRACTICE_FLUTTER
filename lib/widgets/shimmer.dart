@@ -33,7 +33,6 @@ class _ShimmerScreenState extends State<ShimmerScreen> {
           child: Column(
             children: [
               Expanded(
-                flex: 1,
                 child: ListView.separated(
                   itemCount: 22,
                   itemBuilder: (context, index) {
@@ -82,6 +81,25 @@ class _ShimmerScreenState extends State<ShimmerScreen> {
                     );
                   },
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.red,
+                      height: 40,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.red,
+                      height: 40,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

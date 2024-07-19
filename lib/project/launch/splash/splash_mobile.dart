@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/animations/effects/right_bounce_animation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/animations/effects/splash_scale_animation.dart';
 import 'package:practice_flutter/project/common_utilities/shared_prefs.dart';
-import 'package:practice_flutter/project/main_screen/pages/home_page/home_mobile.dart';
-import 'package:practice_flutter/project/launch/onboarding/onboarding_mobile.dart';
-import 'package:practice_flutter/project/auth/signin/signin_mobile.dart';
+import 'package:practice_flutter/project/navigation/router.dart';
 
 class SplashMobile extends StatefulWidget {
   const SplashMobile({super.key});
@@ -15,7 +13,7 @@ class SplashMobile extends StatefulWidget {
 }
 
 class _SplashMobileState extends State<SplashMobile> {
-  late Widget _destinationScreenFuture;
+  late String _destinationScreenFuture;
 
   @override
   void initState() {
@@ -29,12 +27,12 @@ class _SplashMobileState extends State<SplashMobile> {
     if (visited) {
       bool loggedIn = await SharedPrefsHelper.getLoginStatus();
       if (loggedIn) {
-        _destinationScreenFuture = const HomeMobile();
+        _destinationScreenFuture = Routes.screenHome.path;
       } else {
-        _destinationScreenFuture = const SigninMobile();
+        _destinationScreenFuture = Routes.screenSignin.path;
       }
     } else {
-      _destinationScreenFuture = const OnboardingMobile();
+      _destinationScreenFuture = Routes.screenOnBoarding.path;
     }
   }
 
@@ -49,14 +47,13 @@ class _SplashMobileState extends State<SplashMobile> {
         delay: 3,
         doneAnimation: (status) {
           if (status == AnimationStatus.completed) {
-            Navigator.pushReplacement(
+            /* Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => AnimationFromRightToLeft(
-                        delay: 1,
-                        child: _destinationScreenFuture,
-                      )),
-            );
+                  builder: (context) => _destinationScreenFuture),
+            ); */
+            // context.pushReplacement(_destinationScreenFuture);
+            context.go(_destinationScreenFuture);
           }
         },
         child: const Text('Splash Screen'),

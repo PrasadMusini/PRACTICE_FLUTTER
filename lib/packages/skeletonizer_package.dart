@@ -52,8 +52,14 @@ class _SkeletonizerDemoPageState extends State<SkeletonizerDemoPage> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text('Item number $index as title'),
-                      subtitle: const Text('Subtitle here'),
+                      title: Text(
+                        'Item number $index as title',
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                      subtitle: const Text(
+                        'Subtitle here',
+                        style: TextStyle(color: Colors.red),
+                      ),
                       trailing: const Icon(
                         Icons.ac_unit,
                         size: 32,

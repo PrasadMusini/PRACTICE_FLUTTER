@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:practice_flutter/gen/assets.gen.dart';
-import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
-import 'package:practice_flutter/project/common_utilities/common_widgets.dart/like_button.dart';
-import 'package:practice_flutter/project/common_utilities/styles.dart';
 import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/status_item.dart';
 
 class ActiveOrders extends StatelessWidget {

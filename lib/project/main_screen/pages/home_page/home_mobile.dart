@@ -1,15 +1,20 @@
 import 'package:animated_hint_textfield/animated_hint_textfield.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/gen/assets.gen.dart';
-import 'package:practice_flutter/practice/carousel_example.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_btn.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_carousel.dart';
 import 'package:practice_flutter/project/common_utilities/common_widgets.dart/like_button.dart';
 import 'package:practice_flutter/project/common_utilities/styles.dart';
+import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/display_item.dart';
 import 'package:practice_flutter/project/main_screen/pages/orders_page/screens/item.dart';
+import 'package:practice_flutter/project/main_screen/pages/story/story_provider.dart';
 import 'package:practice_flutter/project/navigation/router.dart';
+import 'package:practice_flutter/project/theme/them_provider.dart';
+import 'package:practice_flutter/project/theme/theme_colors.dart';
+import 'package:provider/provider.dart';
 
 class HomeMobile extends StatefulWidget {
   const HomeMobile({super.key});
@@ -20,15 +25,31 @@ class HomeMobile extends StatefulWidget {
 
 class _HomeMobileState extends State<HomeMobile> {
   // bool isIntialState = true;
+
+  List<bool> likeStatusList = List<bool>.filled(10, false);
   bool likeStatus = false;
+
+  late ThemeProvider themeProvider;
+  @override
+  void didChangeDependencies() {
+    themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    themeProvider.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Consumer<ThemeProvider>(
+          builder: (context, themeProvider, _) => Column(
             children: [
               Padding(
                 padding: EdgeInsets.all(0.025.sw), // 12
@@ -38,17 +59,23 @@ class _HomeMobileState extends State<HomeMobile> {
                     SizedBox(height: 0.006.sh),
                     header(),
                     SizedBox(height: 0.02.sh),
-                    // searchBar(context),
+                    searchBar(context),
                     SizedBox(height: 0.02.sh),
                     specialOffers(),
                     SizedBox(height: 0.02.sh),
                     mostOrdered(),
                     SizedBox(height: 0.02.sh),
-                    menu(size),
+                    menu(
+                      size,
+                    ),
                   ],
                 ),
               ),
               tellUs(),
+              SizedBox(height: 0.04.sh),
+              catering(),
+              SizedBox(height: 0.04.sh),
+              footer(),
               SizedBox(height: 0.025.sh),
             ],
           ),
@@ -64,46 +91,120 @@ class _HomeMobileState extends State<HomeMobile> {
         Expanded(
           flex: 3,
           child: Container(
-            color: Colors.grey,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Tell us what you are looking for!',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                Text('Tell us what you are looking for!',
+                    style: Styles.txStyF20FW6FFsCb.copyWith(
+                      fontSize: 22,
+                      color: themeProvider.isDarkTheme
+                          ? primaryLight
+                          : primaryDark,
+                    )),
+                Text(
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit lorem ipsum dipiscing elit',
+                  style: Styles.txStyF12FW3FFsCb.copyWith(
+                    color: themeProvider.isDarkTheme
+                        ? selectedItemBgLight
+                        : selectedItemBg1,
                   ),
                 ),
-                const Text(
-                    'Lorem ipsum dolor sit amet consectetur adipiscing elit lorem ipsum dipiscing elit'),
-                CustomBtn(
-                  onPressed: () {
-                    // GoRouter.of(context)
-                    //     .pushReplacement('/new-screen');
-                    // while (context.canPop()) {
-                    //   context.pop();
-                    // }
-
-                    // while (GoRouter.of(context).canPop()) {
-                    //   GoRouter.of(context).pop();
-                    // }
-                    // context.pushReplacement(Routes.testScreen.path);
-                  },
-                  backgroundColor: Colors.black,
-                  radius: 12,
-                  horizontalPadding: 20,
-                  child: const Text('Tell us'),
-                )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomBtn(
+                      onPressed: () {},
+                      verticalPadding: 10,
+                      horizontalPadding: 20,
+                      radius: 8,
+                      backgroundColor: themeProvider.isDarkTheme
+                          ? primaryLight
+                          : primaryDark,
+                      child: Text(
+                        'Tell us',
+                        style: Styles.txStyF12FW6FFsCb.copyWith(
+                          color: themeProvider.isDarkTheme
+                              ? primaryDark
+                              : primaryLight,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
             flex: 2,
             child: Center(
-              child: Icon(Icons.home),
+              child: SizedBox(
+                  height: 0.1.sh,
+                  child: Image.asset(Assets.images.image1.path)),
             ))
+      ],
+    );
+  }
+
+  //MARK: Catering
+  Row catering() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 2,
+          child: Center(
+            child: SizedBox(
+                height: 0.1.sh, child: Image.asset(Assets.images.image2.path)),
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('For Caterers',
+                    style: Styles.txStyF20FW6FFsCb.copyWith(
+                      fontSize: 22,
+                      color: themeProvider.isDarkTheme
+                          ? primaryLight
+                          : primaryDark,
+                    )),
+                Text(
+                  'Lorem ipsum dolor sit amet consectetur adipiscing elit lorem ipsum dipiscing elit',
+                  style: Styles.txStyF12FW3FFsCb.copyWith(
+                    color:
+                        themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomBtn(
+                      onPressed: () {},
+                      verticalPadding: 10,
+                      horizontalPadding: 20,
+                      radius: 8,
+                      backgroundColor: themeProvider.isDarkTheme
+                          ? primaryLight
+                          : primaryDark,
+                      child: Text(
+                        'Contact us',
+                        style: Styles.txStyF12FW6FFsCb.copyWith(
+                          color: themeProvider.isDarkTheme
+                              ? primaryDark
+                              : primaryLight,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -118,7 +219,7 @@ class _HomeMobileState extends State<HomeMobile> {
             'Menu Items',
             style: Styles.txStyF12FWbFFpCb.copyWith(
               fontWeight: FontWeight.w600,
-              color: Colors.black,
+              color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
               fontSize: 15.sp,
             ),
           ),
@@ -126,7 +227,7 @@ class _HomeMobileState extends State<HomeMobile> {
             'See all',
             style: Styles.txStyF12FWbFFpCb.copyWith(
               fontWeight: FontWeight.normal,
-              color: Colors.black,
+              color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
               fontSize: 13.sp,
             ),
           ),
@@ -140,6 +241,9 @@ class _HomeMobileState extends State<HomeMobile> {
           return Item(
             index: index,
             itemCount: 10,
+            onTap: () {
+              context.push(context.namedLocation(Routes.screenOrderItem.name));
+            },
           );
         },
       ),
@@ -157,7 +261,7 @@ class _HomeMobileState extends State<HomeMobile> {
               'Most Ordered items',
               style: Styles.txStyF12FWbFFpCb.copyWith(
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
                 fontSize: 15.sp,
               ),
             ),
@@ -165,50 +269,73 @@ class _HomeMobileState extends State<HomeMobile> {
               'See all',
               style: Styles.txStyF12FWbFFpCb.copyWith(
                 fontWeight: FontWeight.normal,
-                color: Colors.black,
-                fontSize: 13.sp,
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
               ),
             ),
           ],
         ),
-        Container(
-          // height: 180,
-          height: ScreenUtil().screenHeight / 2.9,
-          color: Colors.grey.shade200,
+        SizedBox(
+          height: 0.32.sh,
+          // height: ScreenUtil().screenHeight / 3.26,
+          // color: Colors.grey.shade200,
           child: ListView.builder(
             itemCount: 10,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Container(
                 width: 0.4255.sw,
-                // padding: const EdgeInsets.symmetric(horizontal: 4),
                 margin: const EdgeInsets.only(right: 20),
-                // width: 0.43.sw,
-                // width: 0.425.sw,
-                // height: 0.19.sh,
-                color: Colors.grey.shade400,
+                // color: Colors.grey.shade400,
                 child: DisplayItem(
-                  likebtn: LikeBtn(
-                    onTap: (bool isLiked) {
-                      setState(() {
-                        likeStatus = !likeStatus;
-                      });
-                      return Future.value(!isLiked);
-                    },
-                    likeBuilder: (isLiked) {
-                      return Icon(
-                        likeStatus
-                            ? Icons.favorite_rounded
-                            : Icons.favorite_border_rounded,
-                        color: likeStatus ? Colors.red : Colors.black,
-                      );
-                    },
-                  ),
+                  isLiked: likeStatusList[index],
+                  navigateTo: () {
+                    context.push(
+                        context.namedLocation(Routes.screenOrderItem.name));
+                  },
+                  onTap: (bool isLiked) async {
+                    setState(() {
+                      likeStatusList[index] = !isLiked;
+                    });
+                    return !isLiked;
+                  },
                 ),
               );
             },
           ),
         ),
+        // SizedBox(
+        //   // color: Colors.grey,
+        //   // height: 180,
+        //   height: ScreenUtil().screenHeight / 3.26,
+        //   // color: Colors.grey.shade200,
+        //   child: ListView.builder(
+        //     itemCount: 10,
+        //     scrollDirection: Axis.horizontal,
+        //     // physics: const NeverScrollableScrollPhysics(),
+        //     // shrinkWrap: true,
+        //     itemBuilder: (context, index) {
+        //       return Container(
+        //         width: 0.4255.sw,
+        //         // padding: const EdgeInsets.symmetric(horizontal: 4),
+        //         margin: const EdgeInsets.only(right: 12),
+        //         // width: 0.43.sw,
+        //         // width: 0.425.sw,
+        //         // height: 0.19.sh,
+        //         // color: Colors.grey.shade400,
+        //         child: Consumer<HomeProvider>(
+        //           builder: (context, homeProvider, _) => DisplayItem(
+        //             isLiked: homeProvider.getLikedStatus[index],
+        //             onTap: (p0) {
+        //               print('log: $p0');
+        //               homeProvider.setLikedStatus = index;
+        //               return Future.value(true);
+        //             },
+        //           ),
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // ),
       ],
     );
   }
@@ -330,13 +457,14 @@ class _HomeMobileState extends State<HomeMobile> {
           ],
         ),
         Container(
-            // width: double.infinity,
-            // height: 140,
-            // color: Colors.grey,
-            alignment: AlignmentDirectional.bottomStart,
-            child: const CustomCarousel(
-              height: 140,
-            )),
+          // width: double.infinity,
+          // height: 140,
+          // color: Colors.grey,
+          alignment: AlignmentDirectional.bottomStart,
+          child: const CustomCarousel(
+            height: 80, // 140
+          ),
+        ),
         // Container(
         //   width: double.infinity,
         //   height: 140,
@@ -372,7 +500,9 @@ class _HomeMobileState extends State<HomeMobile> {
             borderRadius: BorderRadius.circular(8),
             // color: Colors.white,
             border: Border.all(
-              color: Colors.grey.shade400,
+              color: themeProvider.isDarkTheme
+                  ? selectedItemBgLight
+                  : selectedItemBg1,
             ),
           ),
           child: Row(
@@ -381,15 +511,56 @@ class _HomeMobileState extends State<HomeMobile> {
                 'Search for ',
                 style: Styles.txStyF12FWbFFpCb.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: Colors.grey.shade500,
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
                   fontSize: 13,
                 ),
               ),
-              animatedSlideText(),
+
+              AnimatedTextKit(animatedTexts: [
+                RotateAnimatedText(
+                  'Tiffins',
+                  textStyle: Styles.txStyF12FWbFFpCb.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: themeProvider.isDarkTheme
+                        ? secondaryLight
+                        : secondaryDark,
+                    fontSize: 13,
+                  ),
+                ),
+                RotateAnimatedText(
+                  '"Beverage"',
+                  textStyle: Styles.txStyF12FWbFFpCb.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: themeProvider.isDarkTheme
+                        ? secondaryLight
+                        : secondaryDark,
+                    fontSize: 13,
+                  ),
+                ),
+                RotateAnimatedText(
+                  '"Specials"',
+                  textStyle: Styles.txStyF12FWbFFpCb.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: themeProvider.isDarkTheme
+                        ? secondaryLight
+                        : secondaryDark,
+                    fontSize: 13,
+                  ),
+                ),
+              ]),
+              // animatedSlideText(),
               const Spacer(),
-              const Icon(Icons.search),
-              const VerticalDivider(),
-              const Icon(Icons.format_align_left_sharp),
+              Icon(
+                Icons.search,
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+              VerticalDivider(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+              Icon(
+                Icons.format_align_left_sharp,
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
             ],
           ),
         ),
@@ -400,7 +571,10 @@ class _HomeMobileState extends State<HomeMobile> {
   Expanded animatedSlideText() {
     return Expanded(
       child: AnimatedTextField(
-        readOnly: false,
+        onTap: () {
+          context.goNamed(Routes.screenSearch.name);
+        },
+        readOnly: true,
         decoration: const InputDecoration(
           border: InputBorder.none,
         ),
@@ -428,37 +602,47 @@ class _HomeMobileState extends State<HomeMobile> {
           children: [
             /* ClipRRect(
               borderRadius: BorderRadius.circular(30),
-              // radius: 20,  0.058.sw
+              // radius: 20,  0.058.sw 
               child: Image.asset(Assets.images.dragon.path,
                   width: 50, height: 50, fit: BoxFit.cover),
             ), */
-            GestureDetector(
-              onTap: () {
-                context.push(context.namedLocation(Routes.screenStory.name));
-                // Story
-              },
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey.shade300,
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.black,
-                      Colors.red,
-                    ],
+            Consumer<StoryProvider>(
+              builder: (context, provider, _) => GestureDetector(
+                onTap: () {
+                  if (provider.isStorySeen) {
+                    context.push(context.namedLocation(Routes.screen404.name));
+                    return;
+                  }
+                  context.push(context.namedLocation(Routes.screenStory.name));
+                  // Story
+                },
+                child: Container(
+                  clipBehavior: Clip.antiAlias,
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: themeProvider.isDarkTheme
+                        ? selectedItemBgLight
+                        : selectedItemBg1,
+                    gradient: provider.isStorySeen
+                        ? null
+                        : const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.black,
+                              Colors.red,
+                            ],
+                          ),
                   ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    // radius: 20,  0.058.sw
+                    child: Image.asset(Assets.images.dragon.path,
+                        width: 0.13.sw, height: 0.13.sw, fit: BoxFit.cover),
+                  ),
                   // radius: 20,  0.058.sw
-                  child: Image.asset(Assets.images.dragon.path,
-                      width: 0.13.sw, height: 0.13.sw, fit: BoxFit.cover),
                 ),
-                // radius: 20,  0.058.sw
               ),
             ),
 
@@ -472,7 +656,7 @@ class _HomeMobileState extends State<HomeMobile> {
               'User Name',
               style: Styles.txStyF12FWbFFpCb.copyWith(
                 fontWeight: FontWeight.normal,
-                color: Colors.black,
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
                 fontSize: 14.sp,
               ),
             ),
@@ -486,141 +670,167 @@ class _HomeMobileState extends State<HomeMobile> {
               child: const Icon(Icons.card_travel_outlined),
             ),
             const SizedBox(width: 20),
-            CircleAvatar(
-              radius: 0.058.sw,
-              backgroundColor: Colors.grey.shade300,
-              child: const Icon(Icons.notifications_paused_sharp),
+            GestureDetector(
+              onTap: () {
+                print('Routes.screenNotifications.name');
+                context.push(
+                    context.namedLocation(Routes.screenNotifications.name));
+              },
+              child: CircleAvatar(
+                radius: 0.058.sw,
+                backgroundColor: themeProvider.isDarkTheme
+                    ? selectedItemBgLight
+                    : selectedItemBg1,
+                child: Icon(
+                  Icons.notifications_paused_sharp,
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              ),
             ),
           ],
         ),
       ],
     );
   }
-}
 
-class DisplayItem extends StatelessWidget {
-  final Widget likebtn;
-  const DisplayItem({super.key, required this.likebtn});
+  bool changeFooter = false;
+  Widget footer() {
+    return GestureDetector(
+        onTap: () {
+          setState(() {
+            changeFooter = !changeFooter;
+          });
+        },
+        child: footerContent());
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 0.42.sw,
-          height: 0.19.sh,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-              color: Colors.grey.shade300,
-              borderRadius: BorderRadius.circular(16)),
-          child: Stack(
+  Container footerContent() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      color: themeProvider.isDarkTheme ? selectedItemBg1 : selectedItemBg3,
+      // color: const Color(0xff161b21),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Positioned.fill(
-                child: Image.asset(
-                  Assets.images.dragon.path,
-                  fit: BoxFit.cover,
+              Text(
+                'Terms',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
                 ),
               ),
-
-              //MARK: Like
-              Positioned(
-                top: 8,
-                right: 5,
-                child: LikeBtn(
-                  onTap: (bool isLiked) {
-                    return Future.value(true);
-                  },
-                  likeBuilder: (isLiked) {
-                    return const Icon(
-                      Icons.favorite_rounded,
-                      color: Color(0xffff3040),
-                    );
-                  },
+              Text(
+                'xxxx',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              ),
+              Text(
+                'xxxx',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              ),
+              Text(
+                'xxxx',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              ),
+              Text(
+                'xxxx',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
                 ),
               ),
             ],
           ),
-        ),
-        Expanded(
-          child: Container(
-            color: const Color.fromARGB(255, 78, 119, 182),
-            // width: size.width * 0.42,
-            // height: size.width * 0.4,
-            height: 0.19.sh,
-            // padding: const EdgeInsets.symmetric(vertical: 5)
-            //     .copyWith(left: 0.03.sw),
-            alignment: Alignment.topLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Item Name',
-                  style: Styles.txStyF12FWbFFpCb
-                      .copyWith(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  '\$123.00',
-                  style: Styles.txStyF12FWbFFpCb
-                      .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'This text exceeds the maximum number of lines. The text will be truncated, and an "Expand" button will appear, replacing the default "Read more" button. The text and "Expand" button are styled with a custom font size and color. The text is blue with a font size of 16.0, and the "Expand" button is red with a font size of some. The AnimatedReadMoreText widget is a Flutter package that provides a user-friendly and visually appealing way to present lengthy text content. It dynamically adapts text length based on a predefined maximum line count, ensuring optimal readability on various screen sizes.',
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  // style: Styles.txStyF12FWbFFpCb.copyWith(
-                  //   // fontSize: 10,
-                  //   fontSize: 0.03.sw,
-                  // ),
-                  style: Styles.txStyF12FWbFFpCb.copyWith(
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black,
-                    fontSize: 12,
-                  ),
-                ),
-                // const Text(
-                //   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                //   style: TextStyle(fontSize: 10),
-                // ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.star_border_purple500_outlined,
-                          size: 14,
-                        ),
-                        Text(
-                          '4.5',
-                          style: Styles.txStyF12FWbFFpCb.copyWith(
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black,
-                            fontSize: 10.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '10 - 15min',
-                      style: Styles.txStyF12FWbFFpCb.copyWith(
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                        fontSize: 10.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          const SizedBox(width: 5),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Text(
+              'Policy',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
             ),
+            Text(
+              'xxxx',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+            Text(
+              'xxxx',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+          ]),
+          const SizedBox(width: 5),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Text(
+              'Connect',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+            Text(
+              'xxxx',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+          ]),
+          const SizedBox(width: 5),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Text(
+              'Services',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+            Text(
+              'xxxx',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+            Text(
+              'xxxx',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+            Text(
+              'xxxx',
+              style: TextStyle(
+                color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+              ),
+            ),
+          ]),
+          const SizedBox(width: 5),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'Manage by',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              ),
+              Text(
+                'xxxx',
+                style: TextStyle(
+                  color: themeProvider.isDarkTheme ? primaryLight : primaryDark,
+                ),
+              )
+            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
