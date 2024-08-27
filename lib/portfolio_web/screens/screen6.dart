@@ -5,20 +5,20 @@ import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
 class Screen6 extends StatelessWidget {
   const Screen6({super.key});
 
-  // List<User> userData = [
-  //   User(
-  //       dates: '2015 - 2017',
-  //       course: 'Programming Course',
-  //       university: 'Harvard University'),
-  //   User(
-  //       dates: '2018 - 2021',
-  //       course: 'Programming Course',
-  //       university: 'California University'),
-  //   User(
-  //       dates: '2021 - 2023',
-  //       course: 'Computer Science',
-  //       university: 'Stanford University'),
-  // ];
+  static final List<User> userData = [
+    User(
+        dates: '2015 - 2017',
+        course: 'Programming Course',
+        university: 'Harvard University'),
+    User(
+        dates: '2018 - 2021',
+        course: 'Programming Course',
+        university: 'California University'),
+    User(
+        dates: '2021 - 2023',
+        course: 'Computer Science',
+        university: 'Stanford University'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -177,3 +177,10 @@ class Screen6 extends StatelessWidget {
 //   final String university;
 //   User({required this.dates, required this.course, required this.university});
 // }
+
+class User {
+  final String dates;
+  final String course;
+  final String university;
+  User({required this.dates, required this.course, required this.university});
+}

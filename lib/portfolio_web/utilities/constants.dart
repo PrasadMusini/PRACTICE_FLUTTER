@@ -65,24 +65,23 @@ class Constants {
       fontWeight: FontWeight.w700);
 }
 
-List<User> userData = [
-  User(
-      dates: '2015 - 2017',
-      course: 'Programming Course',
-      university: 'Harvard University'),
-  User(
-      dates: '2018 - 2021',
-      course: 'Programming Course',
-      university: 'California University'),
-  User(
-      dates: '2021 - 2023',
-      course: 'Computer Science',
-      university: 'Stanford University'),
-];
-
 class User {
   final String dates;
   final String course;
   final String university;
-  User({required this.dates, required this.course, required this.university});
+  final String percentage;
+  User(
+      {
+      required this.percentage,
+      required this.dates,
+      required this.course,
+      required this.university});
+}
+
+class Data {
+  final String mainData;
+  final String sub1Data;
+  final String sub2Data;
+
+  Data({required this.mainData, required this.sub1Data, required this.sub2Data});
 }

@@ -32,7 +32,7 @@ class CustomCarousel extends StatelessWidget {
         slideIndicator: const CircularSlideIndicator(
             // indicatorBorderColor: Colors.grey,
             // currentIndicatorColor: Colors.red,
-            indicatorRadius: 4),
+            ),
       ),
       items: imgList.map((item) {
         return Builder(
@@ -59,17 +59,6 @@ class CustomCarousel extends StatelessWidget {
                               value: downloadProgress.progress)),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                /* Image.network(
-                  item,
-                  height: 100,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-              
-                    return const Center(
-                        child: CircularProgressIndicator.adaptive());
-                  },
-                ), */
               ),
             );
           },

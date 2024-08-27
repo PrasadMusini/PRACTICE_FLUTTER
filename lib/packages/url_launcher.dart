@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlLauncher extends StatelessWidget {
-   UrlLauncher({
+  UrlLauncher({
     super.key,
   });
-  
+
   final Uri facebookProfileUrl = Uri.parse(
-        'https://www.facebook.com/share/AwYhQxCNtf7Q33gS/?mibextid=qi2Omg');
-    final Uri instaProfileUrl = Uri.parse(
-        'https://www.instagram.com/cristiano?igsh=MTdwaDUybmo0ZW1kdw==');
-    final Uri url = Uri.parse('https://pub.dev/packages/url_launcher/example');
+      'https://www.facebook.com/share/AwYhQxCNtf7Q33gS/?mibextid=qi2Omg');
+  final Uri instaProfileUrl = Uri.parse(
+      'https://www.instagram.com/cristiano?igsh=MTdwaDUybmo0ZW1kdw==');
+  final Uri url = Uri.parse('https://pub.dev/packages/url_launcher/example');
+  final Uri mapUrl =
+      Uri.parse('https://maps.app.goo.gl/hLaCq569kKC6QzGy5'); // Map URL
 
   final String whatsappPhoneNumber = '9553624970';
   final String whatsappMessage =
@@ -54,22 +56,11 @@ class UrlLauncher extends StatelessWidget {
     await launchUrl(emailUri);
   }
 
-  // Future<void> _sendWhatsAppMessage(
-  //     String phone, String text, String body) async {
-  //   final Uri whatsappUri = Uri.parse(
-  //       'whatsapp://send?phone=$phone&text=${Uri.encodeComponent(text)}&body=${Uri.encodeComponent(body)}');
-  //   await launchUrl(whatsappUri);
-  // }
-
-    
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'URL Launcher',
-        ),
+        title: const Text('URL Launcher'),
       ),
       body: Center(
         child: Column(
@@ -85,13 +76,13 @@ class UrlLauncher extends StatelessWidget {
               onPressed: () {
                 _launchInBrowser(instaProfileUrl);
               },
-              child: const Text('Open insta Profile'),
+              child: const Text('Open Instagram Profile'),
             ),
             ElevatedButton(
               onPressed: () {
                 _launchInBrowser(url);
               },
-              child: const Text('Open Web Url'),
+              child: const Text('Open Web URL'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -111,13 +102,12 @@ class UrlLauncher extends StatelessWidget {
               },
               child: const Text('Send Email'),
             ),
-            //  ElevatedButton(
-            //     onPressed: () {
-            //       _sendWhatsAppMessage(
-            //           whatsappPhoneNumber, whatsappText, whatsappBody);
-            //     },
-            //     child: const Text('Send WhatsApp Message'),
-            //   ),
+            ElevatedButton(
+              onPressed: () {
+                _launchInBrowser(mapUrl);
+              },
+              child: const Text('Open Map Location'),
+            ),
           ],
         ),
       ),

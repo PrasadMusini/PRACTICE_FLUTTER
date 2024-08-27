@@ -1,82 +1,91 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:practice_flutter/project/common_utilities/common_widgets.dart/custom_carousel.dart';
-import 'package:practice_flutter/project/main_screen/pages/story/story_provider.dart';
-import 'package:practice_flutter/project/navigation/router_config.dart';
-import 'package:practice_flutter/project/theme/them_provider.dart';
-import 'package:provider/provider.dart';
 
-void main() => runApp(
-      // const MyApp(),
-      DevicePreview(
-        enabled: true,
-        builder: (context) => MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (context) => StoryProvider()),
-            ChangeNotifierProvider(create: (context) => ThemeProvider()),
-            // ChangeNotifierProvider(create: (context) => HomeProvider()),
-          ],
-          child: const MyApp(),
-        ),
-      ),
-    );
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent, // Change this to your desired color
-      statusBarIconBrightness: Brightness.dark, // For light icons
-      // statusBarIconBrightness: Brightness.light, // For dark icons
-    ));
-
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) => MaterialApp.router(
-        theme: themeProvider.themeData,
-        routerDelegate: router.routerDelegate,
-        routeInformationParser: router.routeInformationParser,
-        routeInformationProvider: router.routeInformationProvider,
-      ),
-    );
-
-    /*   return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Test(),
-    ); */
-
-    // return MaterialApp.router(
-    //   routerDelegate: router.routerDelegate,
-    //   routeInformationParser: router.routeInformationParser,
-    //   routeInformationProvider: router.routeInformationProvider,
-    // );
+      home: const MyHomePage(),
+    );
   }
 }
 
-class Test extends StatelessWidget {
-  const Test({super.key});
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+  Future<bool> _onWillPop(BuildContext context) async {
+    return await showDialog(
+          context: context,
+          barrierDismissible: false, // Prevent dismiss on tap outside
+          builder: (context) => AlertDialog(
+            title: const Text("Exit"),
+            content: const Text("Do you want to exit?"),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context)
+                    .pop(true), // Return true to pop the route
+                child: const Text(
+                  "Yes",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context)
+                    .pop(false), // Return false to stay on the route
+                child: const Text(
+                  "No",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ) ??
+        false; // Handle null case by returning false (stay on the route)
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: SizedBox(
-          // color: Colors.grey,
-          // padding: const EdgeInsets.all(10),
-          height: 200,
-          child: CustomCarousel(
-            height: 200,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        bool canPop = await _onWillPop(context);
+        if (canPop) {
+          Navigator.pop(context);
+        } else {
+          return;
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Second Page'),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              _onWillPop(context).then((exitConfirmed) {
+                if (exitConfirmed) {
+                  // Navigate back to the first page (HomePage) if exit is confirmed
+                  Navigator.pop(context);
+                }
+              });
+            },
+            child: const Text('Back to First Page'),
           ),
         ),
       ),
