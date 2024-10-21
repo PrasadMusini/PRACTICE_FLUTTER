@@ -1,7 +1,5 @@
-import 'package:easy_url_launcher/easy_url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MobileScreen11 extends StatelessWidget {
   MobileScreen11({super.key});

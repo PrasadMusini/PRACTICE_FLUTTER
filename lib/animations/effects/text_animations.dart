@@ -1,44 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      theme: ThemeData.light(useMaterial3: true),
-      home: const TextAnimations(),
-    );
-  }
-}
-
-class Square extends StatefulWidget {
-  const Square({Key? key}) : super(key: key);
-
-  @override
-  State<Square> createState() => _SquareState();
-}
-
-class _SquareState extends State<Square> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      color: Colors.blueAccent,
-    );
-  }
-}
 
 class TextAnimations extends StatelessWidget {
   const TextAnimations({Key? key}) : super(key: key);
@@ -120,13 +81,20 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            FadeInUp(child: const Square()),
-            FadeInUp(child: const Square()),
-            FadeInUp(child: const Square()),
-            FadeInUp(child: const Square()),
+            const Text("Hello333").animate().fade(),
+            const Text("Hello444").animate().fade(begin: 0.5),
+            const Text("Hello555").animate().fade(end: 0.5),
+            const Text("Hello666")
+                .animate()
+                .fadeIn(duration: 600.ms)
+                .then(delay: 200.ms)
+                .slide(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ),
           ],
         ),
       ),
@@ -136,7 +104,7 @@ class SecondScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyApp(),
+              builder: (context) => const TextAnimations(),
             ),
           );
         },
