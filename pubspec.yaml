@@ -16,6 +16,7 @@ dependencies:
   animated_read_more_text: ^0.0.6
   animated_text_kit: ^4.2.2
   audioplayers: ^6.0.0
+  auto_animated: ^3.2.0
   auto_size_text: ^3.0.0
   cached_network_image: ^3.3.1
   calendar_date_picker2: ^1.0.2
