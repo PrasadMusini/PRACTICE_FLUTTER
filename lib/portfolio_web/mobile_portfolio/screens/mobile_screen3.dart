@@ -1,4 +1,3 @@
-import 'package:animate_text/animate_text.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';

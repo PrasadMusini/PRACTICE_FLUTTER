@@ -3,7 +3,8 @@ description: "A new Flutter project."
 
 publish_to: "none"
 
-version: 1.0.0+1
+# version: 1.0.0+1
+version: 2.5.0+1
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
@@ -27,13 +28,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   cupertino_onboarding: ^1.2.0
   date_picker_plus: ^4.0.0
+  device_info_plus: ^10.1.2
   device_preview: ^1.2.0
   digital_signature_flutter: 0.0.3
   dio: ^5.4.3+1
   dot_navigation_bar: ^1.0.2
   dotted_border: ^2.1.0
   easy_localization: ^3.0.7
-  easy_url_launcher: ^0.0.7
   excel: ^4.0.2
   file_downloader_flutter: ^0.0.5
   fl_chart: ^0.68.0
@@ -44,6 +45,7 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.5.0
   flutter_carousel_widget: ^2.2.0
+  flutter_chat_ui: ^1.6.15
   flutter_datetime_picker_plus: ^2.2.0
   flutter_floating_bottom_bar: ^1.2.0
   flutter_infinite_marquee: ^1.0.0
@@ -54,6 +56,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_seekbar: ^1.0.1
   flutter_svg: ^2.0.10+1
+  flutter_timezone: ^3.0.1
+  flutter_widget_from_html: ^0.15.3
   flutter_windowmanager: ^0.2.0
   go_router: ^14.2.0
   google_fonts: ^6.2.1
@@ -68,7 +72,9 @@ dependencies:
   loading_progress: ^1.0.2
   marquee: ^2.2.3
   month_year_picker: ^0.4.0+1
+  new_version_plus: ^0.0.12
   open_filex: ^4.4.0
+  package_info_plus: ^8.1.1
   path_provider: ^2.1.3
   pdf: ^3.10.8
   permission_handler: ^11.3.1
@@ -86,13 +92,11 @@ dependencies:
   story: ^1.1.0
   syncfusion_flutter_charts: ^25.2.7
   syncfusion_flutter_datepicker: ^25.2.4
-  timezone: ^0.9.3
   typewritertext: ^3.0.6
   typing_text: ^1.0.4
   upi_payment_qrcode_generator: ^1.4.0
   url_launcher: ^6.3.0
-  vector_graphics: any
-  wave: ^0.2.2
+  uuid: ^4.5.1
   widget_marquee: ^0.0.8
 
 dev_dependencies:

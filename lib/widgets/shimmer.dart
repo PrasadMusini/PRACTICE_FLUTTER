@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice_flutter/common_utils/widgets.dart';
-import 'package:practice_flutter/pages/test.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerScreen extends StatefulWidget {
@@ -14,9 +12,9 @@ class _ShimmerScreenState extends State<ShimmerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonWidgets.appBar('Shimmer Screen', () {
+      /*  appBar: CommonWidgets.appBar('Shimmer Screen', () {
         CommonWidgets.navigateTo(context, const Test());
-      }),
+      }), */
       body: _shimmer(),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_flutter/portfolio_web/utilities/constants.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:practice_flutter/gen/assets.gen.dart';
 
 class MobileScreen8 extends StatelessWidget {
   const MobileScreen8({super.key});

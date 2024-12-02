@@ -45,6 +45,7 @@ class AnimatedListExample extends StatelessWidget {
         reAnimateOnVisibility: false, // Do not re-animate items when scrolling
       ),
       itemCount: listItems.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 10),
       itemBuilder: (context, index, animation) {
         return FadeTransition(
           opacity: animation,

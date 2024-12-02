@@ -1,278 +1,164 @@
+/* import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:http/http.dart' as http;
+import 'package:open_file/open_file.dart';
+import 'package:path/path.dart' as p;
 
-class MyCard extends StatelessWidget {
-  const MyCard({super.key});
+class FileDownloader extends StatefulWidget {
+  const FileDownloader({super.key});
+
+  @override
+  State<FileDownloader> createState() => _FileDownloaderState();
+}
+
+class _FileDownloaderState extends State<FileDownloader> {
+  final String url =
+      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+
+  Future<void> requestPermissions() async {
+    if (Platform.isAndroid) {
+      final String versionString = Platform.version.split(" ").last;
+      final int sdkVersion =
+          int.tryParse(versionString.replaceAll(RegExp(r'[^\d]'), '')) ?? 0;
+
+      if (sdkVersion >= 33) {
+        // For Android 13 (API level 33) and above
+        final PermissionStatus mediaLibrary =
+            await Permission.mediaLibrary.request();
+
+        if (mediaLibrary.isGranted) {
+          showSnackbar('Media permissions granted.');
+        } else {
+          showSnackbar('Media permissions denied.');
+        }
+      } else {
+        // For Android 12 (API level 32) and below
+        final PermissionStatus storageStatus =
+            await Permission.storage.request();
+        if (storageStatus.isGranted) {
+          showSnackbar('Storage permission granted.');
+        } else {
+          showSnackbar('Storage permission denied.');
+        }
+      }
+    } else {
+      showSnackbar('Storage permissions are not required for this platform.');
+    }
+  }
+
+  Future<String> getSdCardDirectory() async {
+    try {
+      String? downloadDirectory;
+      if (Platform.isAndroid) {
+        final externalStorageFolder = await getExternalStorageDirectory();
+        if (externalStorageFolder != null) {
+          downloadDirectory = p.join(externalStorageFolder.path, "Downloads");
+        }
+      } else {
+        final downloadFolder = await getDownloadsDirectory();
+        downloadDirectory = downloadFolder!.path;
+      }
+      return downloadDirectory!;
+    } catch (e) {
+      showSnackbar('Error creating directory: $e');
+      rethrow;
+    }
+  }
+  /*  Future<String> getSdCardDirectory() async {
+    try {
+      final Directory? externalDir = await getExternalStorageDirectory();
+      // final Directory? externalDir = await getExternalStorageDirectory();
+      if (externalDir == null) {
+        throw Exception("No external storage directory found.");
+      }
+
+      final String newDirPath = '${externalDir.path}/prasad';
+      final Directory newDir = Directory(newDirPath);
+
+      if (!await newDir.exists()) {
+        await newDir.create(recursive: true);
+        showSnackbar('Directory created at: $newDirPath');
+      } else {
+        showSnackbar('Directory already exists at: $newDirPath');
+      }
+      return newDirPath;
+    } catch (e) {
+      showSnackbar('Error creating directory: $e');
+      rethrow;
+    }
+  } */
+
+  Future<void> downloadPdfFile() async {
+    try {
+      final String saveDirectory = await getSdCardDirectory();
+      final String savePath =
+          '$saveDirectory/test_${DateTime.now().millisecondsSinceEpoch}.pdf';
+
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final File file = File(savePath);
+        await file.writeAsBytes(response.bodyBytes);
+        print('File downloaded to: $savePath');
+        showSnackbar('File downloaded to: $savePath');
+      } else {
+        showSnackbar(
+            'Failed to download file. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      showSnackbar('Download failed: $e');
+    }
+  }
+
+  Future<void> openDownloadDirectory() async {
+    try {
+      final String downloadPath = await getSdCardDirectory();
+      final result = await OpenFile.open(downloadPath);
+
+      if (result.type != ResultType.done) {
+        showSnackbar('Failed to open the directory.');
+      }
+    } catch (e) {
+      showSnackbar('Error: $e');
+    }
+  }
+
+  /// Show a message in the Snackbar
+  void showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            cardWithFeedback(),
-            const SizedBox(
-              height: 30,
-            ),
-            SizedBox(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return cardWithRadius();
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            cardWithStatus(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget cardWithFeedback() {
-    return Card(
-      child: Container(
-        height: 120,
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Row(
-          children: [
-            const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Aug'),
-                Text(
-                  '10',
-                  style: TextStyle(fontSize: 20),
-                ),
-                Text('1999'),
-              ],
-            ),
-            Container(
-              width: 1,
-              height: 120,
-              color: Colors.red,
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-            ),
-            // const VerticalDivider(),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('10:00 Am'),
-                              Text('Head Wash'),
-                              Text('kondapur'),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          color: Colors.red,
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text('status'),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Icon(
-                                    Icons.star_border_outlined,
-                                    size: 13,
-                                  ),
-                                  Text('4.5'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    color: Colors.green,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            'Take a Card widget inside of that card, take a container with a radius of 10, and place your desired child inside the container.',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget cardWithRadius() {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Container(
-        width: 200,
-        height: 180,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.grey,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-                child: Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7vDN07mCqaSv-VvdFX3VYd2Ic9uFyha4kA&s',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            // Expanded(
-            //   child: Container(
-            //     padding: const EdgeInsets.all(5),
-            //     decoration: const BoxDecoration(
-            //       borderRadius: BorderRadius.only(
-            //         topLeft: Radius.circular(10),
-            //         topRight: Radius.circular(10),
-            //       ),
-            //       color: Colors.greenAccent,
-            //     ),
-            //     child: Image.network(
-            //       // 'https://via.placeholder.com/600/92c952',
-            //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7vDN07mCqaSv-VvdFX3VYd2Ic9uFyha4kA&s',
-            //       fit: BoxFit.fill,
-            //     ),
-            //   ),
-            // ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  ),
-                  color: Colors.blueAccent,
-                ),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text('Branch name'),
-                    Text('Branch address'),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget cardWithStatus() {
-    return Card(
-      child: Container(
-        height: 120,
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: const Row(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Aug'),
-                Text(
-                  '10',
-                  style: TextStyle(fontSize: 20),
-                ),
-                Text('1999'),
-              ],
-            ),
-            VerticalDivider(),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('10:00 Am'),
-                              Text('Head Wash'),
-                              Text('kondapur'),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text('status'),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Icon(
-                                    Icons.star_border_outlined,
-                                    size: 13,
-                                  ),
-                                  Text('4.5'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text('Reschedule'),
-                      Text('Cancel appointment'),
-                      Text('Rate us'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              await requestPermissions();
+            },
+            child: const Text('Create Directory'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: downloadPdfFile,
+            child: const Text('Download PDF'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: openDownloadDirectory,
+            child: const Text('Open Directory'),
+          ),
+        ],
       ),
     );
   }
 }
+ */
