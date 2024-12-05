@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:open_filex/open_filex.dart';
+// import 'package:open_filex/open_filex.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 
@@ -22,6 +22,6 @@ class FileHandleApi {
   static Future openFile(File file) async {
     final url = file.path;
 
-    await OpenFilex.open(url);
+    // await OpenFilex.open(url);
   }
 }
