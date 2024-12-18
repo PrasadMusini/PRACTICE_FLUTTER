@@ -17,9 +17,17 @@ class _FloatingNavBarState extends State<FloatingNavBar>
   final List<Color> colors = [
     Colors.yellow,
     Colors.red,
-    Colors.green,
+    Colors.purple,
     Colors.blue,
     Colors.pink,
+  ];
+
+  final List<Widget> children = [
+    const Center(child: Text('Home')),
+    const Center(child: Text('Profile')),
+    const Center(child: Text('Settings')),
+    const Center(child: Text('Order')),
+    const Center(child: Text('Menu')),
   ];
 
   @override
@@ -82,9 +90,10 @@ class _FloatingNavBarState extends State<FloatingNavBar>
         curve: Curves.decelerate,
         showIcon: true,
         width: MediaQuery.of(context).size.width * 0.8,
-        barColor: colors[currentPage].computeLuminance() > 0.5
-            ? Colors.black
-            : Colors.white,
+        // barColor: Colors.grey,
+        // colors[currentPage].computeLuminance() > 0.5
+        //     ? Colors.black
+        //     : Colors.white,
         start: 3,
         end: 0,
         offset: 10,
@@ -108,7 +117,9 @@ class _FloatingNavBarState extends State<FloatingNavBar>
           controller: tabController,
           dragStartBehavior: DragStartBehavior.down,
           physics: const BouncingScrollPhysics(),
-          children: colors
+          children: children,
+
+          /* colors
               .map(
                 (e) => InfiniteListPage(
                   key: ValueKey('infinite_list_key#${e.toString()}'),
@@ -116,7 +127,7 @@ class _FloatingNavBarState extends State<FloatingNavBar>
                   color: e,
                 ),
               )
-              .toList(),
+              .toList(), */
         ),
         child: Stack(
           alignment: Alignment.center,
@@ -161,8 +172,7 @@ class _FloatingNavBarState extends State<FloatingNavBar>
                   child: Center(
                     child: Icon(
                       Icons.add,
-                      color:
-                          currentPage == 2 ? colors[2] : unselectedColorReverse,
+                      color: currentPage == 2 ? colors[2] : unselectedColor,
                     ),
                   ),
                 ),
@@ -188,14 +198,14 @@ class _FloatingNavBarState extends State<FloatingNavBar>
                 ),
               ],
             ),
-            Positioned(
+            /*   Positioned(
               top: -20,
               child: FloatingActionButton(
                 elevation: 0,
                 onPressed: () {},
                 child: const Icon(Icons.add),
               ),
-            )
+            ) */
           ],
         ),
       ),
