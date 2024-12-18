@@ -36,6 +36,14 @@
 		<key>UISupportedInterfaceOrientations</key>
 		<key>NSLocationAlwaysUsageDescription</key>
 		<string>Access to the location is needed when in the background.</string>
+		<key>NSLocationAlwaysAndWhenInUsageDescription</key>
+  		<string>App app want's to access your location to get address</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>We need access to your location always to provide personalized experiences and track your location.</string>
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>location</string>
+		</array>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app needs access to location when open.</string>
 		<key>NSLocationTemporaryUsageDescriptionDictionary</key>
