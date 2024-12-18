@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: FloatingNavBar(title: 'title'),
+      home: MainScreen(title: 'title'),
     );
   }
 }
