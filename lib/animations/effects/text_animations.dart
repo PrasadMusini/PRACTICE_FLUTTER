@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:practice_flutter/animations/extensions.dart';
 
 class TextAnimations extends StatelessWidget {
   const TextAnimations({Key? key}) : super(key: key);
@@ -84,17 +85,26 @@ class SecondScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            const Text("Hello333").animate().fade(),
+            /*  const Text("Hello333").animate().fade(),
             const Text("Hello444").animate().fade(begin: 0.5),
-            const Text("Hello555").animate().fade(end: 0.5),
-            const Text("Hello666")
-                .animate()
-                .fadeIn(duration: 600.ms)
-                .then(delay: 200.ms)
-                .slide(
+            const Text("Hello555").animate().fade(end: 0.5), */
+            /* const Text(
+              'Hello! I\'m Durga Prasad Musini, a passionate software developer based in Hyderabad, India. I have strong hands-on experience with Angular, Spring Boot, and Flutter. My journey in the tech world began with comprehensive training in Java Full Stack Development at JSpiders, where I honed my skills in various technologies.\n\nCurrently, I am working as a Flutter developer, where I contribute to building innovative and user-friendly mobile applications for both Android and iOS platforms. My experience spans developing dynamic web and mobile applications that provide seamless user experiences.\n\nIn my free time, I enjoy exploring new technologies and continuously learning to stay updated with industry trends. I am dedicated to delivering high-quality, efficient, and scalable software solutions.\n\nFeel free to explore my portfolio to see my projects, skills, and certifications. Let\'s connect and build something great together!',
+              style: TextStyle(
+                fontSize: 16,
+                height: 2,
+              ),
+            ).animate().fadeIn(duration: 1000.ms).then(delay: 1000.ms).slide(
                   begin: const Offset(0, 1),
                   end: Offset.zero,
-                ),
+                ), */
+            const Text(
+              'Hello! I\'m Durga Prasad Musini, a passionate software developer based in Hyderabad, India. I have strong hands-on experience with Angular, Spring Boot, and Flutter. My journey in the tech world began with comprehensive training in Java Full Stack Development at JSpiders, where I honed my skills in various technologies.\n\nCurrently, I am working as a Flutter developer, where I contribute to building innovative and user-friendly mobile applications for both Android and iOS platforms. My experience spans developing dynamic web and mobile applications that provide seamless user experiences.\n\nIn my free time, I enjoy exploring new technologies and continuously learning to stay updated with industry trends. I am dedicated to delivering high-quality, efficient, and scalable software solutions.\n\nFeel free to explore my portfolio to see my projects, skills, and certifications. Let\'s connect and build something great together!',
+              style: TextStyle(
+                fontSize: 16,
+                height: 2,
+              ),
+            ).fadeSlide()
           ],
         ),
       ),
