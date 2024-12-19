@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practice_flutter/navigation/pages/pagenotfound.dart';
 import 'package:practice_flutter/practice/fnb/floating_bottom_navbar.dart';
+import 'package:practice_flutter/practice/fnb/members_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 //MARK: Branches
@@ -27,20 +28,9 @@ final GoRouter router = GoRouter(
             navigatorKey: _homeBranchNavigatorKey,
             routes: <RouteBase>[
               GoRoute(
-                path: Routes.screen1.path,
-                name: Routes.screen1.name,
-                builder: (context, state) => Expanded(
-                    child: ListView.builder(
-                        itemCount: 50,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            tileColor: Colors.black26,
-                            title: Text(
-                                'This is very big text, displaying on listtile $index'),
-                            trailing: const Icon(Icons.chevron_right),
-                          );
-                        })),
-              ),
+                  path: Routes.screen1.path,
+                  name: Routes.screen1.name,
+                  builder: (context, state) => const HomeScreen()),
             ]),
         //MARK: Branch 2
         StatefulShellBranch(
@@ -49,9 +39,7 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: Routes.screen2.path,
               name: Routes.screen2.name,
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text('Screen 2')),
-              ),
+              builder: (context, state) => const MembersScreen(),
             ),
           ],
         ),
