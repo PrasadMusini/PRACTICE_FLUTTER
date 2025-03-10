@@ -29,6 +29,12 @@ class $AssetsImagesGen {
   AssetGenImage get facebookLogo =>
       const AssetGenImage('assets/images/facebook_logo.png');
 
+  /// File path: assets/images/g1.png
+  AssetGenImage get g1 => const AssetGenImage('assets/images/g1.png');
+
+  /// File path: assets/images/g2.png
+  AssetGenImage get g2 => const AssetGenImage('assets/images/g2.png');
+
   /// File path: assets/images/google_logo.png
   AssetGenImage get googleLogo =>
       const AssetGenImage('assets/images/google_logo.png');
@@ -53,34 +59,66 @@ class $AssetsImagesGen {
   /// File path: assets/images/image3.png
   AssetGenImage get image3 => const AssetGenImage('assets/images/image3.png');
 
+  /// File path: assets/images/stacked-steps-haikei.png
+  AssetGenImage get stackedStepsHaikei =>
+      const AssetGenImage('assets/images/stacked-steps-haikei.png');
+
   /// List of all assets
   List<dynamic> get values => [
         prasadImageRemovebg,
         check,
         dragon,
         facebookLogo,
+        g1,
+        g2,
         googleLogo,
         hairFixingLogoRemovebgPreview,
         hairFixingLogo,
         hfzLogo,
         image1,
         image2,
-        image3
+        image3,
+        stackedStepsHaikei
       ];
+}
+
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en-UK.json
+  String get enUK => 'assets/translations/en-UK.json';
+
+  /// File path: assets/translations/hi-IN.json
+  String get hiIN => 'assets/translations/hi-IN.json';
+
+  /// File path: assets/translations/kn-IN.json
+  String get knIN => 'assets/translations/kn-IN.json';
+
+  /// File path: assets/translations/te-IN.json
+  String get teIN => 'assets/translations/te-IN.json';
+
+  /// List of all assets
+  List<String> get values => [enUK, hiIN, knIN, teIN];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size = null});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
 
   final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,
@@ -154,17 +192,19 @@ class AssetGenImage {
 class SvgGenImage {
   const SvgGenImage(
     this._assetName, {
-    this.size = null,
+    this.size,
+    this.flavors = const {},
   }) : _isVecFormat = false;
 
   const SvgGenImage.vec(
     this._assetName, {
-    this.size = null,
+    this.size,
+    this.flavors = const {},
   }) : _isVecFormat = true;
 
   final String _assetName;
-
   final Size? size;
+  final Set<String> flavors;
   final bool _isVecFormat;
 
   SvgPicture svg({
@@ -187,12 +227,23 @@ class SvgGenImage {
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
+    final BytesLoader loader;
+    if (_isVecFormat) {
+      loader = AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
     return SvgPicture(
-      _isVecFormat
-          ? AssetBytesLoader(_assetName,
-              assetBundle: bundle, packageName: package)
-          : SvgAssetLoader(_assetName,
-              assetBundle: bundle, packageName: package),
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
       width: width,
@@ -203,7 +254,6 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
       colorFilter: colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
